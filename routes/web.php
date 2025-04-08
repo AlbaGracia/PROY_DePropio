@@ -26,5 +26,17 @@ Route::group(
         });
 
         require __DIR__ . '/auth.php';
+
+        Route::resource('event', 'EventController');
+        Route::resource('space', 'SpaceController');
+        Route::resource('user', 'UserController');
+        Route::resource('comment', 'CommentController');
+        Route::resource('type', 'TypeController');
+        Route::resource('category', 'CategoryController');
+
+
+
+
+
     }
 );
