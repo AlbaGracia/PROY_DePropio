@@ -1,0 +1,59 @@
+:root {
+    --cream: #f1eae2;              /* Light Pecan Pie */
+    --deep-purple: #221144;        /* Shadow Planet */
+    --bright-purple: #6633bb;      /* Purple Emperor */
+    --royal-purple: #442288;       /* Galactic Civilization */
+    --soft-pink: #eadfd2;          /* South Peak */
+    --lime-yellow: #d5d717;        /* Sulphur Spring */
+  }
+  
+  /* Background color classes */
+  .bg-cream {
+    background-color: var(--cream);
+  }
+  
+  .bg-deep-purple {
+    background-color: var(--deep-purple);
+  }
+  
+  .bg-bright-purple {
+    background-color: var(--bright-purple);
+  }
+  
+  .bg-royal-purple {
+    background-color: var(--royal-purple);
+  }
+  
+  .bg-soft-pink {
+    background-color: var(--soft-pink);
+  }
+  
+  .bg-lime-yellow {
+    background-color: var(--lime-yellow);
+  }
+  
+  /* Text color classes */
+  .text-cream {
+    color: var(--cream);
+  }
+  
+  .text-deep-purple {
+    color: var(--deep-purple);
+  }
+  
+  .text-bright-purple {
+    color: var(--bright-purple);
+  }
+  
+  .text-royal-purple {
+    color: var(--royal-purple);
+  }
+  
+  .text-soft-pink {
+    color: var(--soft-pink);
+  }
+  
+  .text-lime-yellow {
+    color: var(--lime-yellow);
+  }
+  
