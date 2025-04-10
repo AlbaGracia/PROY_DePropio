@@ -1,3 +1,8 @@
+*{
+  font-family: "B612 Mono", monospace;
+  font-size: 0.95rem;
+}
+
 :root {
     --cream: #f1eae2;              /* Light Pecan Pie */
     --deep-purple: #221144;        /* Shadow Planet */
@@ -57,3 +62,21 @@
     color: var(--lime-yellow);
   }
   
+
+  .btn-lime-yellow{
+    background-color: var(--lime-yellow);
+    border-radius: 20px;
+    border: 2px solid black;
+    font-weight: bold;
+  }
+
+  .btn-lime-yellow:hover {
+    border: 2px solid black;
+    background-color: var(--bright-purple);
+    color: white;
+  }
+
+  .btn-lime-yellow-out {
+    border: 2px solid var(--lime-yellow);
+    color: var(--lime-yellow);
+  }
