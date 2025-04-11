@@ -1,0 +1,193 @@
+* {
+    font-family: "B612 Mono", monospace;
+    font-size: 0.95rem;
+}
+
+:root {
+    --cream: #f1eae2; /* Light Pecan Pie */
+    --deep-purple: #221144; /* Shadow Planet */
+    --bright-purple: #6633bb; /* Purple Emperor */
+    --royal-purple: #442288; /* Galactic Civilization */
+    --soft-pink: #eadfd2; /* South Peak */
+    --lime-yellow: #d5d717; /* Sulphur Spring */
+}
+
+/* Background color classes */
+.bg-cream {
+    background-color: var(--cream);
+}
+
+.bg-deep-purple {
+    background-color: var(--deep-purple);
+}
+
+.bg-bright-purple {
+    background-color: var(--bright-purple);
+}
+
+.bg-royal-purple {
+    background-color: var(--royal-purple);
+}
+
+.bg-soft-pink {
+    background-color: var(--soft-pink);
+}
+
+.bg-lime-yellow {
+    background-color: var(--lime-yellow);
+}
+
+/* Text color classes */
+.text-cream {
+    color: var(--cream);
+}
+
+.text-deep-purple {
+    color: var(--deep-purple);
+}
+
+.text-bright-purple {
+    color: var(--bright-purple);
+}
+
+.text-royal-purple {
+    color: var(--royal-purple);
+}
+
+.text-soft-pink {
+    color: var(--soft-pink);
+}
+
+.text-lime-yellow {
+    color: var(--lime-yellow);
+}
+
+.btn {
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.btn-lime-yellow {
+    background-color: var(--lime-yellow);
+    border: 2px solid black;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-lime-yellow:hover {
+    border: 2px solid black;
+    background-color: var(--bright-purple);
+    color: white;
+}
+
+.btn-deep-purple-out {
+    border: 2px solid var(--deep-purple);
+    color: var(--deep-purple);
+    transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
+}
+
+.btn-deep-purple-out:hover {
+    border: 2px solid var(--lime-yellow);
+    color: var(--lime-yellow);
+}
+
+.link-black {
+    color: black;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease-in-out, border-bottom-color 0.3s ease-in-out;
+}
+
+.link-black:hover {
+    color: var(--bright-purple);
+    border-bottom-color: var(--bright-purple);
+}
+
+.link-white {
+    color: white;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease-in-out, border-bottom-color 0.3s ease-in-out;
+}
+
+.link-white:hover {
+    color: var(--lime-yellow);
+    border-bottom-color: var(--lime-yellow);
+}
+
+.link-white-simple {
+    color: white;
+    transition: color 0.2s ease-in-out;
+}
+
+.link-white-simple:hover {
+    color: var(--lime-yellow);
+}
+
+.selected {
+    color: black;
+    border-bottom-color: black;
+    font-weight: bold;
+}
+
+header.masthead {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 4.5rem);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, var(--bright-purple) 100%),
+        url("../../public/images/people-room.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
+header.masthead h1,
+header.masthead .h1 {
+    font-size: 2.25rem;
+}
+
+.page-section {
+    padding: 4rem 0;
+  }
+
+
+
+#portfolio .portfolio-box {
+    position: relative;
+    display: block;
+    height: 400px;
+
+}
+
+#portfolio .portfolio-box .portfolio-box-caption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    opacity: 0;
+    background: #f1eae2d9;
+    transition: opacity 0.25s ease;
+}
+
+#portfolio .portfolio-box img {
+    max-height: 100%;
+    width: 100%;
+    object-fit:cover;
+}
+
+#portfolio .portfolio-box .portfolio-box-caption .project-category {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#portfolio .portfolio-box .portfolio-box-caption .project-name {
+    font-size: 1.2rem;
+}
+
+#portfolio .portfolio-box:hover .portfolio-box-caption {
+    opacity: 1;
+}

@@ -20,17 +20,16 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ asset ("css/style.css") }}">
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
 
 </head>
 
-<body>
+<body class='d-flex flex-column min-vh-100'>
     @include('components.header')
     <main class="flex-shrink-0">
-        <div class="container">
-        </div>
+        
+            @yield('content')
+
       </main>
     @include('components.footer')
 </body>
