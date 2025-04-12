@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SpaceController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -27,12 +33,12 @@ Route::group(
 
         require __DIR__ . '/auth.php';
 
-        Route::resource('event', 'EventController');
-        Route::resource('space', 'SpaceController');
-        Route::resource('user', 'UserController');
-        Route::resource('comment', 'CommentController');
-        Route::resource('type', 'TypeController');
-        Route::resource('category', 'CategoryController');
+        Route::resource('event', EventController::class);
+        Route::resource('space', SpaceController::class);
+        Route::resource('user', UserController::class);
+        Route::resource('comment', CommentController::class);
+        Route::resource('type', TypeController::class);
+        Route::resource('category', CategoryController::class);
 
 
 

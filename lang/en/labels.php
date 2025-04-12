@@ -2,6 +2,7 @@
 
 return [
     'events' => 'Events',
+    'events-sub' => 'Discover all the activities and plans',
     'spaces' => 'Spaces',
     'calendar' => 'Calendar',
     'login' => 'Login',

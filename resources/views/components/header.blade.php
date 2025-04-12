@@ -19,7 +19,7 @@
         <div class="row w-100 d-flex justify-content-between align-items-center">
             <div class="col-12 col-lg-4 d-flex justify-content-lg-start justify-content-center mb-3 mb-lg-0">
                 <ul class="nav d-none d-lg-flex">
-                    <li class="nav-item"><a href="#"
+                    <li class="nav-item"><a href="{{route('event.index')}}"
                             class="nav-link link-black px-2 text-uppercase">{{ __('labels.events') }}</a></li>
                     <li class="nav-item"><a href="#"
                             class="nav-link link-black px-2 text-uppercase">{{ __('labels.spaces') }}</a></li>

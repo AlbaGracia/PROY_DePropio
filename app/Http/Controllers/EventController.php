@@ -12,7 +12,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('event.all');
+        $events = Event::all();
+        return view('view_components.event.all', ['events' => $events]);
     }
 
     /**
@@ -33,6 +34,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->start_date = $request->start_date;
         $event->finish_date = $request->finish_date;
+        $event->price = $request->price;
         $event->web_url = $request->web_url;
         $event->space_id = $request->space_id;
         $event->category_id = $request->category_id;
@@ -67,6 +69,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->start_date = $request->start_date;
         $event->finish_date = $request->finish_date;
+        $event->price = $request->price;
         $event->web_url = $request->web_url;
         $event->space_id = $request->space_id;
         $event->category_id = $request->category_id;

@@ -24,10 +24,9 @@
 
 </head>
 
-<body class='d-flex flex-column min-vh-100'>
+<body class='d-flex flex-column'>
     @include('components.header')
-    <main class="flex-shrink-0">
-        
+    <main>
             @yield('content')
 
       </main>
