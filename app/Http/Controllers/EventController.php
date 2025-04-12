@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Event;
+use App\Models\Space;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -21,7 +23,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('event.form');
+        $categories = Category::all();
+        $spaces = Space::all();
+        return view('view_components.event.form', ['categories' => $categories, 'spaces' => $spaces]);
     }
 
     /**
@@ -33,7 +37,7 @@ class EventController extends Controller
         $event->name = $request->name;
         $event->description = $request->description;
         $event->start_date = $request->start_date;
-        $event->finish_date = $request->finish_date;
+        $event->end_date = $request->end_date;
         $event->price = $request->price;
         $event->web_url = $request->web_url;
         $event->space_id = $request->space_id;
@@ -47,7 +51,8 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $event = Event::find($id);
+        return view('view_components.event.show', ['event' => $event]);
     }
 
     /**
@@ -56,7 +61,9 @@ class EventController extends Controller
     public function edit(string $id)
     {
         $event = Event::find($id);
-        return view('event.form', ['event', $event]);
+        $categories = Category::all();
+        $spaces = Space::all();
+        return view('view_components.event.form', ['event' => $event, 'categories' => $categories, 'spaces' => $spaces]);
     }
 
     /**
@@ -68,7 +75,7 @@ class EventController extends Controller
         $event->name = $request->name;
         $event->description = $request->description;
         $event->start_date = $request->start_date;
-        $event->finish_date = $request->finish_date;
+        $event->end_date = $request->end_date;
         $event->price = $request->price;
         $event->web_url = $request->web_url;
         $event->space_id = $request->space_id;

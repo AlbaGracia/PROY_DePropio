@@ -18,7 +18,7 @@
     </header>
 
     <!-- Sección de Testimonio -->
-    <aside class="text-center bg-bright-purple py-5">
+    <aside class="text-center bg-deep-purple py-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-8">

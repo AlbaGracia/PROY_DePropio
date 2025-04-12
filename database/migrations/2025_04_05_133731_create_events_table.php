@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->date('start_date');
-            $table->date('finish_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->double('price')->default(0);
             $table->string('web_url');
             $table->foreignId('space_id')->constrained();
