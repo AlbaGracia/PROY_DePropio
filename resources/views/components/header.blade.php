@@ -24,7 +24,7 @@
                         <li class="nav-item"><a href="{{ route('event.index') }}"
                                 class="nav-link link-black fw-bolder px-2 text-uppercase">{{ __('labels.events') }}</a>
                         </li>
-                        <li class="nav-item"><a href="#"
+                        <li class="nav-item"><a href="{{ route('space.index') }}"
                                 class="nav-link link-black fw-bolder px-2 text-uppercase">{{ __('labels.spaces') }}</a>
                         </li>
                         <li class="nav-item"><a href="#"

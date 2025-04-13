@@ -17,8 +17,8 @@
             </aside> --}}
 
             <!-- Tarjetas -->
-            <section class="col-md-11">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            <section class="col-lg-11">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                     @foreach ($events as $event)
                         <div class="col">
                             <div class="card shadow-sm">

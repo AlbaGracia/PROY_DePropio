@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Space;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class SpaceController extends Controller
@@ -12,7 +13,8 @@ class SpaceController extends Controller
      */
     public function index()
     {
-        return view('space.all');
+        $spaces = Space::all();
+        return view('view_components.space.all', ['spaces' => $spaces]);
     }
 
     /**
@@ -20,7 +22,8 @@ class SpaceController extends Controller
      */
     public function create()
     {
-        return view('space.form');
+        $types = Type::all();
+        return view('view_components.space.form', ['type' => $types]);
     }
 
     /**
@@ -30,6 +33,7 @@ class SpaceController extends Controller
     {
         $space = new Space();
         $space->name = $request->name;
+        $space->description = $request->description;
         $space->adress = $request->adress;
         $space->web_url = $request->web_url;
         $space->type_id = $request->type_id;
@@ -42,7 +46,8 @@ class SpaceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $space = Space::find($id);
+        return view('view_components.space.show', ['space' => $space]);
     }
 
     /**
@@ -51,8 +56,8 @@ class SpaceController extends Controller
     public function edit(string $id)
     {
         $space = Space::find($id);
-        return view('space.form', ['space', $space]);
-
+        $types = Type::all();
+        return view('view_components.space.form', ['space' => $space, 'types' => $types]);
     }
 
     /**
@@ -62,6 +67,7 @@ class SpaceController extends Controller
     {
         $space = Space::find($id);
         $space->name = $request->name;
+        $space->description = $request->description;
         $space->adress = $request->adress;
         $space->web_url = $request->web_url;
         $space->type_id = $request->type_id;

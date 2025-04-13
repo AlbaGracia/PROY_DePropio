@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('title', 'Editar Evento')
-@section('content')
 
 @section('content')
     <main class="container">
