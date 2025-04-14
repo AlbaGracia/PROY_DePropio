@@ -42,10 +42,10 @@
                 <div class="col-12 col-lg-4 d-flex justify-content-lg-end justify-content-center mt-3 mt-lg-0">
                     <ul class="nav d-none d-lg-flex">
                         <li class="nav-item"><a href="{{ route('login') }}"
-                                class="btn btn-deep-purple-out px-2 me-2 text-uppercase">{{ __('labels.login') }}</a>
+                                class="btn btn-deep-purple-out btn-sm px-2 me-2 text-uppercase">{{ __('labels.login') }}</a>
                         </li>
                         <li class="nav-item"><a href="{{ route('register') }}"
-                                class="btn btn-lime-yellow text-uppercase">{{ __('labels.sign_up') }}</a></li>
+                                class="btn btn-lime-yellow btn-sm text-uppercase">{{ __('labels.sign_up') }}</a></li>
                     </ul>
                 </div>
 

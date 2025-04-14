@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Event;
 use App\Models\Space;
 use Illuminate\Http\Request;
@@ -51,8 +52,14 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $event = Event::find($id);
-        return view('view_components.event.show', ['event' => $event]);
+        $event = Event::findOrFail($id);
+
+        $comments = $event->comments()
+            ->with('user')
+            ->orderBy('publish_date', 'desc')
+            ->paginate(4);
+
+        return view('view_components.event.show', ['event' => $event, 'comments' => $comments]);
     }
 
     /**

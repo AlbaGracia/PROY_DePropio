@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -29,12 +31,12 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $comment = new Comment();
-        $comment->user_id = $request->user_id;
+        $comment->user_id = Auth::id();
         $comment->text = $request->text;
         $comment->event_id = $request->event_id;
-        $comment->publish_date = $request->publish_date;
+        $comment->publish_date = Carbon::now();
         $comment->save();
-        return redirect()->route('comment.index');
+        return redirect()->route('event.show', $comment->event_id);
     }
 
     /**
@@ -52,7 +54,6 @@ class CommentController extends Controller
     {
         $comment = Comment::find($id);
         return view('comment.form', ['comment', $comment]);
-        
     }
 
     /**
@@ -66,7 +67,7 @@ class CommentController extends Controller
         $comment->event_id = $request->event_id;
         $comment->publish_date = $request->publish_date;
         $comment->save();
-        return redirect()->route('comment.index');
+        return redirect()->route('event.show', $comment->event_id);
     }
 
     /**
@@ -75,7 +76,8 @@ class CommentController extends Controller
     public function destroy(string $id)
     {
         $comment = Comment::find($id);
+        $event = $comment->event_id;
         $comment->delete();
-        return redirect()->route('comment.index');
+        return redirect()->route('event.show', $event);
     }
 }

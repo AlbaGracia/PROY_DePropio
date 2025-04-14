@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('text');
             $table->foreignId('event_id')->constrained();
-            $table->date("publish_date");
+            $table->dateTime("publish_date");
             $table->timestamps();
         });
     }
