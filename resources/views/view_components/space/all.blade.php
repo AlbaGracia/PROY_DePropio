@@ -26,6 +26,11 @@
                     @endforeach
                 </div>
             </div>
+            <!-- Paginación -->
+            <div class="mt-3 col-5">
+                {{ $spaces->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
+
 @endsection

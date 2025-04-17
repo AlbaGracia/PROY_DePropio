@@ -13,7 +13,7 @@ class SpaceController extends Controller
      */
     public function index()
     {
-        $spaces = Space::all();
+        $spaces = Space::paginate('3');
         return view('view_components.space.all', ['spaces' => $spaces]);
     }
 
@@ -23,7 +23,7 @@ class SpaceController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('view_components.space.form', ['type' => $types]);
+        return view('view_components.space.form', ['types' => $types]);
     }
 
     /**

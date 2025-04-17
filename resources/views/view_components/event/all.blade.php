@@ -43,10 +43,12 @@
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
             </section>
+            <!-- Paginación -->
+            <div class="mt-3 col-5">
+                {{ $events->links('pagination::bootstrap-5') }}
+            </div>
 
         </div>
     </div>
