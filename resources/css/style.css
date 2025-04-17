@@ -252,3 +252,23 @@ h2 {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -0.1rem;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:active {
+    background-color: var(--cream);
+    color: var(--royal-purple);
+    outline: none;
+    box-shadow: none;
+}

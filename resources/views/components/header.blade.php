@@ -40,32 +40,91 @@
                 </div>
 
                 <div class="col-12 col-lg-4 d-flex justify-content-lg-end justify-content-center mt-3 mt-lg-0">
-                    <ul class="nav d-none d-lg-flex">
-                        <li class="nav-item"><a href="{{ route('login') }}"
-                                class="btn btn-deep-purple-out btn-sm px-2 me-2 text-uppercase">{{ __('labels.login') }}</a>
-                        </li>
-                        <li class="nav-item"><a href="{{ route('register') }}"
-                                class="btn btn-lime-yellow btn-sm text-uppercase">{{ __('labels.sign_up') }}</a></li>
-                    </ul>
+
+                    @guest
+                        <ul class="nav d-none d-lg-flex">
+                            <li class="nav-item"><a href="{{ route('login') }}"
+                                    class="btn btn-deep-purple-out btn-sm px-2 me-2 text-uppercase">{{ __('labels.login') }}</a>
+                            </li>
+                            <li class="nav-item"><a href="{{ route('register') }}"
+                                    class="btn btn-lime-yellow btn-sm text-uppercase">{{ __('labels.sign_up') }}</a></li>
+                        </ul>
+                    @endguest
+                    @auth
+                        <div class="dropdown d-none d-lg-flex">
+                            <button class="btn btn-lime-yellow dropdown-toggle" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">Hola,
+                                {{ Auth::user()->name }}
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                        {{ __('Profile') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        Eventos guardados
+                                    </a>
+                                </li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">
+                                            {{ __('Log Out') }}
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endauth
+
                 </div>
 
                 {{-- DROPDOWN --}}
                 <div class="col-12 d-flex justify-content-center">
                     <ul class="nav d-lg-none">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-uppercase link-black" href="#"
-                                id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">{{ __('labels.show_all') }}
+                            <a class="nav-link dropdown-toggle text-uppercase link-black" href="#" role="button"
+                                data-bs-toggle="dropdown">{{ __('labels.show_all') }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">{{ __('labels.events') }}</a></li>
-                                <li><a class="dropdown-item" href="#">{{ __('labels.spaces') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('event.index') }}">{{ __('labels.events') }}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('space.index') }}">{{ __('labels.spaces') }}</a></li>
                                 <li><a class="dropdown-item" href="#">{{ __('labels.calendar') }}</a></li>
-                                <li class="dropdown-item"><a href="{{ route('login') }}"
-                                        class="text-uppercase">{{ __('labels.login') }}</a></li>
-                                <li class="dropdown-item"><a
-                                        href="{{ route('register') }}"class="text-uppercase">{{ __('labels.sign_up') }}</a>
-                                </li>
+                                @guest
+                                    <li class="dropdown-item"><a href="{{ route('login') }}"
+                                            class="text-uppercase">{{ __('labels.login') }}</a></li>
+                                    <li class="dropdown-item"><a
+                                            href="{{ route('register') }}"class="text-uppercase">{{ __('labels.sign_up') }}</a>
+                                    </li>
+                                @endguest
+                                @auth
+                                    <li class="dropdown-submenu position-relative">
+                                        <a class="dropdown-item" href="#" role="button" aria-expanded="false">
+                                            {{ __('Configuración') }} ▸
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#">
+                                                    Eventos guardados
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="dropdown-item">{{ __('Log Out') }}</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endauth
                             </ul>
                         </li>
                     </ul>
