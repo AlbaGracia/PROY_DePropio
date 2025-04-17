@@ -4,77 +4,124 @@
 @section('content')
     <main class="container">
         <div class="row mt-5">
-            <div class="col-lg-8 offset-lg-2 ">
+            <div class="col-lg-8 offset-lg-2">
                 <h2 class="mb-5">Información del evento</h2>
-                <form action="{{ isset($event) ? route('event.update', $event->id) : route('event.store') }}" method="POST">
+
+                {{-- Formulario de creación / edición --}}
+                <form action="{{ isset($event) ? route('event.update', $event->id) : route('event.store') }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @if (isset($event))
                         @method('PUT')
                     @endif
+
                     <div class="row">
+                        {{-- Columna izquierda --}}
                         <div class="col-lg-6 d-flex flex-column gap-3">
+
+                            {{-- Nombre --}}
                             <input type="text" class="form-control rounded-pill" name="name"
                                 placeholder="Nombre del evento" value="{{ $event->name ?? '' }}" required>
 
-                            <select class="form-select rounded-pill" name="space_id">
+                            {{-- Espacio --}}
+                            <select class="form-select rounded-pill" name="space_id" required>
                                 <option value="" {{ isset($event) ? '' : 'selected' }} disabled>Seleccionar espacio
                                 </option>
                                 @foreach ($spaces as $space)
-                                    <option value="{{ $space->id ?? '' }}"
+                                    <option value="{{ $space->id }}"
                                         {{ isset($event) && $space->id == $event->space_id ? 'selected' : '' }}>
-                                        {{ $space->name ?? '' }}
+                                        {{ $space->name }}
                                     </option>
                                 @endforeach
                             </select>
 
-                            <select class="form-select rounded-pill" name="category_id">
+                            {{-- Categoría --}}
+                            <select class="form-select rounded-pill" name="category_id" required>
                                 <option value="" {{ isset($event) ? '' : 'selected' }} disabled>Seleccionar categoría
                                 </option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id ?? '' }}"
+                                    <option value="{{ $category->id }}"
                                         {{ isset($event) && $category->id == $event->category_id ? 'selected' : '' }}>
-                                        {{ $category->name ?? '' }}
+                                        {{ $category->name }}
                                     </option>
                                 @endforeach
                             </select>
-                            <input type="date" name="start_date" class="form-control rounded-pill"
+
+                            {{-- Fechas --}}
+                            <input type="date" name="start_date" id="start_date" class="form-control rounded-pill"
                                 value="{{ $event->start_date ?? '' }}" required>
-                            <input type="date" name="end_date" class="form-control rounded-pill"
+
+                            <input type="date" name="end_date" id="end_date" class="form-control rounded-pill"
                                 value="{{ $event->end_date ?? '' }}">
-                            <input type="number" class="form-control rounded-pill" name="price" step="0.01"
+
+                            {{-- Precio --}}
+                            <input type="number" name="price" class="form-control rounded-pill" step="0.01"
                                 placeholder="Precio" value="{{ $event->price ?? '' }}">
-                            <input type="text" class="form-control rounded-pill" name="web_url"
+
+                            {{-- Enlace --}}
+                            <input type="text" name="web_url" class="form-control rounded-pill"
                                 placeholder="Enlace a web" value="{{ $event->web_url ?? '' }}">
+
                         </div>
 
+                        {{-- Columna derecha - Imagen --}}
                         <div class="col-lg-6">
-                            <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}" alt=""
-                                style="height: 380px" class="object-fit-cover" id="preview-img-event">
+                            <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}" alt="Imagen del evento"
+                                style="height: 380px" class="object-fit-cover w-100 mb-3" id="preview-img-event">
+
                             <input type="file" name="image" class="form-control" id="input-file-event">
                         </div>
                     </div>
-                    <div class="row">
-                        <textarea name="description" rows="3" class="form-control mt-3" placeholder="Description" required>{{ $event->description ?? '' }}</textarea>
-                    </div>
+
+                    {{-- Descripción --}}
                     <div class="row mt-3">
-                        <button type="submit" class="btn btn-deep-purple-out mb-4">Editar evento</button>
-                        @if (isset($event))
-                            <form action="{{ route('event.destroy', $event->id) }}" class="d-inline" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
-                            </form>
-                        @endif
+                        <div class="col-12">
+                            <textarea name="description" rows="3" class="form-control" placeholder="Descripción" required>{{ $event->description ?? '' }}</textarea>
+                        </div>
                     </div>
 
+                    {{-- Botón de enviar --}}
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-deep-purple-out w-100">
+                                {{ isset($event) ? 'Editar evento' : 'Crear evento' }}
+                            </button>
+                        </div>
+                    </div>
                 </form>
+
+                {{-- Botón de eliminar --}}
+                @if (isset($event))
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <form action="{{ route('event.destroy', $event->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger w-100">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </main>
+
     <script type="module">
         import {
             showImage
         } from '{{ asset('js/imagePreview.js') }}';
-        showImage('#preview-img-event', '#input-file-event'); // Llamamos a la función pasando los selectores adecuados
+        showImage('#preview-img-event', '#input-file-event');
+
+
+        const start_date = document.querySelector('#start_date');
+        const end_date = document.querySelector('#end_date');
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', (e) => {
+            if (end_date.value < start_date.value) {
+                e.preventDefault();
+                end_date.classList.add('is-invalid');
+            }
+        })
     </script>
 @endsection
