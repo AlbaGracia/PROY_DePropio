@@ -39,10 +39,5 @@ Route::group(
         Route::resource('comment', CommentController::class);
         Route::resource('type', TypeController::class);
         Route::resource('category', CategoryController::class);
-
-
-
-
-
     }
 );

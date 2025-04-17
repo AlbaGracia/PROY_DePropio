@@ -83,24 +83,25 @@
                                 <div class="d-flex align-items-center justify-content-between">
                                     <small
                                         class="text-muted">{{ \Carbon\Carbon::parse($comment->publish_date)->format('d/m/y') }}</small>
-                                    @if (Auth::user()->name == $comment->user->name)
-                                        <div class="d-flex ms-auto">
-                                            <a href="{{ route('comment.edit', $comment->id) }}" class="btn"><i
-                                                    class="fa-solid fa-pen-to-square"></i></a>
-                                            <form action="{{ route('comment.destroy', $comment->id) }}" class="d-inline"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-link text-danger"><i
-                                                        class="fa-solid fa-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    @endif
-
+                                    @auth
+                                        @if (Auth::user()->name == $comment->user->name)
+                                            <div class="d-flex ms-auto">
+                                                <a href="{{ route('comment.edit', $comment->id) }}" class="btn"><i
+                                                        class="fa-solid fa-pen-to-square"></i></a>
+                                                <form action="{{ route('comment.destroy', $comment->id) }}" class="d-inline"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-link text-danger"><i
+                                                            class="fa-solid fa-trash"></i></button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                    @endauth
                                 </div>
-                                < </div>
-                                @empty
-                                    <p class="text-muted">Este evento aún no tiene comentarios.</p>
+                            </div>
+                        @empty
+                            <p class="text-muted">Este evento aún no tiene comentarios.</p>
                         @endforelse
 
                         <!-- Paginación -->
