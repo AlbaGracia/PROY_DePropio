@@ -43,7 +43,7 @@ class SpaceController extends Controller
             $space->image_path =  'storage/' . $path;
         }
         $space->save();
-        return redirect()->route('space.index');
+        return redirect()->route('space.show', $space->id);
     }
 
     /**
@@ -82,7 +82,7 @@ class SpaceController extends Controller
             $space->image_path =  'storage/' . $path;
         }
         $space->save();
-        return redirect()->route('space.index');
+        return redirect()->route('space.show', $space->id);
     }
 
     /**
