@@ -50,7 +50,11 @@
                         <!-- Botones de acción -->
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('event.index') }}" class="btn btn-outline-dark">Volver a la lista</a>
-                            <a href="{{ $event->web_url }}" target="blank" class="btn btn-lime-yellow">Más información</a>
+                            <a href="{{ $event->web_url ? $event->web_url : '#' }}" target="blank"
+                                class="btn btn-lime-yellow" onclick="{{ $event->web_url ? '' : 'return false;' }}">
+                                Más información
+                            </a>
+
                         </div>
                     </div>
                 </div>

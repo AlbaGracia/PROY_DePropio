@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ $space->web_url }}" target="_blank" class="btn btn-dark mt-2">Más información</a>
+                        <a href="{{ $space->web_url }}" target="blank" class="btn btn-dark mt-2">Más información</a>
 
                     </div>
                 </div>

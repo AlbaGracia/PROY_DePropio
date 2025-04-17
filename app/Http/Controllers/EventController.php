@@ -15,7 +15,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::paginate(4);
+        $events = Event::paginate(3);
         return view('view_components.event.all', ['events' => $events]);
     }
 
@@ -49,7 +49,7 @@ class EventController extends Controller
             $event->image_path =  'storage/' . $path;
         }
         $event->save();
-        return redirect()->route('event.index');
+        return redirect()->route('event.show', $event->id);
     }
 
     /**
@@ -98,7 +98,7 @@ class EventController extends Controller
             $event->image_path =  'storage/' . $path;
         }
         $event->save();
-        return redirect()->route('event.index');
+        return redirect()->route('event.show', $event->id);
     }
 
     /**

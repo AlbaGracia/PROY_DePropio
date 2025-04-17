@@ -14,9 +14,11 @@
                     <div class="row">
                         <div class="col-lg-6 d-flex flex-column gap-3">
                             <input type="text" class="form-control rounded-pill" name="name"
-                                placeholder="Nombre del evento" value="{{ $event->name ?? '' }}">
+                                placeholder="Nombre del evento" value="{{ $event->name ?? '' }}" required>
 
                             <select class="form-select rounded-pill" name="space_id">
+                                <option value="" {{ isset($event) ? '' : 'selected' }} disabled>Seleccionar espacio
+                                </option>
                                 @foreach ($spaces as $space)
                                     <option value="{{ $space->id ?? '' }}"
                                         {{ isset($event) && $space->id == $event->space_id ? 'selected' : '' }}>
@@ -26,6 +28,8 @@
                             </select>
 
                             <select class="form-select rounded-pill" name="category_id">
+                                <option value="" {{ isset($event) ? '' : 'selected' }} disabled>Seleccionar categoría
+                                </option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id ?? '' }}"
                                         {{ isset($event) && $category->id == $event->category_id ? 'selected' : '' }}>
@@ -34,7 +38,7 @@
                                 @endforeach
                             </select>
                             <input type="date" name="start_date" class="form-control rounded-pill"
-                                value="{{ $event->start_date ?? '' }}">
+                                value="{{ $event->start_date ?? '' }}" required>
                             <input type="date" name="end_date" class="form-control rounded-pill"
                                 value="{{ $event->end_date ?? '' }}">
                             <input type="number" class="form-control rounded-pill" name="price" step="0.01"
@@ -43,20 +47,34 @@
                                 placeholder="Enlace a web" value="{{ $event->web_url ?? '' }}">
                         </div>
 
-                        <!-- Columna derecha - imagen -->
                         <div class="col-lg-6">
                             <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}" alt=""
-                                style="height: 380px" class="object-fit-cover">
+                                style="height: 380px" class="object-fit-cover" id="preview-img-event">
+                            <input type="file" name="image" class="form-control" id="input-file-event">
                         </div>
                     </div>
                     <div class="row">
-                        <textarea name="description" rows="3" class="form-control mt-3" placeholder="Description">{{ $event->description ?? '' }}</textarea>
+                        <textarea name="description" rows="3" class="form-control mt-3" placeholder="Description" required>{{ $event->description ?? '' }}</textarea>
                     </div>
                     <div class="row mt-3">
-                        <button type="submit" class="btn btn-deep-purple-out">Editar evento</button>
+                        <button type="submit" class="btn btn-deep-purple-out mb-4">Editar evento</button>
+                        @if (isset($event))
+                            <form action="{{ route('event.destroy', $event->id) }}" class="d-inline" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                            </form>
+                        @endif
                     </div>
+
                 </form>
             </div>
         </div>
     </main>
+    <script type="module">
+        import {
+            showImage
+        } from '{{ asset('js/imagePreview.js') }}';
+        showImage('#preview-img-event', '#input-file-event'); // Llamamos a la función pasando los selectores adecuados
+    </script>
 @endsection
