@@ -30,8 +30,11 @@
                                         <h3 class="fs-5 fw-bold">{{ $event->name }}</h3>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">{{ $event->category->name }}</li>
-                                        <li class="list-group-item">{{ $event->space->name }}</li>
+                                        <li class="list-group-item">
+                                            <p class="badge bg-lime-yellow text-dark align-self-start">
+                                                {{ $event->category->name }}</p>
+                                        </li>
+                                        <li class="list-group-item"><b>{{ $event->space->name }}</b></li>
                                         <li class="list-group-item">
                                             {{ \Carbon\Carbon::parse($event->start_date)->format('d/m/y') }}
                                             {{ $event->end_date != null ? ' - ' . Carbon\Carbon::parse($event->finish)->format('d/m/y') : '' }}
@@ -46,7 +49,7 @@
                 </div>
             </section>
             <!-- Paginación -->
-            <div class="mt-3 col-5">
+            <div class="mt-5 col-5">
                 {{ $events->links('pagination::bootstrap-5') }}
             </div>
 

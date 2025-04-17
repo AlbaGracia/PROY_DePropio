@@ -20,7 +20,7 @@
                             <h2 class="zen-dots text-royal-purple">{{ $space->name }}</h2>
                         </a>
 
-                        <p class="badge bg-lime-yellow text-dark w-20">{{ $space->type->name }}</p>
+                        <p class="badge bg-lime-yellow text-dark align-self-start">{{ $space->type->name }}</p>
                         <a href="{{ $space->adress }}" class="mt-2"><i class="fa-solid fa-location-dot"></i> Dirección</a>
 
                         <div class="accordion mt-3">
