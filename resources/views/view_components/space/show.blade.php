@@ -10,7 +10,7 @@
 
                 <div class="row align-items-center">
                     <div class="col-lg-6 position-relative">
-                        <img src="{{ asset('images/no-image.jpeg') }}" alt=""
+                        <img src="{{ asset($space->image_path ?? 'images/no-image.jpeg') }}" alt=""
                             class="w-100 object-fit-cover rounded-3">
                     </div>
 

@@ -37,6 +37,11 @@ class SpaceController extends Controller
         $space->adress = $request->adress;
         $space->web_url = $request->web_url;
         $space->type_id = $request->type_id;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->store('spaces/images', 'public');
+            $space->image_path =  'storage/' . $path;
+        }
         $space->save();
         return redirect()->route('space.index');
     }
@@ -71,6 +76,11 @@ class SpaceController extends Controller
         $space->adress = $request->adress;
         $space->web_url = $request->web_url;
         $space->type_id = $request->type_id;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->store('spaces/images', 'public');
+            $space->image_path =  'storage/' . $path;
+        }
         $space->save();
         return redirect()->route('space.index');
     }

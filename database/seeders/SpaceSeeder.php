@@ -20,6 +20,7 @@ class SpaceSeeder extends Seeder
             'web_url' => 'https://iaacc.es/',
             'type_id' => 3,
             'user_id' => 2,
+            'image_path' => 'storage/spaces/images/Museo-IACC-Pablo-Serrano.webp'
         ]);
 
         DB::table('spaces')->insert([
@@ -28,6 +29,7 @@ class SpaceSeeder extends Seeder
             'adress' => 'https://www.google.com/maps/place/Teatro+Principal/data=!4m2!3m1!19sChIJ28rftOXAz4UR9otevmF9Vos',
             'web_url' => 'https://teatroprincipalzaragoza.com/',
             'type_id' => 4,
+            'image_path' => 'storage/spaces/images/Teatro-Principal.webp'
         ]);
     }
 }

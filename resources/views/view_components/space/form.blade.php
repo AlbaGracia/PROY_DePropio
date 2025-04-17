@@ -7,7 +7,8 @@
         <div class="row mt-5 d-flex justify-content-center">
             <div class="col-lg-10">
                 <h2 class="mb-5">Información del espacio</h2>
-                <form action="{{ isset($space) ? route('space.update', $space->id) : route('space.store') }}" method="POST">
+                <form action="{{ isset($space) ? route('space.update', $space->id) : route('space.store') }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @if (isset($space))
                         @method('PUT')
@@ -34,8 +35,9 @@
 
                         <!-- Columna derecha - imagen -->
                         <div class="col-lg-6">
-                            <img src="{{ asset('images/no-image.jpeg') }}" alt=""
+                            <img src="{{ asset($space->image_path ?? 'images/no-image.jpeg') }}" alt=""
                                 class="object-fit-cover h-60 w-100">
+                            <input type="file" name="image" class="form-control">
                         </div>
                     </div>
                     <div class="row">

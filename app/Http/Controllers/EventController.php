@@ -43,6 +43,11 @@ class EventController extends Controller
         $event->web_url = $request->web_url;
         $event->space_id = $request->space_id;
         $event->category_id = $request->category_id;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->store('events/images', 'public');
+            $event->image_path =  'storage/' . $path;
+        }
         $event->save();
         return redirect()->route('event.index');
     }
@@ -87,6 +92,11 @@ class EventController extends Controller
         $event->web_url = $request->web_url;
         $event->space_id = $request->space_id;
         $event->category_id = $request->category_id;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $path = $image->store('events/images', 'public');
+            $event->image_path =  'storage/' . $path;
+        }
         $event->save();
         return redirect()->route('event.index');
     }

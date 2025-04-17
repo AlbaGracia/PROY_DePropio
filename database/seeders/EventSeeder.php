@@ -22,6 +22,7 @@ class EventSeeder extends Seeder
                 'web_url' => 'https://iaacc.es/events/aragon-y-las-artes-1957-1975/?occurrence=2023-11-16',
                 'space_id' => 1,
                 'category_id' => 8,
+                'image_path' => 'storage/events/images/Aragon-Las-Artes.webp'
             ],
             [
                 'name' => 'Aragón y las Artes 1957-1975',
@@ -31,6 +32,7 @@ class EventSeeder extends Seeder
                 'web_url' => 'https://iaacc.es/events/aragon-y-las-artes-1957-1975/?occurrence=2023-11-16',
                 'space_id' => 1,
                 'category_id' => 8,
+                'image_path' => ''
             ],
             [
                 'name' => 'Aragón y las Artes 1957-1975',
@@ -40,6 +42,7 @@ class EventSeeder extends Seeder
                 'web_url' => 'https://iaacc.es/events/aragon-y-las-artes-1957-1975/?occurrence=2023-11-16',
                 'space_id' => 1,
                 'category_id' => 8,
+                'image_path' => ''
             ],
             [
                 'name' => 'Aragón y las Artes 1957-1975',
@@ -49,6 +52,7 @@ class EventSeeder extends Seeder
                 'web_url' => 'https://iaacc.es/events/aragon-y-las-artes-1957-1975/?occurrence=2023-11-16',
                 'space_id' => 1,
                 'category_id' => 8,
+                'image_path' => ''
             ]
         ]);
     }

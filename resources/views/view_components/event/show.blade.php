@@ -12,8 +12,8 @@
                     <div class="like position-absolute top-0 end-0 m-4 text-royal-purple"><a href=""><i
                                 class="fa-regular fa-heart fa-2xl"></i></a></div>
                     {{--  AÑADIR POP UP 'EVENTO GUARDADO, VER TUS EVENTOS GUARDADOS?' --}}
-                    <img src="{{ asset('images/no-image.jpeg') }}" class="card-img-top h-60 object-fit-cover"
-                        alt="{{ $event->name }}">
+                    <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}"
+                        class="card-img-top h-60 object-fit-cover" alt="{{ $event->name }}">
 
                     <div class="card-body mx-3">
                         <a href="{{ route('event.edit', $event->id) }}">
@@ -97,11 +97,10 @@
                                         </div>
                                     @endif
 
-                                </div><
-
-                            </div>
-                        @empty
-                            <p class="text-muted">Este evento aún no tiene comentarios.</p>
+                                </div>
+                                < </div>
+                                @empty
+                                    <p class="text-muted">Este evento aún no tiene comentarios.</p>
                         @endforelse
 
                         <!-- Paginación -->

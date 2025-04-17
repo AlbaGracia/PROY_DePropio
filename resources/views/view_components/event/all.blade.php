@@ -23,8 +23,8 @@
                         <div class="col">
                             <div class="card shadow-sm">
                                 <a href="{{ route('event.show', $event->id) }}" class="card-event-link">
-                                    <img src="{{ asset('images/no-image.jpeg') }}" class="card-img-top h-40 object-fit-cover"
-                                        alt="...">
+                                    <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}"
+                                        class="card-img-top h-40 object-fit-cover" alt="...">
                                     <div class="overlay position-absolute top-0 start-0 w-100 h-40"></div>
                                     <div class="card-body">
                                         <h3 class="fs-5 fw-bold">{{ $event->name }}</h3>

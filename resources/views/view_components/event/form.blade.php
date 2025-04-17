@@ -45,8 +45,8 @@
 
                         <!-- Columna derecha - imagen -->
                         <div class="col-lg-6">
-                            <img src="{{ asset('images/no-image.jpeg') }}" alt="" style="height: 380px"
-                                class="object-fit-cover">
+                            <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}" alt=""
+                                style="height: 380px" class="object-fit-cover">
                         </div>
                     </div>
                     <div class="row">

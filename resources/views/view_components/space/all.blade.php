@@ -13,12 +13,13 @@
                     @foreach ($spaces as $space)
                         <div class="col">
                             <div class="card">
-                                <img src="{{ asset('images/no-image.jpeg') }}" class="card-img-top p-2 h-40 object-fit-cover"
-                                    alt="...">
+                                <img src="{{ asset($space->image_path ?? 'images/no-image.jpeg') }}"
+                                    class="card-img-top p-2 h-40 object-fit-cover" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title zen-dots fs-4">{{ $space->name }}</h5>
                                     <p class="card-text text-clamp-3">{{ $space->description }}</p>
-                                    <a href="{{ route('space.show', $space->id) }}" class="btn btn-outline-dark mt-3">Más información</a>
+                                    <a href="{{ route('space.show', $space->id) }}" class="btn btn-outline-dark mt-3">Más
+                                        información</a>
                                 </div>
                             </div>
                         </div>

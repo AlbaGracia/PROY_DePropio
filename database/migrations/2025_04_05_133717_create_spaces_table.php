@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('web_url')->nullable();
             $table->foreignId('type_id')->constrained();
             $table->foreignId('user_id')->default(1);
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }
