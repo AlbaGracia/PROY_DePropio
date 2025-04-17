@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Event;
 use App\Models\Space;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -109,5 +110,30 @@ class EventController extends Controller
         $event = Event::find($id);
         $event->delete();
         return redirect()->route('event.index');
+    }
+
+    public function showThisWeekEvents()
+    {
+
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+
+        $events = Event::where(function ($query) use ($startOfWeek, $endOfWeek) {
+            $query->whereBetween('start_date', [$startOfWeek, $endOfWeek])
+                ->orWhereBetween('end_date', [$startOfWeek, $endOfWeek])
+                ->orWhere(function ($query) use ($startOfWeek, $endOfWeek) {
+                    $query->where('start_date', '<', $startOfWeek)
+                        ->where('end_date', '>', $endOfWeek);
+                });
+        })->paginate(3);
+
+        return view('view_components.event.all', ['events' => $events, 'thisWeek' => true, 'mon' => $startOfWeek, 'sun' => $endOfWeek]);
+    }
+
+
+    public function eventsInSpace ($id) {
+        $space = Space::find($id);
+        $events = Event::where('space_id', '=' ,$id)->paginate(3);
+        return view('view_components.event.all', ['events' => $events, 'eventsInSpace' => true, 'space' => $space]);
     }
 }

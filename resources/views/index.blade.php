@@ -73,7 +73,7 @@
                         running in no time! Choose one of our open source, free to download, and easy to use
                         themes! No
                         strings attached!</p>
-                    <a class="btn btn-lime-yellow btn-sm" href="#services">Get Started!</a>
+                    <a class="btn btn-lime-yellow btn-sm" href="{{ route('thisWeekEvents') }}">Get Started!</a>
                 </div>
             </div>
         </div>

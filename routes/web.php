@@ -39,5 +39,7 @@ Route::group(
         Route::resource('comment', CommentController::class);
         Route::resource('type', TypeController::class);
         Route::resource('category', CategoryController::class);
+        Route::get('this-week-events', [EventController::class, 'showThisWeekEvents'])->name('thisWeekEvents');
+        Route::get('events-in-space/{id}', [EventController::class, 'eventsInSpace'])->name('eventsInSpace');
     }
 );

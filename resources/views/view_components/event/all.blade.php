@@ -1,12 +1,22 @@
-@section('title', __('labels.events'))
-@section('subtitle', __('labels.events-sub'))
+@php
 
+    if (isset($thisWeek)) {
+        $subtitle = __('labels.thisWeek-sub') . ' ' . $mon->format('d/m') . ' | ' . $sun->format('d/m');
+    } elseif (isset($eventsInSpace)) {
+        $subtitle = __('labels.eventsInSpace-sub') . '' . $space->name;
+    } else {
+        $subtitle = __('labels.events-sub');
+    }
+@endphp
+
+@section('title', __('labels.events'))
+@section('subtitle', $subtitle)
 
 @extends('layouts.master')
 @section('content')
     @include('components.title-section')
 
-    <div class="container">
+    <div class="container" style="min-height: 60vh">
         <div class="row px-lg-5 mt-4 px-0 d-flex justify-content-center">
 
             <!-- Filtros -->
@@ -18,6 +28,10 @@
 
             <!-- Tarjetas -->
             <section class="col-lg-11">
+                @if (count($events) == 0)
+                    <p>No se han encontrado eventos para esta búsqueda</p>
+                    <a href="{{ route('event.index') }}" class="btn btn-outline-dark btn-sm mt-2">Volver al listado</a>
+                @endif
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                     @foreach ($events as $event)
                         <div class="col">

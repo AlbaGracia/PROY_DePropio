@@ -36,7 +36,9 @@
                             </div>
                         </div>
                         <a href="{{ $space->web_url }}" target="blank" class="btn btn-dark mt-2">Más información</a>
-
+                        <a href="{{ route('eventsInSpace', $space->id) }}" class="btn btn-outline-dark mt-2">Ver
+                            eventos de este
+                            espacio</a>
                     </div>
                 </div>
             </div>
