@@ -232,7 +232,7 @@ h2 {
 }
 
 .top-title {
-    top: 110px;
+    top: 108px;
 }
 
 @media (max-width: 992px) {
@@ -250,9 +250,9 @@ h2 {
     font-family: "Zen Dots";
 }
 
-.text-clamp-3 {
+.text-clamp-2 {
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

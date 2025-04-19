@@ -15,13 +15,16 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                     @foreach ($spaces as $space)
                         <div class="col">
-                            <div class="card d-flex flex-column h-100" style="min-height: 330px">
+                            <p class="badge bg-royal-purple text-light align-self-start">
+                                {{ $space->type->name }}
+                            </p>
+                            <div class="card d-flex flex-column" style="min-height: 310px">
                                 <img src="{{ asset($space->image_path ?? 'images/no-image.jpeg') }}"
-                                    class="card-img-top p-2 h-40 object-fit-cover" alt="...">
+                                    class="card-img-top p-2 h-40 object-fit-cover" alt="{{ $space->name }}">
 
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title zen-dots fs-4">{{ $space->name }}</h5>
-                                    <p class="card-text text-clamp-3">{{ $space->description }}</p>
+                                    <p class="card-text text-clamp-2">{{ $space->description }}</p>
 
                                     <a href="{{ route('space.show', $space->id) }}" class="btn btn-outline-dark mt-auto">
                                         {{ __('labels.more_info') }}

@@ -14,7 +14,11 @@ class SpaceController extends Controller
      */
     public function index()
     {
-        $spaces = Space::paginate($this->pag);
+        $spaces = Space::with('type')
+            ->orderBy('type_id', 'asc')
+            ->orderBy('name', 'asc')
+            ->paginate($this->pag);
+
         return view('view_components.space.all', ['spaces' => $spaces]);
     }
 
