@@ -23,6 +23,7 @@ class CategorySeeder extends Seeder
             ['name' => 'Ferias'],
             ['name' => 'Exposiciones'],
             ['name' => 'Festivales'],
+            ['name' => 'Encuentros'],
         ]);
     }
 }
