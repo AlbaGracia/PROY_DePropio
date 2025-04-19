@@ -1,5 +1,5 @@
 <div class="sticky-top z-3">
-    <nav class="bg-black border-bottom">
+    <nav class="bg-black">
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
                 <li class="nav-item"><a href="#" class="nav-link"><i
@@ -17,7 +17,7 @@
     </nav>
 
     <header class="py-3 border-bottom bg-white">
-        <div class="container">
+        <div class="container d-flex flex-wrap">
             <div class="row w-100 d-flex justify-content-between align-items-center">
                 <div class="col-12 col-lg-4 d-flex justify-content-lg-start justify-content-center mb-3 mb-lg-0">
                     <ul class="nav d-none d-lg-flex">
@@ -53,26 +53,26 @@
                     @auth
                         <div class="dropdown d-none d-lg-flex">
                             <button class="btn btn-lime-yellow dropdown-toggle" type="button" id="userDropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">Hola,
+                                data-bs-toggle="dropdown" aria-expanded="false">{{ __('labels.hello') }}
                                 {{ Auth::user()->name }}
                             </button>
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li>
                                     <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                        {{ __('Profile') }}
+                                        {{ __('labels.profile') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="#">
-                                        Eventos guardados
+                                        {{ __('labels.save-events') }}
                                     </a>
                                 </li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit" class="dropdown-item">
-                                            {{ __('Log Out') }}
+                                            {{ __('labels.log-out') }}
                                         </button>
                                     </form>
                                 </li>
@@ -90,8 +90,10 @@
                                 data-bs-toggle="dropdown">{{ __('labels.show_all') }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('event.index') }}">{{ __('labels.events') }}</a></li>
-                                <li><a class="dropdown-item" href="{{ route('space.index') }}">{{ __('labels.spaces') }}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('event.index') }}">{{ __('labels.events') }}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('space.index') }}">{{ __('labels.spaces') }}</a></li>
                                 <li><a class="dropdown-item" href="#">{{ __('labels.calendar') }}</a></li>
                                 @guest
                                     <li class="dropdown-item"><a href="{{ route('login') }}"
@@ -108,18 +110,18 @@
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('profile.edit') }}">{{ __('Profile') }}</a>
+                                                    href="{{ route('profile.edit') }}">{{ __('labels.profile') }}</a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="#">
-                                                    Eventos guardados
+                                                    {{ __('labels.save-events') }}
                                                 </a>
                                             </li>
                                             <li>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
                                                     <button type="submit"
-                                                        class="dropdown-item">{{ __('Log Out') }}</button>
+                                                        class="dropdown-item">{{ __('labels.log-out') }}</button>
                                                 </form>
                                             </li>
                                         </ul>

@@ -5,7 +5,7 @@
     <main class="container">
         <div class="row mt-5">
             <div class="col-lg-8 offset-lg-2">
-                <h2 class="mb-5">Información del evento</h2>
+                <h2 class="mb-5">{{ __('labels.event-info') }}</h2>
 
                 {{-- Formulario de creación / edición --}}
                 <form action="{{ isset($event) ? route('event.update', $event->id) : route('event.store') }}" method="POST"
@@ -21,11 +21,12 @@
 
                             {{-- Nombre --}}
                             <input type="text" class="form-control rounded-pill" name="name"
-                                placeholder="Nombre del evento" value="{{ $event->name ?? '' }}" required>
+                                placeholder="{{ __('labels.event-name') }}" value="{{ $event->name ?? '' }}" required>
 
                             {{-- Espacio --}}
                             <select class="form-select rounded-pill" name="space_id" required>
-                                <option value="" {{ isset($event) ? '' : 'selected' }} disabled>Seleccionar espacio
+                                <option value="" {{ isset($event) ? '' : 'selected' }} disabled>
+                                    {{ __('labels.space-select') }}
                                 </option>
                                 @foreach ($spaces as $space)
                                     <option value="{{ $space->id }}"
@@ -37,7 +38,8 @@
 
                             {{-- Categoría --}}
                             <select class="form-select rounded-pill" name="category_id" required>
-                                <option value="" {{ isset($event) ? '' : 'selected' }} disabled>Seleccionar categoría
+                                <option value="" {{ isset($event) ? '' : 'selected' }} disabled>
+                                    {{ __('labels.category-select') }}
                                 </option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
@@ -56,11 +58,11 @@
 
                             {{-- Precio --}}
                             <input type="number" name="price" class="form-control rounded-pill" step="0.01"
-                                placeholder="Precio" value="{{ $event->price ?? '' }}">
+                                placeholder="{{ __('labels.price') }}" value="{{ $event->price ?? '' }}">
 
                             {{-- Enlace --}}
                             <input type="text" name="web_url" class="form-control rounded-pill"
-                                placeholder="Enlace a web" value="{{ $event->web_url ?? '' }}">
+                                placeholder="{{ __('labels.web-url') }}" value="{{ $event->web_url ?? '' }}">
 
                         </div>
 
@@ -76,7 +78,7 @@
                     {{-- Descripción --}}
                     <div class="row mt-3">
                         <div class="col-12">
-                            <textarea name="description" rows="3" class="form-control" placeholder="Descripción" required>{{ $event->description ?? '' }}</textarea>
+                            <textarea name="description" rows="3" class="form-control" placeholder="{{ __('labels.description') }}" required>{{ $event->description ?? '' }}</textarea>
                         </div>
                     </div>
 
@@ -84,7 +86,7 @@
                     <div class="row mt-4">
                         <div class="col-12">
                             <button type="submit" class="btn btn-deep-purple-out w-100">
-                                {{ isset($event) ? 'Editar evento' : 'Crear evento' }}
+                                {{ isset($event) ? __('labels.edit-event') : __('labels.create-event') }}
                             </button>
                         </div>
                     </div>
@@ -97,7 +99,8 @@
                             <form action="{{ route('event.destroy', $event->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger w-100">Eliminar</button>
+                                <button type="submit"
+                                    class="btn btn-outline-danger w-100">{{ __('labels.delete') }}</button>
                             </form>
                         </div>
                     </div>

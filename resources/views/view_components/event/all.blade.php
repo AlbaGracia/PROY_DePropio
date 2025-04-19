@@ -29,8 +29,7 @@
             <!-- Tarjetas -->
             <section class="col-lg-11">
                 @if (count($events) == 0)
-                    <p>No se han encontrado eventos para esta búsqueda</p>
-                    <a href="{{ route('event.index') }}" class="btn btn-outline-dark btn-sm mt-2">Volver al listado</a>
+                    <p class="text-center mt-5 pt-5">{{ __('labels.no_events')}}</p>
                 @endif
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                     @foreach ($events as $event)
@@ -51,10 +50,10 @@
                                         <li class="list-group-item"><b>{{ $event->space->name }}</b></li>
                                         <li class="list-group-item">
                                             {{ \Carbon\Carbon::parse($event->start_date)->format('d/m/y') }}
-                                            {{ $event->end_date != null ? ' - ' . Carbon\Carbon::parse($event->finish)->format('d/m/y') : '' }}
+                                            {{ $event->end_date != null ? ' - ' . Carbon\Carbon::parse($event->end_date)->format('d/m/y') : '' }}
                                         </li>
                                         <li class="list-group-item">
-                                            {{ $event->price == 0 ? 'Gratuito' : $event->price . '€' }}</li>
+                                            {{ $event->price == 0 ? __('labels.free') : $event->price . '€' }}</li>
                                     </ul>
                                 </a>
                             </div>

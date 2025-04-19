@@ -6,7 +6,7 @@
     <main class="container">
         <div class="row mt-5 d-flex justify-content-center">
             <div class="col-lg-10">
-                <h2 class="mb-5">Información del espacio</h2>
+                <h2 class="mb-5">{{ __('labels.space-info') }}</h2>
 
                 {{-- Formulario de creación / edición --}}
                 <form action="{{ isset($space) ? route('space.update', $space->id) : route('space.store') }}" method="POST"
@@ -22,12 +22,12 @@
 
                             {{-- Nombre --}}
                             <input type="text" class="form-control rounded-pill" name="name"
-                                placeholder="Nombre del espacio" value="{{ $space->name ?? '' }}" required>
+                                placeholder="{{ __('labels.space-name') }}" value="{{ $space->name ?? '' }}" required>
 
                             {{-- Tipo de espacio --}}
                             <select class="form-select rounded-pill" name="type_id" required>
-                                <option value="" {{ isset($space) ? '' : 'selected' }} disabled>Seleccionar tipo de
-                                    espacio</option>
+                                <option value="" {{ isset($space) ? '' : 'selected' }} disabled>
+                                    {{ __('labels.space-type') }}</option>
                                 @foreach ($types as $type)
                                     <option value="{{ $type->id }}"
                                         {{ isset($space) && $type->id == $space->type_id ? 'selected' : '' }}>
@@ -38,13 +38,12 @@
 
                             {{-- Enlace a la web --}}
                             <input type="text" class="form-control rounded-pill" name="web_url" id="web_url"
-                                placeholder="Enlace a web" value="{{ $space->web_url ?? '' }}">
+                                placeholder="{{ __('labels.web-url') }}" value="{{ $space->web_url ?? '' }}">
 
                             {{-- Dirección (Google Maps) --}}
-                            <input type="text" class="form-control rounded-pill" name="adress" id="adress"
-                                placeholder="Dirección" value="{{ $space->adress ?? '' }}" required
-                                pattern="^https:\/\/www\.google\.com\/maps.*"
-                                title="La dirección debe ser un enlace de google maps">
+                            <input type="text" class="form-control rounded-pill" name="address" id="address"
+                                placeholder="{{ __('labels.address') }}" value="{{ $space->address ?? '' }}" required
+                                pattern="^https:\/\/www\.google\.com\/maps.*" title="{{ __('labels.google-maps-err') }}">
 
                             <input type="file" name="image" class="form-control" id="input-file-space">
 
@@ -61,7 +60,7 @@
                     {{-- Descripción --}}
                     <div class="row mt-3">
                         <div class="col-12">
-                            <textarea name="description" rows="3" class="form-control" placeholder="Descripción" required>{{ $space->description ?? '' }}</textarea>
+                            <textarea name="description" rows="3" class="form-control" placeholder="{{ __('labels.description') }}" required>{{ $space->description ?? '' }}</textarea>
                         </div>
                     </div>
 
@@ -69,7 +68,7 @@
                     <div class="row mt-4">
                         <div class="col-12">
                             <button type="submit" class="btn btn-deep-purple-out w-100">
-                                {{ isset($space) ? 'Editar espacio' : 'Crear espacio' }}
+                                {{ isset($space) ? __('labels.edit-space') : __('labels.create-space') }}
                             </button>
                         </div>
                     </div>
@@ -82,7 +81,8 @@
                             <form action="{{ route('space.destroy', $space->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger w-100">Eliminar</button>
+                                <button type="submit"
+                                    class="btn btn-outline-danger w-100">{{ __('labels.delete') }}</button>
                             </form>
                         </div>
                     </div>

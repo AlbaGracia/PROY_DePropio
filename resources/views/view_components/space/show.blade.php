@@ -21,13 +21,14 @@
                         </a>
 
                         <p class="badge bg-lime-yellow text-dark align-self-start">{{ $space->type->name }}</p>
-                        <a href="{{ $space->adress }}" class="mt-2"><i class="fa-solid fa-location-dot"></i> Dirección</a>
+                        <a href="{{ $space->address }}" class="mt-2"><i class="fa-solid fa-location-dot"></i>
+                            {{ __('labels.address') }}</a>
 
                         <div class="accordion mt-3">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
                                     <div class="accordion-button collapsed fw-bold">
-                                        Descripción
+                                        {{ __('labels.description') }}
                                     </div>
                                 </h2>
                                 <div class="accordion-body">
@@ -35,10 +36,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ $space->web_url }}" target="blank" class="btn btn-dark mt-2">Más información</a>
-                        <a href="{{ route('eventsInSpace', $space->id) }}" class="btn btn-outline-dark mt-2">Ver
-                            eventos de este
-                            espacio</a>
+                        <a href="{{ $space->web_url }}" target="blank"
+                            class="btn btn-dark mt-2">{{ __('labels.more_info') }}</a>
+                        <a href="{{ route('eventsInSpace', $space->id) }}" class="btn btn-outline-dark mt-2">
+                            {{ __('labels.event-space') }}
+                        </a>
                     </div>
                 </div>
             </div>

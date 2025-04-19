@@ -134,7 +134,7 @@
     font-weight: bold;
 }
 
-header.masthead {
+div.masthead {
     padding-top: 10rem;
     background: linear-gradient(
             to bottom,
@@ -147,9 +147,13 @@ header.masthead {
     background-attachment: scroll;
     background-size: cover;
 }
-header.masthead h1,
-header.masthead .h1 {
-    font-size: 2.25rem;
+div.masthead h1,
+div.masthead .h1 {
+    font-size: 2.5rem;
+}
+
+aside {
+    margin-top: -2px;
 }
 
 .page-section {

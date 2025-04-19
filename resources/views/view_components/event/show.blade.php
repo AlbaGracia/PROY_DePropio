@@ -23,36 +23,37 @@
                         <!-- Información del evento -->
                         <div class="row">
                             <div class="col-md-6 ">
-                                <p class="fs-5"><b class="fs-5">Categoría:</b> {{ $event->category->name }}</p>
-                                <p class="fs-5"><b class="fs-5">Espacio: </b><a
+                                <p class="fs-5"><b class="fs-5">{{ __('labels.category') }}: </b>
+                                    {{ $event->category->name }}</p>
+                                <p class="fs-5"><b class="fs-5">{{ __('labels.space') }}: </b><a
                                         href="{{ route('space.show', $event->space_id) }}" class="link-black fs-5">
                                         {{ $event->space->name }}</a></p>
                             </div>
                             <div class="col-md-6">
-                                <p class="fs-5"><b class="fs-5">Fechas:</b>
+                                <p class="fs-5"><b class="fs-5">{{ __('labels.dates') }}:</b>
                                     {{ \Carbon\Carbon::parse($event->start_date)->format('d/m/y') }}
                                     @if ($event->end_date)
                                         - {{ \Carbon\Carbon::parse($event->end_date)->format('d/m/y') }}
                                     @endif
                                 </p>
-                                <p class="fs-5"><b class="fs-5">Precio:</b>
-                                    {{ $event->price == 0 ? 'Gratuito' : $event->price . '€' }}
+                                <p class="fs-5"><b class="fs-5">{{ __('labels.price') }}:</b>
+                                    {{ $event->price == 0 ? __('labels.free') : $event->price . '€' }}
                                 </p>
                             </div>
                         </div>
 
                         <!-- Descripción -->
                         <div class="my-4">
-                            <p class="fw-bold fs-5">Descripción:</p>
+                            <p class="fw-bold fs-5">{{ __('labels.description') }}:</p>
                             <p class="fs-5">{{ $event->description }}</p>
                         </div>
 
                         <!-- Botones de acción -->
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('event.index') }}" class="btn btn-outline-dark">Volver a la lista</a>
+                            <a href="{{ route('event.index') }}" class="btn btn-outline-dark">{{ __('labels.back-list') }}</a>
                             <a href="{{ $event->web_url ? $event->web_url : '#' }}" target="blank"
                                 class="btn btn-lime-yellow" onclick="{{ $event->web_url ? '' : 'return false;' }}">
-                                Más información
+                                {{ __('labels.more_info') }}
                             </a>
 
                         </div>
@@ -70,16 +71,15 @@
                                 <input type="hidden" name="event_id" value="{{ $event->id }}">
 
                                 <div class="mb-3">
-                                    <label for="content" class="form-label fw-bold text-royal-purple">Añadir un
-                                        comentario</label>
+                                    <label for="content" class="form-label fw-bold text-royal-purple">{{ __('labels.add-comment') }}</label>
                                     <textarea name="text" id="text" class="form-control" rows="3" required></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-sm btn-outline-dark">Publicar</button>
+                                <button type="submit" class="btn btn-sm btn-outline-dark">{{ __('labels.publish') }}</button>
                             </form>
                         @endauth
 
                         <!-- Lista de comentarios -->
-                        <h4 class="card-title my-3 pt-4 fs-4 text-royal-purple zen-dots border-top">Comentarios</h4>
+                        <h4 class="card-title my-3 pt-4 fs-4 text-royal-purple zen-dots border-top">{{ __('labels.comments') }}</h4>
                         @forelse ($comments as $comment)
                             <div class="mb-3 border-bottom pb-2">
                                 <p class="mb-1 fw-bold">{{ $comment->user->name }}</p>
@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                         @empty
-                            <p class="text-muted">Este evento aún no tiene comentarios.</p>
+                            <p class="text-muted">{{ __('labels.no-comments') }}</p>
                         @endforelse
 
                         <!-- Paginación -->

@@ -34,7 +34,7 @@ class SpaceController extends Controller
         $space = new Space();
         $space->name = $request->name;
         $space->description = $request->description;
-        $space->adress = $request->adress;
+        $space->address = $request->address;
         $space->web_url = $request->web_url;
         $space->type_id = $request->type_id;
         if ($request->hasFile('image')) {
@@ -73,7 +73,7 @@ class SpaceController extends Controller
         $space = Space::find($id);
         $space->name = $request->name;
         $space->description = $request->description;
-        $space->adress = $request->adress;
+        $space->address = $request->address;
         $space->web_url = $request->web_url;
         $space->type_id = $request->type_id;
         if ($request->hasFile('image')) {

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->string('adress');
+            $table->string('address');
             $table->string('web_url')->nullable();
             $table->foreignId('type_id')->constrained();
             $table->foreignId('user_id')->default(1);
