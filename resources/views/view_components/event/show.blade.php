@@ -16,9 +16,14 @@
                         class="card-img-top h-60 object-fit-cover" alt="{{ $event->name }}">
 
                     <div class="card-body mx-3">
-                        <a href="{{ route('event.edit', $event->id) }}">
-                            <h2 class="card-title text-center mb-4 text-royal-purple">{{ $event->name }}</h2>
-                        </a>
+                        <h2 class="card-title text-center mb-4 text-royal-purple">{{ $event->name }}
+                            @auth
+                                @if (Auth::user()->name === 'Admin')
+                                    <a href="{{ route('event.edit', $event->id) }}"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                                @endif
+                            @endauth
+                        </h2>
 
                         <!-- Información del evento -->
                         <div class="row">
@@ -84,7 +89,7 @@
                         <h4 class="card-title my-3 pt-4 fs-4 text-royal-purple zen-dots border-top">
                             {{ __('labels.comments') }}</h4>
                         @if (count($comments) == 0)
-                            <p>Todavía no hay comentarios para este evento.</p>
+                            <p>{{ __('labels.no-comments') }}</p>
                         @endif
                         @foreach ($comments as $comment)
                             <div class="mb-3 border-bottom pb-2" id="comment-container-{{ $comment->id }}">
@@ -100,9 +105,10 @@
                                     @method('PUT')
                                     <textarea name="text" class="form-control mb-2" rows="2">{{ $comment->text }}</textarea>
                                     <div class="d-flex justify-content-start gap-2">
-                                        <button type="submit" class="btn btn-sm btn-outline-dark">Guardar</button>
+                                        <button type="submit"
+                                            class="btn btn-sm btn-outline-dark">{{ __('Save') }}</button>
                                         <button type="button" class="btn btn-sm btn-outline-secondary"
-                                            onclick="cancelEdit({{ $comment->id }})">Cancelar</button>
+                                            onclick="cancelEdit({{ $comment->id }})">{{ __('Cancel') }}</button>
                                     </div>
                                 </form>
 

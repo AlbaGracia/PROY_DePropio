@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class SpaceController extends Controller
 {
+    private $pag = 9;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $spaces = Space::paginate('3');
+        $spaces = Space::paginate($this->pag);
         return view('view_components.space.all', ['spaces' => $spaces]);
     }
 

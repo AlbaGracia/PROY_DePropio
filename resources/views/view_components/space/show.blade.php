@@ -16,9 +16,15 @@
 
                     <!-- Detalles -->
                     <div class="col-lg-6 mt-4 mt-lg-0 d-flex flex-column gap-2">
-                        <a href="{{ route('space.edit', $space->id) }}">
-                            <h2 class="zen-dots text-royal-purple">{{ $space->name }}</h2>
-                        </a>
+                        <h2 class="zen-dots text-royal-purple">{{ $space->name }}
+                            @auth
+                                @if (Auth::user()->name === 'Admin')
+                                    <a href="{{ route('space.edit', $space->id) }}"><i
+                                            class="fa-solid fa-pen-to-square"></i></a>
+                                @endif
+                            @endauth
+                        </h2>
+
 
                         <p class="badge bg-lime-yellow text-dark align-self-start">{{ $space->type->name }}</p>
                         <a href="{{ $space->address }}" class="mt-2"><i class="fa-solid fa-location-dot"></i>

@@ -11,12 +11,13 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    private $pag = 9;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $events = Event::paginate(3);
+        $events = Event::paginate($this->pag);
         return view('view_components.event.all', ['events' => $events]);
     }
 
@@ -125,15 +126,16 @@ class EventController extends Controller
                     $query->where('start_date', '<', $startOfWeek)
                         ->where('end_date', '>', $endOfWeek);
                 });
-        })->paginate(3);
+        })->paginate($this->pag);
 
         return view('view_components.event.all', ['events' => $events, 'thisWeek' => true, 'mon' => $startOfWeek, 'sun' => $endOfWeek]);
     }
 
 
-    public function eventsInSpace ($id) {
+    public function eventsInSpace($id)
+    {
         $space = Space::find($id);
-        $events = Event::where('space_id', '=' ,$id)->paginate(3);
+        $events = Event::where('space_id', '=', $id)->paginate($this->pag);
         return view('view_components.event.all', ['events' => $events, 'eventsInSpace' => true, 'space' => $space]);
     }
 }
