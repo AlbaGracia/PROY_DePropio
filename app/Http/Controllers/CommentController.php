@@ -50,11 +50,7 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $comment = Comment::find($id);
-        return view('comment.form', ['comment', $comment]);
-    }
+    public function edit(string $id) {}
 
     /**
      * Update the specified resource in storage.
@@ -62,10 +58,7 @@ class CommentController extends Controller
     public function update(Request $request, string $id)
     {
         $comment = Comment::find($id);
-        $comment->user_id = $request->user_id;
         $comment->text = $request->text;
-        $comment->event_id = $request->event_id;
-        $comment->publish_date = $request->publish_date;
         $comment->save();
         return redirect()->route('event.show', $comment->event_id);
     }

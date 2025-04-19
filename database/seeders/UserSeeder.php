@@ -30,13 +30,13 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Marcos Alcazar',
-            'email' => 'malcazar@gmai.com',
+            'email' => 'malcazar@gmail.com',
             'password' => Hash::make('12345'),
             'type_user' => 'normal',
         ]);
         DB::table('users')->insert([
             'name' => 'Noa Mellado',
-            'email' => 'nmellado@gmai.com',
+            'email' => 'nmellado@gmail.com',
             'password' => Hash::make('12345'),
             'type_user' => 'normal',
         ]);

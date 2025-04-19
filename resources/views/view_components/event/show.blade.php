@@ -50,7 +50,8 @@
 
                         <!-- Botones de acción -->
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('event.index') }}" class="btn btn-outline-dark">{{ __('labels.back-list') }}</a>
+                            <a href="{{ route('event.index') }}"
+                                class="btn btn-outline-dark">{{ __('labels.back-list') }}</a>
                             <a href="{{ $event->web_url ? $event->web_url : '#' }}" target="blank"
                                 class="btn btn-lime-yellow" onclick="{{ $event->web_url ? '' : 'return false;' }}">
                                 {{ __('labels.more_info') }}
@@ -71,7 +72,8 @@
                                 <input type="hidden" name="event_id" value="{{ $event->id }}">
 
                                 <div class="mb-3">
-                                    <label for="content" class="form-label fw-bold text-royal-purple">{{ __('labels.add-comment') }}</label>
+                                    <label for="content"
+                                        class="form-label fw-bold text-royal-purple">{{ __('labels.add-comment') }}</label>
                                     <textarea name="text" id="text" class="form-control" rows="3" required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-sm btn-outline-dark">{{ __('labels.publish') }}</button>
@@ -79,24 +81,47 @@
                         @endauth
 
                         <!-- Lista de comentarios -->
-                        <h4 class="card-title my-3 pt-4 fs-4 text-royal-purple zen-dots border-top">{{ __('labels.comments') }}</h4>
-                        @forelse ($comments as $comment)
-                            <div class="mb-3 border-bottom pb-2">
+                        <h4 class="card-title my-3 pt-4 fs-4 text-royal-purple zen-dots border-top">
+                            {{ __('labels.comments') }}</h4>
+                        @if (count($comments) == 0)
+                            <p>Todavía no hay comentarios para este evento.</p>
+                        @endif
+                        @foreach ($comments as $comment)
+                            <div class="mb-3 border-bottom pb-2" id="comment-container-{{ $comment->id }}">
                                 <p class="mb-1 fw-bold">{{ $comment->user->name }}</p>
-                                <p class="mb-1">{{ $comment->text }}</p>
+
+                                <!-- Texto normal -->
+                                <p class="mb-1" id="text-display-{{ $comment->id }}">{{ $comment->text }}</p>
+
+                                <!-- Formulario oculto para edición -->
+                                <form action="{{ route('comment.update', $comment->id) }}" method="POST" class="d-none"
+                                    id="edit-form-{{ $comment->id }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <textarea name="text" class="form-control mb-2" rows="2">{{ $comment->text }}</textarea>
+                                    <div class="d-flex justify-content-start gap-2">
+                                        <button type="submit" class="btn btn-sm btn-outline-dark">Guardar</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                            onclick="cancelEdit({{ $comment->id }})">Cancelar</button>
+                                    </div>
+                                </form>
+
                                 <div class="d-flex align-items-center justify-content-between">
                                     <small
                                         class="text-muted">{{ \Carbon\Carbon::parse($comment->publish_date)->format('d/m/y') }}</small>
+
                                     @auth
-                                        @if (Auth::user()->name == $comment->user->name)
+                                        @if (Auth::id() === $comment->user_id)
                                             <div class="d-flex ms-auto">
-                                                <a href="{{ route('comment.edit', $comment->id) }}" class="btn"><i
-                                                        class="fa-solid fa-pen-to-square"></i></a>
-                                                <form action="{{ route('comment.destroy', $comment->id) }}" class="d-inline"
-                                                    method="POST">
+                                                <button type="button" class="btn"
+                                                    onclick="editComment({{ $comment->id }})">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </button>
+                                                <form action="{{ route('comment.destroy', $comment->id) }}" method="POST"
+                                                    class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-link text-danger"><i
+                                                    <button type="submit" class="btn btn-link text-dark"><i
                                                             class="fa-solid fa-trash"></i></button>
                                                 </form>
                                             </div>
@@ -104,9 +129,8 @@
                                     @endauth
                                 </div>
                             </div>
-                        @empty
-                            <p class="text-muted">{{ __('labels.no-comments') }}</p>
-                        @endforelse
+                        @endforeach
+
 
                         <!-- Paginación -->
                         <div class="mt-3">
@@ -117,4 +141,17 @@
             </div>
         </div>
     </main>
+
+
+    <script>
+        function editComment(id) {
+            document.getElementById('text-display-' + id).style.display = 'none';
+            document.getElementById('edit-form-' + id).classList.remove('d-none');
+        }
+
+        function cancelEdit(id) {
+            document.getElementById('text-display-' + id).style.display = 'block';
+            document.getElementById('edit-form-' + id).classList.add('d-none');
+        }
+    </script>
 @endsection
