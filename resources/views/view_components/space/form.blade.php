@@ -42,8 +42,7 @@
 
                             {{-- Dirección (Google Maps) --}}
                             <input type="text" class="form-control rounded-pill" name="address" id="address"
-                                placeholder="{{ __('labels.address') }}" value="{{ $space->address ?? '' }}" required
-                                pattern="^https:\/\/www\.google\.com\/maps.*" title="{{ __('labels.google-maps-err') }}">
+                                placeholder="{{ __('labels.address') }}" value="{{ $space->address ?? '' }}" required>
 
                             <input type="file" name="image" class="form-control" id="input-file-space">
 

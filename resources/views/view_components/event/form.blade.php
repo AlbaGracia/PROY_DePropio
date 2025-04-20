@@ -9,7 +9,7 @@
 
                 {{-- Formulario de creación / edición --}}
                 <form action="{{ isset($event) ? route('event.update', $event->id) : route('event.store') }}" method="POST"
-                    enctype="multipart/form-data">
+                    enctype="multipart/form-data" id="form-edit-create">
                     @csrf
                     @if (isset($event))
                         @method('PUT')
@@ -118,7 +118,7 @@
 
         const start_date = document.querySelector('#start_date');
         const end_date = document.querySelector('#end_date');
-        const form = document.querySelector('form');
+        const form = document.querySelector('#form-edit-create');
 
         form.addEventListener('submit', (e) => {
             if (end_date.value < start_date.value) {
