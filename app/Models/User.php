@@ -5,7 +5,6 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -48,11 +47,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function spaces(): HasMany {
+    public function spaces(): HasMany
+    {
         return $this->hasMany(Space::class);
     }
 
-    public function comments(): HasMany {
+    public function comments(): HasMany
+    {
         return $this->hasMany(Comment::class);
+    }
+
+    public function savedEvents(): HasMany
+    {
+        return $this->hasMany(SaveEvent::class);
     }
 }

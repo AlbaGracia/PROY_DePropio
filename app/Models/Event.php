@@ -20,7 +20,7 @@ class Event extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function saveEvents(): HasMany {
+    public function savedBy(): HasMany {
         return $this->hasMany(SaveEvent::class);
     }
 }
