@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Event;
+use App\Models\Space;
+use App\Models\Type;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -26,6 +30,11 @@ class DatabaseSeeder extends Seeder
         $this->call(SpaceSeeder::class);
         $this->call(EventSeeder::class);
         $this->call(CommentSeeder::class);
+
+        Type::factory()->count(10)->create();
+        Space::factory()->count(10)->create();
+        Category::factory()->count(10)->create();
+        Event::factory()->count(10)->create();
 
 
     }
