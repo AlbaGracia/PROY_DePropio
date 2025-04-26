@@ -31,11 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EventSeeder::class);
         $this->call(CommentSeeder::class);
 
-        Type::factory()->count(10)->create();
-        Space::factory()->count(10)->create();
-        Category::factory()->count(10)->create();
-        Event::factory()->count(10)->create();
-
 
     }
 }
