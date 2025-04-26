@@ -1,7 +1,7 @@
+@extends('layouts.master')
+
 @section('title', $event->name)
 
-
-@extends('layouts.master')
 @section('content')
 
     <main class="container ">

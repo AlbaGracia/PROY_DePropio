@@ -41,6 +41,7 @@ return [
     'edit-event' => 'Editar evento',
     'create-event' => 'Crear evento',
     'delete' => 'Eliminar',
+    'home' => 'Volver a inicio',
 
 
     /* Inputs */
@@ -55,6 +56,9 @@ return [
 
     /* Errors */
     'google-maps-err' => 'La dirección debe ser un enlace de google maps.',
+    '404-title' => 'Página no encontrada',
+    '404-error' => 'Error 404',
+    '404-subt' => '¡Oops! La página que buscas no existe.',
 
 
     /* Home */
