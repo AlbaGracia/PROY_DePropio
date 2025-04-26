@@ -21,7 +21,7 @@ class EventSeeder extends Seeder
                 'end_date' => '2025-08-31',
                 'web_url' => 'https://iaacc.es/events/aragon-y-las-artes-1957-1975/?occurrence=2023-11-16',
                 'space_id' => 1,
-                'category_id' => 8,
+                'category_id' => 9,
                 'image_path' => 'storage/events/images/Aragon-Las-Artes.webp'
             ]
         ]);
@@ -34,7 +34,7 @@ class EventSeeder extends Seeder
                 'end_date' => '2025-06-08',
                 'web_url' => 'https://caixaforum.org/es/zaragoza/p/recuerdos_a168538824',
                 'space_id' => 3,
-                'category_id' => 8,
+                'category_id' => 9,
                 'price' => 6,
                 'image_path' => 'storage/events/images/recuerdos-caixaforum.jpg'
             ]
@@ -47,7 +47,7 @@ class EventSeeder extends Seeder
                 'start_date' => '2025-04-29',
                 'web_url' => 'https://caixaforum.org/es/zaragoza/p/tardeo-poetico-con-diana-navarro-y-lidia-garcia_a169692497',
                 'space_id' => 3,
-                'category_id' => 10,
+                'category_id' => 11,
                 'price' => 6,
                 'image_path' => 'storage/events/images/tardeo-politico.jpg'
             ]
@@ -61,7 +61,7 @@ class EventSeeder extends Seeder
                 'end_date' => '2025-08-31',
                 'web_url' => 'https://iaacc.es/events/maite-ubide/?occurrence=2025-03-12',
                 'space_id' => 1,
-                'category_id' => 8,
+                'category_id' => 9,
                 'image_path' => 'storage/events/images/maite-ubide.png'
             ]
         );
@@ -89,7 +89,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'end_date' => '2025-05-25',
                 'web_url' => 'https://teatroprincipalzaragoza.com/v-festival-internacional-de-magia-ciudad-de-zaragoza/',
                 'space_id' => 2,
-                'category_id' => 11,
+                'category_id' => 12,
                 'price' => 25,
                 'image_path' => 'storage/events/images/v-festival-magia.webp'
             ]
@@ -102,7 +102,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'start_date' => '2025-05-10',
                 'web_url' => 'https://auditoriozaragoza.com/programacion/this-is-michael/',
                 'space_id' => 4,
-                'category_id' => 1,
+                'category_id' => 2,
                 'price' => 55,
                 'image_path' => 'storage/events/images/this-is-michael.jpg'
             ]
@@ -116,7 +116,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'end_date' => '2025-08-10',
                 'web_url' => 'https://www.zaragoza.es/sede/portal/museos/centro-historias/servicio/cultura/evento/294508',
                 'space_id' => 5,
-                'category_id' => 8,
+                'category_id' => 9,
                 'image_path' => 'storage/events/images/historias-para-no-olvidar.png'
             ]
         );
@@ -129,7 +129,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'end_date' => '2025-11-23',
                 'web_url' => 'https://www.openworldnow.com/own-zaragoza/',
                 'space_id' => 7,
-                'category_id' => 9,
+                'category_id' => 10,
                 'price' => 15,
                 'image_path' => 'storage/events/images/own-2025.png'
             ]
@@ -142,7 +142,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'start_date' => '2025-05-17',
                 'web_url' => 'https://www.teatrodelasesquinas.com/es/programacion/c/489-hovik-keuchkerian.html',
                 'space_id' => 8,
-                'category_id' => 2,
+                'category_id' => 3,
                 'price' => 28,
                 'image_path' => 'storage/events/images/hovik-grito.webp'
             ]
@@ -156,7 +156,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'end_date' => '2025-05-22',
                 'web_url' => 'https://www.teatrodelasesquinas.com/es/programacion/c/601-tantas-flores.html',
                 'space_id' => 8,
-                'category_id' => 2,
+                'category_id' => 3,
                 'price' => 19,
                 'image_path' => 'storage/events/images/tantasflores.webp'
             ]
@@ -169,7 +169,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'start_date' => '2025-05-26',
                 'web_url' => 'https://www.taquilla.com/entradas/band-jovi-tributo-bon-jovi-',
                 'space_id' => 9,
-                'category_id' => 1,
+                'category_id' => 2,
                 'price' => 18,
                 'image_path' => 'storage/events/images/band-jovi.jpeg'
             ]
@@ -182,7 +182,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'start_date' => '2025-05-23',
                 'web_url' => 'https://www.taquilla.com/entradas/the-novus-band',
                 'space_id' => 9,
-                'category_id' => 1,
+                'category_id' => 2,
                 'price' => 9.7,
                 'image_path' => 'storage/events/images/the-novus-band.jpeg'
             ]
@@ -195,7 +195,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'start_date' => '2025-04-23',
                 'web_url' => 'https://www.zaragoza.es/sede/servicio/cultura/evento/294956',
                 'space_id' => 10,
-                'category_id' => 2,
+                'category_id' => 3,
                 'image_path' => 'storage/events/images/centrifugado.png'
             ]
         );
@@ -207,7 +207,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'start_date' => '2025-04-26',
                 'web_url' => 'https://www.zaragoza.es/sede/servicio/cultura/evento/292067',
                 'space_id' => 10,
-                'category_id' => 10,
+                'category_id' => 11,
                 'price' => 2,
                 'image_path' => 'storage/events/images/ser_bombera.png'
             ]

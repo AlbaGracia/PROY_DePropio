@@ -14,6 +14,7 @@ class TypeSeeder extends Seeder
     public function run(): void
     {
         DB::table('types')->insert([
+            ['name' => 'undefined'],
             ['name' => 'Aire Libre'],
             ['name' => 'Espacio Expositivo'],
             ['name' => 'Museo'],

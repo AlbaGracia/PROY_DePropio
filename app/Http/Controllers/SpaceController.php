@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Space;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SpaceController extends Controller
 {
@@ -44,15 +45,37 @@ class SpaceController extends Controller
     {
         $space = Space::findOrFail($id);
         $this->saveSpaceData($request, $space);
-        return redirect()->route('space.show', $space->id);
+        return redirect()->route('space.list');
     }
 
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         $space = Space::findOrFail($id);
         $space->delete();
-        return redirect()->route('space.index');
+
+        return redirect()->route('space.list');
     }
+
+    public function list(Request $request)
+    {
+        $user = Auth::user();
+        $query = Space::query();
+
+        if ($user->hasRole('admin_space')) {
+            $query->where('user_id', $user->id);
+        } elseif (!$user->hasRole('admin')) {
+            abort(403, __('labels.403-title'));
+        }
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $spaces = $query->paginate(10);
+
+        return view('view_components.space.list', ['spaces' => $spaces]);
+    }
+
 
     private function saveSpaceData(Request $request, Space $space)
     {

@@ -26,8 +26,10 @@
 
 <body class='d-flex flex-column'>
     @include('components.header')
+    <main style="min-height: 70vh">
+        @yield('content')
 
-    @yield('content')
+    </main>
 
 
     @include('components.footer')

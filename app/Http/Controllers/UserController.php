@@ -101,7 +101,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'type_user' => 'required|in:user,admin,admin_espacio',
+            'type_user' => 'required|in:user,admin,admin_space',
         ]);
     }
 
@@ -111,7 +111,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8|confirmed',
-            'type_user' => 'required|in:user,admin,admin_espacio',
+            'type_user' => 'required|in:user,admin,admin_space',
         ]);
     }
 }

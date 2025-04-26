@@ -1,8 +1,8 @@
+@extends('layouts.master')
+
 @section('title', __('labels.spaces'))
 @section('subtitle', __('labels.spaces-sub'))
 
-
-@extends('layouts.master')
 @section('content')
     @include('components.title-section')
 

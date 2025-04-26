@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
         // Asegurarte que los roles existan primero
         Role::firstOrCreate(['name' => 'admin']);
-        Role::firstOrCreate(['name' => 'admin_espacio']);
+        Role::firstOrCreate(['name' => 'admin_space']);
         Role::firstOrCreate(['name' => 'user']);
 
         // Crear usuarios y asignar roles
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('iaacc123'),
             'type_user' => 'admin',
         ]);
-        $adminIAACC->assignRole('admin_espacio'); // o 'admin', depende lo que quieras
+        $adminIAACC->assignRole('admin_space'); // o 'admin', depende lo que quieras
 
         $marcos = User::create([
             'name' => 'Marcos Alcazar',

@@ -68,6 +68,13 @@
                                         {{ __('labels.save-events') }}
                                     </a>
                                 </li>
+                                @unlessrole('user')
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('admin.panel') }}">
+                                            {{ __('labels.panel') }}
+                                        </a>
+                                    </li>
+                                @endunlessrole
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
@@ -117,6 +124,13 @@
                                                     {{ __('labels.save-events') }}
                                                 </a>
                                             </li>
+                                            @unlessrole('user')
+                                                <li>
+                                                    <a class="dropdown-item" href="{{ route('admin.panel') }}">
+                                                        {{ __('labels.panel') }}
+                                                    </a>
+                                                </li>
+                                            @endunlessrole
                                             <li>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf

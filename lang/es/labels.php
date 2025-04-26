@@ -34,6 +34,11 @@ return [
     'save-events' => 'Eventos guardados',
     'log-out' => 'Cerrar sesión',
     'profile' => 'Perfil',
+    'panel'  => 'Panel',
+    'image' => 'Imagen',
+    'no-image' => 'Sin imagen',
+    'type' => 'Tipo',
+
 
     /* Botones */
     'edit-space' => 'Editar espacio',
@@ -42,6 +47,10 @@ return [
     'create-event' => 'Crear evento',
     'delete' => 'Eliminar',
     'home' => 'Volver a inicio',
+    'search' => 'Buscar',
+    'edit' => 'Editar',
+    'back-panel' => 'Volver al panel',
+    'back-list' => 'Volver al listado',
 
 
     /* Inputs */
@@ -54,11 +63,16 @@ return [
     'price' => 'Precio',
 
 
+
     /* Errors */
     'google-maps-err' => 'La dirección debe ser un enlace de google maps.',
     '404-title' => 'Página no encontrada',
     '404-error' => 'Error 404',
     '404-subt' => '¡Oops! La página que buscas no existe.',
+    '403-title' => 'No autorizado',
+    '403-error' => 'Error 403',
+    '403-subt' => '¡Oops! No tienes permisos para acceder a esta página.',
+
 
 
     /* Home */

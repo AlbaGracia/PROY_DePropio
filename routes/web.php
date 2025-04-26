@@ -49,12 +49,16 @@ Route::group(
         });
 
         // Rutas para admins: 'admin' o 'admin_espacio'
-        Route::prefix('admin')->middleware(['auth', 'role:admin|admin_espacio'])->group(function () {
+        Route::prefix('admin')->middleware(['auth', 'role:admin|admin_space'])->group(function () {
             Route::resource('space', SpaceController::class)->except(['index', 'show']);
             Route::resource('event', EventController::class)->except(['index', 'show']);
             Route::resource('category', CategoryController::class)->except(['index', 'show']);
             Route::resource('type', TypeController::class)->except(['index', 'show']);
             Route::resource('user', UserController::class)->except(['index', 'show']);
+            Route::get('/panel', function () {
+                return view('view_components.adminPanel');
+            })->name('admin.panel');
+            Route::get('/admin/spaces', [SpaceController::class, 'list'])->name('space.list');
         });
     }
 );

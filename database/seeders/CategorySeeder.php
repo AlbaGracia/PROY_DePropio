@@ -14,6 +14,7 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
+            ['name' => 'undefined'],
             ['name' => 'Conciertos'],       //01
             ['name' => 'Teatro'],           //02
             ['name' => 'Cine'],             //03

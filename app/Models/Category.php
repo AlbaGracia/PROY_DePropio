@@ -14,4 +14,14 @@ class Category extends Model
     {
         return $this->hasMany(Event::class);
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($category) {
+            $defaultCategoryId = 1;
+
+            Space::where('category', $category->id)
+                 ->update(['category_id' => $defaultCategoryId]);
+        });
+    }
 }
