@@ -50,6 +50,10 @@ return [
     'end-date' => 'Final',
     'list-spaces' => 'Listado de espacios',
     'list-events' => 'Listado de eventos',
+    'list-category' => 'Listado de categorías',
+    'id' => 'ID',
+    'edit-category' => 'Editar categoría',
+    'category-name' => 'Nombre de la categoría',
 
 
     /* Botones */
@@ -57,12 +61,13 @@ return [
     'create-space' => 'Crear espacio',
     'edit-event' => 'Editar evento',
     'create-event' => 'Crear evento',
+    'create-category' => 'Crear categoría',
     'delete' => 'Eliminar',
     'home' => 'Volver a inicio',
     'search' => 'Buscar',
     'edit' => 'Editar',
     'back-panel' => 'Volver al panel',
-
+    'update-category' => 'Actualizar categoría',
 
     /* Inputs */
     'space-name' => 'Nombre del espacio',
@@ -74,6 +79,7 @@ return [
     'price' => 'Precio',
     'search-name' => 'Buscar por nombre…',
     'event-search' => 'Buscar por nombre del evento...',
+    'enter-category-name' => 'Introduce nombre de la categoría',
 
 
 

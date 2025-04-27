@@ -20,8 +20,8 @@ class Category extends Model
         static::deleting(function ($category) {
             $defaultCategoryId = 1;
 
-            Space::where('category', $category->id)
-                 ->update(['category_id' => $defaultCategoryId]);
+            Event::where('category_id', $category->id)
+                ->update(['category_id' => $defaultCategoryId]);
         });
     }
 }

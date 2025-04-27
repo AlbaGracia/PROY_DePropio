@@ -14,18 +14,17 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('categories')->insert([
-            ['name' => 'undefined'],
-            ['name' => 'Conciertos'],       //01
-            ['name' => 'Teatro'],           //02
-            ['name' => 'Cine'],             //03
-            ['name' => 'Deportes'],         //04
-            ['name' => 'Conferencias'],     //05
-            ['name' => 'Talleres'],         //06
-            ['name' => 'Ferias'],           //07
-            ['name' => 'Exposiciones'],     //08
-            ['name' => 'Festivales'],       //09
-            ['name' => 'Encuentros'],       //10
-            ['name' => 'Festival'],         //11
+            ['name' => 'undefined'],        //01
+            ['name' => 'Conciertos'],       //02
+            ['name' => 'Teatro'],           //03
+            ['name' => 'Cine'],             //04
+            ['name' => 'Deportes'],         //05
+            ['name' => 'Conferencias'],     //06
+            ['name' => 'Talleres'],         //07
+            ['name' => 'Ferias'],           //08
+            ['name' => 'Exposiciones'],     //09
+            ['name' => 'Festivales'],       //10
+            ['name' => 'Encuentros'],       //11
         ]);
     }
 }

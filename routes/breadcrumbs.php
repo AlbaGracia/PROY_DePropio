@@ -22,7 +22,7 @@ Breadcrumbs::for('admin.space.create', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('admin.space.edit', function (BreadcrumbTrail $trail, $space) {
     $trail->parent('space.list');
-    $trail->push(__('labels.edit').' - ' . $space->name, route('space.edit', $space->id));
+    $trail->push(__('labels.edit') . ' - ' . $space->name, route('space.edit', $space->id));
 });
 
 // Eventos - listado
@@ -39,5 +39,23 @@ Breadcrumbs::for('admin.event.create', function (BreadcrumbTrail $trail) {
 
 Breadcrumbs::for('admin.event.edit', function (BreadcrumbTrail $trail, $event) {
     $trail->parent('event.list');
-    $trail->push(__('labels.edit') .' - ' . $event->name, route('event.edit', $event->id));
+    $trail->push(__('labels.edit') . ' - ' . $event->name, route('event.edit', $event->id));
+});
+
+
+// Categoría - listado
+Breadcrumbs::for('category.list', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.panel');
+    $trail->push(__('labels.list-category'), route('category.index'));
+});
+
+
+Breadcrumbs::for('admin.category.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('category.list');
+    $trail->push(__('labels.create-category'), route('category.create'));
+});
+
+Breadcrumbs::for('admin.category.edit', function (BreadcrumbTrail $trail, $category) {
+    $trail->parent('category.list');
+    $trail->push(__('labels.edit') . ' - ' . $category->name, route('category.edit', $category->id));
 });

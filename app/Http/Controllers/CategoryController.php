@@ -10,18 +10,26 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
-        return view('category.all', ['categories', $categories]);
+        $query = Category::query();
+
+        // Filtrar por nombre si se realiza una búsqueda
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $categories = $query->paginate(10);
+
+        return view('view_components.category.list', [
+            'categories' => $categories,
+            'search' => $request->search,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('category.form');
+        return view('view_components.category.form');
     }
 
     /**
@@ -32,15 +40,8 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->save();
-        return redirect()->route('category.index');
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('category.index');
     }
 
     /**
@@ -49,7 +50,7 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::find($id);
-        return view('category.form', ['category', $category]);
+        return view('view_components.category.form', ['category' => $category]);
     }
 
     /**
@@ -60,6 +61,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->name = $request->name;
         $category->save();
+
         return redirect()->route('category.index');
     }
 

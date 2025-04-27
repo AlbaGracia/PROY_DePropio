@@ -89,7 +89,7 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'end_date' => '2025-05-25',
                 'web_url' => 'https://teatroprincipalzaragoza.com/v-festival-internacional-de-magia-ciudad-de-zaragoza/',
                 'space_id' => 2,
-                'category_id' => 12,
+                'category_id' => 10,
                 'price' => 25,
                 'image_path' => 'storage/events/images/v-festival-magia.webp'
             ]
