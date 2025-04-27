@@ -26,7 +26,7 @@ class SpaceController extends Controller
     {
         $space = new Space();
         $this->saveSpaceData($request, $space);
-        return redirect()->route('space.show', $space->id);
+        return redirect()->route('space.list', $space->id);
     }
 
     public function show(string $id)
@@ -84,6 +84,7 @@ class SpaceController extends Controller
         $space->address = $request->address;
         $space->web_url = $request->web_url;
         $space->type_id = $request->type_id;
+        $space->user_id = Auth::id();
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('spaces/images', 'public');

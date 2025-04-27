@@ -36,25 +36,23 @@ Route::group(
         require __DIR__ . '/auth.php';
 
         // Rutas públicas (para todos, usuarios registrados o no registrados)
-        Route::resource('user', UserController::class)->only(['index', 'show']);
         Route::resource('event', EventController::class)->only(['index', 'show']);
         Route::resource('space', SpaceController::class)->only(['index', 'show']);
-        Route::resource('category', CategoryController::class)->only(['index', 'show']);
-        Route::resource('type', TypeController::class)->only(['index', 'show']);
         Route::get('this-week-events', [EventController::class, 'showThisWeekEvents'])->name('thisWeekEvents');
         Route::get('events-in-space/{id}', [EventController::class, 'eventsInSpace'])->name('eventsInSpace');
+        
         // Rutas solo accesibles para usuarios autenticados
         Route::middleware('auth')->group(function () {
-            Route::resource('comment', CommentController::class); // Solo pueden comentar los usuarios autenticados
+            Route::resource('comment', CommentController::class);
         });
 
         // Rutas para admins: 'admin' o 'admin_espacio'
         Route::prefix('admin')->middleware(['auth', 'role:admin|admin_space'])->group(function () {
             Route::resource('space', SpaceController::class)->except(['index', 'show']);
             Route::resource('event', EventController::class)->except(['index', 'show']);
-            Route::resource('category', CategoryController::class)->except(['index', 'show']);
-            Route::resource('type', TypeController::class)->except(['index', 'show']);
-            Route::resource('user', UserController::class)->except(['index', 'show']);
+            Route::resource('category', CategoryController::class);
+            Route::resource('type', TypeController::class);
+            Route::resource('user', UserController::class);
             Route::get('/panel', function () {
                 return view('view_components.adminPanel');
             })->name('admin.panel');

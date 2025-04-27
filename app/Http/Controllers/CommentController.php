@@ -12,7 +12,19 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index(Request $request)
+    {
+        $query = Comment::query();
+
+        if ($request->has('search') && !empty($request->search)) {
+            $query->whereHas('event', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        $comments = $query->orderBy('publish_date', 'desc')->paginate(10);
+        return view('view_components.comment.list', ['comments' => $comments]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -31,14 +43,6 @@ class CommentController extends Controller
         $comment->publish_date = Carbon::now();
         $comment->save();
         return redirect()->route('event.show', $comment->event_id);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -65,6 +69,11 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         $event = $comment->event_id;
         $comment->delete();
-        return redirect()->route('event.show', $event);
+        
+        if (url()->previous() === route('event.show', $event)) {
+            return redirect()->route('event.show', $event);
+        } else {
+            return redirect()->route('comment.index');
+        }
     }
 }

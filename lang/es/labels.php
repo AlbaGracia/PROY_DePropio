@@ -2,6 +2,7 @@
 
 return [
     'events' => 'Eventos',
+    'event' => 'Evento',
     'events-sub' => 'Descubre todas las actividades y planes',
     'thisWeek-sub' => 'Descubre todos los eventos de esta semana - ',
     'eventsInSpace-sub' => 'Todos los eventos en ',
@@ -19,12 +20,14 @@ return [
     'category' => 'Categoría',
     'space' => 'Espacio',
     'dates' => 'Fechas',
+    'publish-date' => 'Fecha de publicación',
     'price' => 'Precio',
     'description' => 'Descripción',
     'back-list' => 'Volver al listado',
     'add-comment' => 'Añadir comentario',
     'publish' => 'Publicar',
     'comments' => 'Comentarios',
+    'comment' => 'Comentario',
     'no-comments' => 'Este evento aún no tiene comentarios.',
     'address' => 'Dirección',
     'event-space' => 'Ver todos eventos de este espacio',
@@ -40,6 +43,7 @@ return [
     'type' => 'Tipo',
     'admin-panel' => 'Panel de Administración',
     'users' => 'Usuarios',
+    'user' => 'Usuario',
     'categories' => 'Categorías',
     'types' => 'Tipos',
     'start-date' => 'Inicio',
@@ -69,6 +73,7 @@ return [
     'event-name' => 'Nombre del evento',
     'price' => 'Precio',
     'search-name' => 'Buscar por nombre…',
+    'event-search' => 'Buscar por nombre del evento...',
 
 
 

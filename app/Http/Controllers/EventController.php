@@ -126,9 +126,17 @@ class EventController extends Controller
 
     private function loadFormDependencies()
     {
+        $user = Auth::user();
+
+        if ($user->hasRole('admin_space')) {
+            $spaces = Space::where('user_id', $user->id)->get();
+        } else {
+            $spaces = Space::all();
+        }
+
         return [
             'categories' => Category::all(),
-            'spaces' => Space::all(),
+            'spaces' => $spaces,
         ];
     }
 }
