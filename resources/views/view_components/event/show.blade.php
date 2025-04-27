@@ -9,9 +9,41 @@
             <div class="col-lg-8">
                 <div class="card shadow">
                     <!-- Imagen del evento -->
-                    <div class="like position-absolute top-0 end-0 m-4 text-royal-purple"><a href=""><i
-                                class="fa-regular fa-heart fa-2xl"></i></a></div>
-                    {{--  AÑADIR POP UP 'EVENTO GUARDADO, VER TUS EVENTOS GUARDADOS?' --}}
+                    <div class="like position-absolute top-0 end-0 m-4 text-royal-purple">
+                        @auth
+                            @php
+                                $saved = \App\Models\SaveEvent::where('user_id', Auth::id())
+                                    ->where('event_id', $event->id)
+                                    ->exists();
+                            @endphp
+
+                            @if ($saved)
+                                <!-- Botón eliminar -->
+                                <form action="{{ route('unsave-event', $event->id) }}" method="POST" class="unsave-form d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn p-0 border-0 bg-transparent">
+                                        <i class="fa-solid fa-heart fa-2xl"></i>
+                                    </button>
+                                </form>
+                            @else
+                                <!-- Botón guardar -->
+                                <form action="{{ route('save-event', $event->id) }}" method="POST" class="save-form d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn p-0 border-0 bg-transparent">
+                                        <i class="fa-regular fa-heart fa-2xl"></i>
+                                    </button>
+                                </form>
+                            @endif
+                        @else
+                            <a href="{{ route('login') }}">
+                                <i class="fa-regular fa-heart fa-2xl"></i>
+                            </a>
+                        @endauth
+                    </div>
+
+
+
                     <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}"
                         class="card-img-top h-60 object-fit-cover" alt="{{ $event->name }}">
 
@@ -147,6 +179,7 @@
             </div>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
     <script>
@@ -159,5 +192,33 @@
             document.getElementById('text-display-' + id).style.display = 'block';
             document.getElementById('edit-form-' + id).classList.add('d-none');
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Evento guardado
+            const saveForms = document.querySelectorAll('.save-form');
+
+            // Evento eliminado
+            const unsaveForms = document.querySelectorAll('.unsave-form');
+
+            unsaveForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "Se eliminará de tus eventos guardados.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#6633bb',
+                        confirmButtonText: 'Sí, eliminar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
     </script>
 @endsection

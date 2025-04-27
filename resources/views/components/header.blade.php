@@ -64,7 +64,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('save-events.index') }}">
                                         {{ __('labels.save-events') }}
                                     </a>
                                 </li>
@@ -120,7 +120,7 @@
                                                     href="{{ route('profile.edit') }}">{{ __('labels.profile') }}</a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="#">
+                                                <a class="dropdown-item" href="{{ route('save-events.index') }}">
                                                     {{ __('labels.save-events') }}
                                                 </a>
                                             </li>

@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SaveEventController;
 use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -40,10 +41,13 @@ Route::group(
         Route::resource('space', SpaceController::class)->only(['index', 'show']);
         Route::get('this-week-events', [EventController::class, 'showThisWeekEvents'])->name('thisWeekEvents');
         Route::get('events-in-space/{id}', [EventController::class, 'eventsInSpace'])->name('eventsInSpace');
-        
+
         // Rutas solo accesibles para usuarios autenticados
         Route::middleware('auth')->group(function () {
             Route::resource('comment', CommentController::class);
+            Route::post('/save-event/{id}', [SaveEventController::class, 'save'])->name('save-event');
+            Route::delete('/unsave-event/{id}', [SaveEventController::class, 'unsave'])->name('unsave-event');
+            Route::get('/save-events', [SaveEventController::class, 'index'])->name('save-events.index');
         });
 
         // Rutas para admins: 'admin' o 'admin_espacio'
