@@ -6,8 +6,13 @@
     <main class="container">
         <div class="row mt-5 d-flex justify-content-center">
             <div class="col-lg-10">
-                <h2 class="mb-5">{{ __('labels.space-info') }}</h2>
+                @if (isset($space) && $space->exists)
+                    {{ Breadcrumbs::render('admin.space.edit', $space) }}
+                @else
+                    {{ Breadcrumbs::render('admin.space.create') }}
+                @endif
 
+                <h2 class="mb-5">{{ __('labels.space-info') }}</h2>
                 {{-- Formulario de creación / edición --}}
                 <form action="{{ isset($space) ? route('space.update', $space->id) : route('space.store') }}" method="POST"
                     enctype="multipart/form-data">
