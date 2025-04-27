@@ -76,3 +76,20 @@ Breadcrumbs::for('admin.type.edit', function (BreadcrumbTrail $trail, $type) {
     $trail->parent('type.list');
     $trail->push(__('labels.edit') . ' - ' . $type->name, route('type.edit', $type->id));
 });
+
+// Users - listado
+Breadcrumbs::for('user.list', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.panel');
+    $trail->push(__('labels.list-user'), route('user.index'));
+});
+
+
+Breadcrumbs::for('admin.user.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('user.list');
+    $trail->push(__('labels.create-user'), route('user.create'));
+});
+
+Breadcrumbs::for('admin.user.edit', function (BreadcrumbTrail $trail, $user) {
+    $trail->parent('user.list');
+    $trail->push(__('labels.edit') . ' - ' . $user->name, route('user.edit', $user->id));
+});

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Space;
 use App\Models\Type;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,13 @@ class SpaceController extends Controller
 
     public function create()
     {
-        return view('view_components.space.form', $this->loadFormDependencies());
+        $types = Type::all();
+        $adminUsers = User::whereHas('roles', function ($query) {
+            $query->whereIn('name', ['admin', 'admin_space']);
+        })->get();
+
+
+        return view('view_components.space.form', compact('types', 'adminUsers'));
     }
 
     public function store(Request $request)
@@ -38,7 +45,13 @@ class SpaceController extends Controller
     public function edit(string $id)
     {
         $space = Space::findOrFail($id);
-        return view('view_components.space.form', array_merge(['space' => $space], $this->loadFormDependencies()));
+        $types = Type::all();
+        $adminUsers = User::whereHas('roles', function ($query) {
+            $query->whereIn('name', ['admin', 'admin_space']);
+        })->get();
+
+
+        return view('view_components.space.form', compact('space', 'types', 'adminUsers'));
     }
 
     public function update(Request $request, string $id)
@@ -84,7 +97,11 @@ class SpaceController extends Controller
         $space->address = $request->address;
         $space->web_url = $request->web_url;
         $space->type_id = $request->type_id;
-        $space->user_id = Auth::id();
+        if ($request->has('user_id')) {
+            $space->user_id = $request->user_id;
+        } else {
+            $space->user_id = Auth::id();
+        }
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('spaces/images', 'public');
@@ -92,12 +109,5 @@ class SpaceController extends Controller
         }
 
         $space->save();
-    }
-
-    private function loadFormDependencies()
-    {
-        return [
-            'types' => Type::all(),
-        ];
     }
 }

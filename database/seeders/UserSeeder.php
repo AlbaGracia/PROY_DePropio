@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             'name' => 'IAACC_admin',
             'email' => 'admin@iaacc.com',
             'password' => Hash::make('iaacc123'),
-            'type_user' => 'admin',
+            'type_user' => 'admin_space',
         ]);
         $adminIAACC->assignRole('admin_space'); // o 'admin', depende lo que quieras
 

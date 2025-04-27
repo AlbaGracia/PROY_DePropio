@@ -5,15 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the users.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('user.all');
+        $query = User::query();
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $users = $query->paginate(10);
+
+        return view('view_components.user.list', [
+            'users' => $users,
+            'search' => $request->search,
+        ]);
     }
 
     /**
@@ -21,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.form');
+        return view('view_components.user.form');
     }
 
     /**
@@ -31,24 +45,24 @@ class UserController extends Controller
     {
         $this->validateUser($request);
 
+        // Generar una contraseña aleatoria
+        $randomPassword = Str::random(10);
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->password = Hash::make($randomPassword);
         $user->type_user = $request->type_user;
+        $user->password_reset_required = true;
+
         $user->save();
 
+        // Asignamos el rol del usuario
         $user->assignRole($request->type_user);
 
-        return redirect()->route('user.index')->with('success', 'Usuario creado correctamente');
-    }
+        Mail::to($user->email)->send(new \App\Mail\UserCreated($user, $randomPassword));
 
-    /**
-     * Display the specified user.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('user.index');
     }
 
     /**
@@ -57,7 +71,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
-        return view('user.form', compact('user'));
+        return view('view_components.user.form', compact('user'));
     }
 
     /**
@@ -77,11 +91,17 @@ class UserController extends Controller
         }
 
         $user->type_user = $request->type_user;
+        $user->password_reset_required = false;
+
         $user->save();
 
         $user->syncRoles([$request->type_user]);
 
-        return redirect()->route('user.index')->with('success', 'Usuario actualizado correctamente');
+        if ($user->wasChanged('type_user') && $user->type_user == 'user') {
+            $user->spaces()->update(['user_id' => 1]);
+        }
+
+        return redirect()->route('user.index');
     }
 
     /**
@@ -100,7 +120,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
             'type_user' => 'required|in:user,admin,admin_space',
         ]);
     }
@@ -110,7 +129,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8|confirmed',
             'type_user' => 'required|in:user,admin,admin_space',
         ]);
     }

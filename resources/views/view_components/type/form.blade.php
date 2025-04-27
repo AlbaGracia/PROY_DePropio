@@ -20,7 +20,7 @@
                     method="POST">
                     @csrf
                     @if (isset($type))
-                        @method('PUT') <!-- Si estamos editando, usamos PUT para el método HTTP -->
+                        @method('PUT')
                     @endif
 
                     <div class="mb-3">

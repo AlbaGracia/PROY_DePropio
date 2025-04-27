@@ -51,6 +51,18 @@
 
                             <input type="file" name="image" class="form-control" id="input-file-space">
 
+                            {{-- Admins de los espacios --}}
+                            @if(auth()->user()->hasRole('admin'))
+                                <select class="form-select rounded-pill" name="user_id">
+                                    <option value="" disabled {{ isset($space) && !$space->user_id ? 'selected' : '' }}>
+                                        {{ __('labels.select-space-manager') }}</option>
+                                    @foreach ($adminUsers as $user)
+                                        <option value="{{ $user->id }}" {{ isset($space) && $space->user_id == $user->id ? 'selected' : '' }}>
+                                            {{ $user->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            @endif
                         </div>
 
                         {{-- Columna derecha - Imagen --}}
