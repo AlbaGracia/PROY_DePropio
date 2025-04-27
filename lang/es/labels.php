@@ -38,6 +38,14 @@ return [
     'image' => 'Imagen',
     'no-image' => 'Sin imagen',
     'type' => 'Tipo',
+    'admin-panel' => 'Panel de Administración',
+    'users' => 'Usuarios',
+    'categories' => 'Categorías',
+    'types' => 'Tipos',
+    'start-date' => 'Inicio',
+    'end-date' => 'Final',
+    'list-spaces' => 'Listado de espacios',
+    'list-events' => 'Listado de eventos',
 
 
     /* Botones */
@@ -50,7 +58,6 @@ return [
     'search' => 'Buscar',
     'edit' => 'Editar',
     'back-panel' => 'Volver al panel',
-    'back-list' => 'Volver al listado',
 
 
     /* Inputs */
@@ -61,6 +68,7 @@ return [
     'web-url' => 'Enlace web',
     'event-name' => 'Nombre del evento',
     'price' => 'Precio',
+    'search-name' => 'Buscar por nombre…',
 
 
 

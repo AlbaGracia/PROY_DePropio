@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Space;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -28,7 +29,7 @@ class EventController extends Controller
     {
         $event = new Event();
         $this->saveEventData($request, $event);
-        return redirect()->route('event.show', $event->id);
+        return redirect()->route('event.list', $event->id);
     }
 
     public function show(string $id)
@@ -48,14 +49,36 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
         $this->saveEventData($request, $event);
-        return redirect()->route('event.show', $event->id);
+        return redirect()->route('event.list', $event->id);
     }
 
     public function destroy(string $id)
     {
         $event = Event::findOrFail($id);
         $event->delete();
-        return redirect()->route('event.index');
+        return redirect()->route('event.list');
+    }
+
+    public function list(Request $request)
+    {
+        $user = Auth::user();
+        $query = Event::query();
+
+        if ($user->hasRole('admin_space')) {
+            $query->whereHas('space', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            });
+        } elseif (!$user->hasRole('admin')) {
+            abort(403, __('labels.403-title'));
+        }
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $events = $query->paginate(10);
+
+        return view('view_components.event.list', ['events' => $events]);
     }
 
     public function showThisWeekEvents()
@@ -68,7 +91,7 @@ class EventController extends Controller
                 ->orWhereBetween('end_date', [$startOfWeek, $endOfWeek])
                 ->orWhere(function ($query) use ($startOfWeek, $endOfWeek) {
                     $query->where('start_date', '<', $startOfWeek)
-                          ->where('end_date', '>', $endOfWeek);
+                        ->where('end_date', '>', $endOfWeek);
                 });
         })->paginate($this->pag);
 

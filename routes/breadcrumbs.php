@@ -11,16 +11,33 @@ Breadcrumbs::for('admin.panel', function (BreadcrumbTrail $trail) {
 // Espacios - listado
 Breadcrumbs::for('space.list', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.panel');
-    $trail->push('Listado de Espacios', route('space.list'));
+    $trail->push(__('labels.list-spaces'), route('space.list'));
 });
 
 
 Breadcrumbs::for('admin.space.create', function (BreadcrumbTrail $trail) {
     $trail->parent('space.list');
-    $trail->push('Crear Espacio', route('space.create'));
+    $trail->push(__('labels.create-space'), route('space.create'));
 });
 
 Breadcrumbs::for('admin.space.edit', function (BreadcrumbTrail $trail, $space) {
     $trail->parent('space.list');
-    $trail->push('Editar - ' . $space->name, route('space.edit', $space->id));
+    $trail->push(__('labels.edit').' - ' . $space->name, route('space.edit', $space->id));
+});
+
+// Eventos - listado
+Breadcrumbs::for('event.list', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.panel');
+    $trail->push(__('labels.list-events'), route('event.list'));
+});
+
+
+Breadcrumbs::for('admin.event.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('event.list');
+    $trail->push(__('labels.create-event'), route('event.create'));
+});
+
+Breadcrumbs::for('admin.event.edit', function (BreadcrumbTrail $trail, $event) {
+    $trail->parent('event.list');
+    $trail->push(__('labels.edit') .' - ' . $event->name, route('event.edit', $event->id));
 });

@@ -1,26 +1,26 @@
 @extends('layouts.master')
 
-@section('title', 'Listado de Espacios')
+@section('title', 'Listado de Eventos')
 
 @section('content')
     <div class="container mt-5">
-        <h1 class="mb-4 text-center text-royal-purple">{{ __('labels.spaces') }}</h1>
+        <h1 class="mb-4 text-center text-royal-purple">{{ __('labels.events') }}</h1>
         <div class="container mb-4">
             <div class="d-flex justify-content-center mb-3">
                 <div class="col-lg-7 col-12">
-                    <form action="{{ route('space.list') }}" method="GET">
+                    <form action="{{ route('event.list') }}" method="GET">
                         <div class="input-group">
                             <button class="btn btn-outline-dark" type="submit">{{ __('labels.search') }}</button>
-                            <input type="text" class="form-control" placeholder="Buscar por nombre…" name="search"
-                                value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
+                            <input type="text" class="form-control" placeholder={{ __('labels.search-name') }}
+                                name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
                         </div>
                     </form>
                 </div>
             </div>
 
             <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                <a href="{{ route('space.create') }}" class="btn btn-dark">
-                    <i class="fa-solid fa-plus me-1"></i> {{ __('labels.create-space') }}
+                <a href="{{ route('event.create') }}" class="btn btn-dark">
+                    <i class="fa-solid fa-plus me-1"></i> {{ __('labels.create-event') }}
                 </a>
                 <a href="{{ route('admin.panel') }}" class="btn btn-outline-dark">
                     <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.back-panel') }}
@@ -35,43 +35,48 @@
                 <thead class="table-light">
                     <tr>
                         <th>{{ __('labels.image') }}</th>
-                        <th>{{ __('labels.space-name') }}</th>
+                        <th>{{ __('labels.event-name') }}</th>
                         <th>{{ __('labels.description') }}</th>
-                        <th>{{ __('labels.address') }}</th>
+                        <th>{{ __('labels.start-date') }}</th>
+                        <th>{{ __('labels.end-date') }}</th>
+                        <th>{{ __('labels.price') }}</th>
                         <th>{{ __('labels.web-url') }}</th>
-                        <th>{{ __('labels.type') }}</th>
+                        <th>{{ __('labels.space') }}</th>
+                        <th>{{ __('labels.category') }}</th>
                         <th class="text-center">{{ __('labels.edit') }}</th>
                         <th class="text-center">{{ __('labels.delete') }}</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    @foreach ($spaces as $space)
+                    @foreach ($events as $event)
                         <tr>
                             <td>
-                                @if ($space->image_path)
-                                    <img src="{{ asset($space->image_path) }}" alt="Imagen" width="100">
+                                @if ($event->image_path)
+                                    <img src="{{ asset($event->image_path) }}" alt="Imagen" width="100">
                                 @else
                                     {{ __('labels.no-image') }}
                                 @endif
                             </td>
-                            <td>{{ $space->name }}</td>
-                            <td>{{ Str::limit($space->description, 50) }}</td>
-                            <td><a href="{{ $space->address }}"
-                                    class="btn btn-link text-dark">{{ __('labels.address') }}</a></td>
-                            <td><a href="{{ $space->web_url }}"
+                            <td>{{ $event->name }}</td>
+                            <td>{{ Str::limit($event->description, 50) }}</td>
+                            <td>{{ \Carbon\Carbon::parse($event->start_date)->format('d/m/y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($event->end_date)->format('d/m/y') }}</td>
+                            <td>{{ $event->price }}€</td>
+                            <td><a href="{{ $event->web_url }}"
                                     class="btn btn-link text-dark">{{ __('labels.web-url') }}</a>
                             </td>
-                            <td>{{ $space->type->name }}</td>
+                            <td>{{ $event->space->name }}</td>
+                            <td>{{ $event->category->name }}</td>
 
                             <!-- Columna Editar -->
                             <td class="text-center">
-                                <a href="{{ route('space.edit', $space->id) }}"
+                                <a href="{{ route('event.edit', $event->id) }}"
                                     class="text-primary text-decoration-none">{{ __('labels.edit') }}</a>
                             </td>
 
                             <!-- Columna Eliminar -->
                             <td class="text-center">
-                                <form action="{{ route('space.destroy', $space->id) }}" method="POST">
+                                <form action="{{ route('event.destroy', $event->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-link text-danger p-0 m-0"
@@ -86,7 +91,7 @@
 
         <!-- Paginación -->
         <div class="d-flex justify-content-center mt-4">
-            {{ $spaces->links('pagination::bootstrap-5') }}
+            {{ $events->links('pagination::bootstrap-5') }}
         </div>
     </div>
 @endsection

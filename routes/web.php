@@ -59,6 +59,7 @@ Route::group(
                 return view('view_components.adminPanel');
             })->name('admin.panel');
             Route::get('/admin/spaces', [SpaceController::class, 'list'])->name('space.list');
+            Route::get('/admin/events', [EventController::class, 'list'])->name('event.list');
         });
     }
 );

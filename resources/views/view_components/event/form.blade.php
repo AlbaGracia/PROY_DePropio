@@ -5,6 +5,13 @@
     <main class="container">
         <div class="row mt-5">
             <div class="col-lg-8 offset-lg-2">
+
+                @if (isset($event) && $event->exists)
+                    {{ Breadcrumbs::render('admin.event.edit', $event) }}
+                @else
+                    {{ Breadcrumbs::render('admin.event.create') }}
+                @endif
+
                 <h2 class="mb-5">{{ __('labels.event-info') }}</h2>
 
                 {{-- Formulario de creación / edición --}}
