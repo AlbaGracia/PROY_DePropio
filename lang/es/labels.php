@@ -51,9 +51,11 @@ return [
     'list-spaces' => 'Listado de espacios',
     'list-events' => 'Listado de eventos',
     'list-category' => 'Listado de categorías',
+    'list-type' => 'Listado de tipos de espacio',
     'id' => 'ID',
     'edit-category' => 'Editar categoría',
     'category-name' => 'Nombre de la categoría',
+    'type-name' => 'Nombre del tipo de espacio',
 
 
     /* Botones */
@@ -62,12 +64,15 @@ return [
     'edit-event' => 'Editar evento',
     'create-event' => 'Crear evento',
     'create-category' => 'Crear categoría',
+    'create-type' => 'Crear tipo de espacio',
     'delete' => 'Eliminar',
     'home' => 'Volver a inicio',
     'search' => 'Buscar',
     'edit' => 'Editar',
     'back-panel' => 'Volver al panel',
     'update-category' => 'Actualizar categoría',
+    'update-type' => 'Actualizar tipo de espacio',
+
 
     /* Inputs */
     'space-name' => 'Nombre del espacio',
@@ -80,6 +85,7 @@ return [
     'search-name' => 'Buscar por nombre…',
     'event-search' => 'Buscar por nombre del evento...',
     'enter-category-name' => 'Introduce nombre de la categoría',
+    'enter-type-name' => 'Introduce nombre del tipo de espacio',
 
 
 

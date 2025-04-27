@@ -10,18 +10,27 @@ class TypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $types = Type::all();
-        return view('type.all', ['types', $types]);
-    }
+        $query = Type::query();
 
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        $types = $query->paginate(10);
+
+        return view('view_components.type.list', [
+            'types' => $types,
+            'search' => $request->search,
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('type.form');
+        return view('view_components.type.form');
     }
 
     /**
@@ -36,20 +45,12 @@ class TypeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
         $type = Type::find($id);
-        return view('type.form', ['type', $type]);
+        return view('view_components.type.form', ['type' => $type]);
     }
 
     /**
@@ -70,6 +71,6 @@ class TypeController extends Controller
     {
         $type = Type::find($id);
         $type->delete();
-        return redirect('type.index');
+        return redirect()->route('type.index');
     }
 }

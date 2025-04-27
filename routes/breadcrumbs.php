@@ -59,3 +59,20 @@ Breadcrumbs::for('admin.category.edit', function (BreadcrumbTrail $trail, $categ
     $trail->parent('category.list');
     $trail->push(__('labels.edit') . ' - ' . $category->name, route('category.edit', $category->id));
 });
+
+// Tipos - listado
+Breadcrumbs::for('type.list', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.panel');
+    $trail->push(__('labels.list-type'), route('category.index'));
+});
+
+
+Breadcrumbs::for('admin.type.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('type.list');
+    $trail->push(__('labels.create-type'), route('type.create'));
+});
+
+Breadcrumbs::for('admin.type.edit', function (BreadcrumbTrail $trail, $type) {
+    $trail->parent('type.list');
+    $trail->push(__('labels.edit') . ' - ' . $type->name, route('type.edit', $type->id));
+});
