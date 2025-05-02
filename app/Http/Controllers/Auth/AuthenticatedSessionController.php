@@ -28,6 +28,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request->user()->password_reset_required) {
+            return redirect()->route('profile.edit');
+        }
+
         return redirect()->intended(route('index', absolute: false));
     }
 
