@@ -10,7 +10,7 @@
                 </li>
             </ul>
             <ul class="nav">
-                <li class="nav-item"><a href="#"
+                <li class="nav-item"><a href="{{ route('contact.show') }}"
                         class="nav-link link-white text-uppercase">{{ __('labels.contact') }}</a></li>
             </ul>
         </div>

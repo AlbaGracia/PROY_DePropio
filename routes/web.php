@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SaveEventController;
@@ -41,6 +42,8 @@ Route::group(
         Route::resource('space', SpaceController::class)->only(['index', 'show']);
         Route::get('this-week-events', [EventController::class, 'showThisWeekEvents'])->name('thisWeekEvents');
         Route::get('events-in-space/{id}', [EventController::class, 'eventsInSpace'])->name('eventsInSpace');
+        Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+        Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
         // Rutas solo accesibles para usuarios autenticados
         Route::middleware('auth')->group(function () {
