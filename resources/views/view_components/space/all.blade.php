@@ -6,6 +6,33 @@
 @section('content')
     @include('components.title-section')
 
+    {{-- FILTROS --}}
+    <div class="container">
+        <div class="card shadow-sm rounded-4 bg-light border-0 col-lg-8 col-12 m-auto p-4">
+            <form method="GET" action="{{ route('space.index') }}" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <input type="text" name="name" class="form-control rounded-1" value="{{ request('name') }}"
+                        placeholder="{{ __('labels.search-name') }}">
+                </div>
+
+                <div class="col-md-4">
+                    <select name="type_id" class="form-select rounded-1">
+                        <option value="" selected>{{ __('labels.space-type') }}</option>
+                        @foreach ($types as $type)
+                            <option value="{{ $type->id }}" {{ request('type_id') == $type->id ? 'selected' : '' }}>
+                                {{ $type->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-4 d-grid">
+                    <button type="submit" class="btn btn-deep-purple-out">{{ __('labels.filter') }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="container" style="min-height: 60vh">
         <div class="row px-lg-5 mt-4 px-0 d-flex justify-content-center">
             <div class="col-lg-11">

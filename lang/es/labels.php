@@ -78,6 +78,7 @@ return [
     'update-category' => 'Actualizar categoría',
     'update-type' => 'Actualizar tipo de espacio',
     'update-user' => 'Actualizar usuario',
+    'filter' => 'Filtrar',
 
     /* Inputs */
     'space-name' => 'Nombre del espacio',
@@ -94,6 +95,7 @@ return [
     'enter-user-name' => 'Introduce nombre de usuario',
     'enter-email' => 'Introduce email',
     'select-space-manager' => 'Seleccionar gestor del espacio',
+    
 
 
 
