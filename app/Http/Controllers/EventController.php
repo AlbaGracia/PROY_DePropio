@@ -14,10 +14,49 @@ class EventController extends Controller
 {
     private $pag = 9;
 
-    public function index()
+    public function index(Request $request)
     {
-        $events = Event::orderBy('start_date', 'asc')->paginate($this->pag);
-        return view('view_components.event.all', ['events' => $events]);
+        $query = Event::query();
+
+        if ($request->filled('keywords')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->keywords . '%')
+                    ->orWhere('name', 'like', '%' . $request->keywords . '%');
+            });
+        }
+
+        if ($request->filled('categories')) {
+            $query->whereIn('category_id', $request->categories);
+        }
+
+        if ($request->filled('price_min') || $request->filled('price_max')) {
+            $min = $request->input('price_min', 0);
+            $max = $request->input('price_max', 10000);
+            $query->whereBetween('price', [$min, $max]);
+        }
+
+        // Ordenamiento
+        switch ($request->sort) {
+            case 'date_asc':
+                $query->orderBy('start_date', 'asc');
+                break;
+            case 'date_desc':
+                $query->orderBy('start_date', 'desc');
+                break;
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+            default:
+                $query->orderBy('start_date', 'asc'); // por defecto
+        }
+
+        $events = $query->orderBy('start_date', 'asc')->paginate($this->pag);
+        $categories = Category::all();
+
+        return view('view_components.event.all', compact('events', 'categories'));
     }
 
     public function create()

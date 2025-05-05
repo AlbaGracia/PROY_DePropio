@@ -95,7 +95,7 @@ return [
     'enter-user-name' => 'Introduce nombre de usuario',
     'enter-email' => 'Introduce email',
     'select-space-manager' => 'Seleccionar gestor del espacio',
-    
+
 
 
 
@@ -116,5 +116,15 @@ return [
     'show-events' => 'Ver eventos',
     'this-week-sub' => '¿Aún sin planes para esta semana? Explora nuestra selección de eventos imperdibles: monólogos, exposiciones, talleres y más. Descubre todo lo que va a suceder en los próximos días y no te arrepientas de haberte perdido esa experiencia.',
     'this-week-title' => '¡Imprescindibles de esta semana!',
+
+
+    'order_by' => 'Ordenar por',
+    'date_asc' => 'Fecha (más próxima)',
+    'date_desc' => 'Fecha (más lejana)',
+    'price_asc' => 'Precio (menor a mayor)',
+    'price_desc' => 'Precio (mayor a menor)',
+    'filters' => 'Filtros',
+    'price_range' => 'Rango de precios',
+    'clear-filters' => 'Borrar filtros',
 
 ];
