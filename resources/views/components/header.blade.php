@@ -27,7 +27,7 @@
                         <li class="nav-item"><a href="{{ route('space.index') }}"
                                 class="nav-link link-black fw-bolder px-2 text-uppercase">{{ __('labels.spaces') }}</a>
                         </li>
-                        <li class="nav-item"><a href="#"
+                        <li class="nav-item"><a href="{{ route('calendar') }}"
                                 class="nav-link link-black fw-bolder px-2 text-uppercase">{{ __('labels.calendar') }}</a>
                         </li>
                     </ul>
@@ -101,7 +101,8 @@
                                         href="{{ route('event.index') }}">{{ __('labels.events') }}</a></li>
                                 <li><a class="dropdown-item"
                                         href="{{ route('space.index') }}">{{ __('labels.spaces') }}</a></li>
-                                <li><a class="dropdown-item" href="#">{{ __('labels.calendar') }}</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ route('calendar') }}">{{ __('labels.calendar') }}</a></li>
                                 @guest
                                     <li class="dropdown-item"><a href="{{ route('login') }}"
                                             class="text-uppercase">{{ __('labels.login') }}</a></li>

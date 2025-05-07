@@ -144,6 +144,18 @@ class EventController extends Controller
         return view('view_components.event.all', ['events' => $events, 'eventsInSpace' => true, 'space' => $space]);
     }
 
+    public function calendar()
+    {
+        return view('calendar');
+    }
+
+    public function getEventsByDate($date) {
+        $events = Event::whereDate('start_date', '<=', $date)
+                   ->whereDate('end_date', '>=', $date)
+                   ->get();
+       return response()->json($events);
+    }
+
     private function saveEventData(Request $request, Event $event)
     {
         $event->name = $request->name;
