@@ -103,8 +103,15 @@
                 @endif
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                     @foreach ($events as $event)
+                        @php
+                            $today = \Carbon\Carbon::today();
+                            $eventEnded = $event->end_date
+                                ? \Carbon\Carbon::parse($event->end_date)->lt($today)
+                                : \Carbon\Carbon::parse($event->start_date)->lt($today);
+                        @endphp
                         <div class="col">
-                            <div class="card shadow-sm h-100 d-flex flex-column">
+                            <div
+                                class="card shadow-sm h-100 d-flex flex-column {{ $eventEnded ? 'border border-danger' : '' }}">
                                 <a href="{{ route('event.show', $event->id) }}"
                                     class="card-event-link d-flex flex-column h-100 text-decoration-none text-dark">
                                     <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}"
@@ -115,8 +122,12 @@
                                         <h3 class="fs-5 fw-bold text-clamp-2">{{ $event->name }}</h3>
                                     </div>
 
-                                    <ul class="list-group list-group-flush mt-auto">
+                                    <ul class="list-group list-group-flush mt-auto ">
                                         <li class="list-group-item">
+                                            @if ($eventEnded)
+                                                <p class="badge bg-danger text-white align-self-start">
+                                                    {{ __('labels.past-event') }}</p>
+                                            @endif
                                             <p class="badge bg-lime-yellow text-dark align-self-start">
                                                 {{ $event->category->name }}</p>
                                         </li>

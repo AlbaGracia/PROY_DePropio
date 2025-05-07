@@ -18,46 +18,26 @@ class EventController extends Controller
     {
         $query = Event::query();
 
-        if ($request->filled('keywords')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->keywords . '%')
-                    ->orWhere('name', 'like', '%' . $request->keywords . '%');
+        // Filtrar eventos actuales 
+        $query->where(function ($q) {
+            $q->where(function ($q2) {
+                $q2->whereNotNull('end_date')
+                    ->whereDate('end_date', '>=', now()->toDateString());
+            })->orWhere(function ($q2) {
+                $q2->whereNull('end_date')
+                    ->whereDate('start_date', '>=', now()->toDateString());
             });
-        }
+        });
 
-        if ($request->filled('categories')) {
-            $query->whereIn('category_id', $request->categories);
-        }
+        // Aplicar filtros (keywords, categorías, precio, orden)
+        $this->applyFilters($query, $request);
 
-        if ($request->filled('price_min') || $request->filled('price_max')) {
-            $min = $request->input('price_min', 0);
-            $max = $request->input('price_max', 10000);
-            $query->whereBetween('price', [$min, $max]);
-        }
-
-        // Ordenamiento
-        switch ($request->sort) {
-            case 'date_asc':
-                $query->orderBy('start_date', 'asc');
-                break;
-            case 'date_desc':
-                $query->orderBy('start_date', 'desc');
-                break;
-            case 'price_asc':
-                $query->orderBy('price', 'asc');
-                break;
-            case 'price_desc':
-                $query->orderBy('price', 'desc');
-                break;
-            default:
-                $query->orderBy('start_date', 'asc'); // por defecto
-        }
-
-        $events = $query->orderBy('start_date', 'asc')->paginate($this->pag);
+        $events = $query->paginate($this->pag);
         $categories = Category::all();
 
         return view('view_components.event.all', compact('events', 'categories'));
     }
+
 
     public function create()
     {
@@ -120,40 +100,77 @@ class EventController extends Controller
         return view('view_components.event.list', ['events' => $events]);
     }
 
-    public function showThisWeekEvents()
+    public function showThisWeekEvents(Request $request)
     {
         $startOfWeek = Carbon::now()->startOfWeek();
         $endOfWeek = Carbon::now()->endOfWeek();
 
-        $events = Event::where(function ($query) use ($startOfWeek, $endOfWeek) {
+        $query = Event::where(function ($query) use ($startOfWeek, $endOfWeek) {
             $query->whereBetween('start_date', [$startOfWeek, $endOfWeek])
                 ->orWhereBetween('end_date', [$startOfWeek, $endOfWeek])
                 ->orWhere(function ($query) use ($startOfWeek, $endOfWeek) {
                     $query->where('start_date', '<', $startOfWeek)
                         ->where('end_date', '>', $endOfWeek);
                 });
-        })->paginate($this->pag);
+        });
 
-        return view('view_components.event.all', ['events' => $events, 'thisWeek' => true, 'mon' => $startOfWeek, 'sun' => $endOfWeek]);
+        $this->applyFilters($query, $request);
+
+        $events = $query->paginate($this->pag);
+        $categories = Category::all();
+
+        return view('view_components.event.all', [
+            'events' => $events,
+            'thisWeek' => true,
+            'mon' => $startOfWeek,
+            'sun' => $endOfWeek,
+            'categories' => $categories
+        ]);
     }
 
-    public function eventsInSpace($id)
+
+    public function eventsInSpace(Request $request, $id)
     {
         $space = Space::findOrFail($id);
-        $events = Event::where('space_id', $id)->paginate($this->pag);
-        return view('view_components.event.all', ['events' => $events, 'eventsInSpace' => true, 'space' => $space]);
+        $today = now()->toDateString();
+
+        $query = Event::where('space_id', $id)
+            ->where(function ($q) use ($today) {
+                $q->where(function ($sub) use ($today) {
+                    $sub->whereNotNull('end_date')
+                        ->whereDate('end_date', '>=', $today);
+                })->orWhere(function ($sub) use ($today) {
+                    $sub->whereNull('end_date')
+                        ->whereDate('start_date', '>=', $today);
+                });
+            });
+
+        $this->applyFilters($query, $request);
+
+        $events = $query->paginate($this->pag);
+        $categories = Category::all();
+
+        return view('view_components.event.all', [
+            'events' => $events,
+            'eventsInSpace' => true,
+            'space' => $space,
+            'categories' => $categories
+        ]);
     }
+
+
 
     public function calendar()
     {
         return view('calendar');
     }
 
-    public function getEventsByDate($date) {
+    public function getEventsByDate($date)
+    {
         $events = Event::whereDate('start_date', '<=', $date)
-                   ->whereDate('end_date', '>=', $date)
-                   ->get();
-       return response()->json($events);
+            ->whereDate('end_date', '>=', $date)
+            ->get();
+        return response()->json($events);
     }
 
     private function saveEventData(Request $request, Event $event)
@@ -189,5 +206,42 @@ class EventController extends Controller
             'categories' => Category::all(),
             'spaces' => $spaces,
         ];
+    }
+
+    private function applyFilters($query, Request $request)
+    {
+        if ($request->filled('keywords')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->keywords . '%');
+            });
+        }
+
+        if ($request->filled('categories')) {
+            $query->whereIn('category_id', $request->categories);
+        }
+
+        if ($request->filled('price_min') || $request->filled('price_max')) {
+            $min = $request->input('price_min', 0);
+            $max = $request->input('price_max', 10000);
+            $query->whereBetween('price', [$min, $max]);
+        }
+
+        // Ordenamiento
+        switch ($request->sort) {
+            case 'date_asc':
+                $query->orderBy('start_date', 'asc');
+                break;
+            case 'date_desc':
+                $query->orderBy('start_date', 'desc');
+                break;
+            case 'price_asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('price', 'desc');
+                break;
+            default:
+                $query->orderBy('start_date', 'asc');
+        }
     }
 }
