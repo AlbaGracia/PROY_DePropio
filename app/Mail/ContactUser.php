@@ -19,7 +19,7 @@ class ContactUser extends Mailable
 
     public function build()
     {
-        return $this->subject('Gracias por contactarnos')
+        return $this->subject('¡Gracias por contactar! - DePropio')
             ->view('emails.contact-user');
     }
 }

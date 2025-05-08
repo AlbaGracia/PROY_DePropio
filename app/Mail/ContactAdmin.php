@@ -19,7 +19,7 @@ class ContactAdmin extends Mailable
 
     public function build()
     {
-        return $this->subject('Nuevo mensaje de contacto')
+        return $this->subject('Nuevo mensaje enviado a través del formulario de contacto')
             ->view('emails.contact-admin');
     }
 }

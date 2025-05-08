@@ -7,7 +7,14 @@
             <div class="col-md-8">
 
                 @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
+                    <div class="alert alert-success bg-cream text-dark text-center border border-dark" id="success-alert">
+                        {{ session('success') }}</div>
+
+                    <script>
+                        setTimeout(() => {
+                            document.getElementById('success-alert').style.display = 'none';
+                        }, 4000);
+                    </script>
                 @endif
 
                 <div class="card shadow rounded-4">
