@@ -4,10 +4,11 @@ namespace App\Mail;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserCreated extends Mailable
+class UserCreated extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -34,8 +35,8 @@ class UserCreated extends Mailable
      */
     public function build()
     {
-        return $this->subject('Tu nueva cuenta en el sistema')
-            ->view('emails.user-created') 
+        return $this->subject('Bienvenido a DePropio')
+            ->view('emails.user-created')
             ->with([
                 'user' => $this->user,
                 'password' => $this->password,

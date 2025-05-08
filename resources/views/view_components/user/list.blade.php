@@ -58,7 +58,7 @@
                                 <!-- Columna Eliminar -->
                                 <td class="text-center">
                                     <button type="button" class="btn btn-link text-danger p-0 m-0" x-data
-                                        x-on:click.prevent="$dispatch('open-modal', 'delete-type-{{ $user->id }}')">
+                                        x-on:click.prevent="$dispatch('open-modal', 'delete-user-{{ $user->id }}')">
                                         {{ __('labels.delete') }}
                                     </button>
 

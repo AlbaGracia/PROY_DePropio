@@ -60,9 +60,9 @@ class UserController extends Controller
         // Asignamos el rol del usuario
         $user->assignRole($request->type_user);
 
-        Mail::to($user->email)->send(new \App\Mail\UserCreated($user, $randomPassword));
+        Mail::to($user->email)->queue(new \App\Mail\UserCreated($user, $randomPassword));
 
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'Usuario creado correctamente');
     }
 
     /**

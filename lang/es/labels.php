@@ -127,4 +127,5 @@ return [
     'price_range' => 'Rango de precios',
     'clear-filters' => 'Borrar filtros',
     'past-event' => 'Evento finalizado',
+
 ];
