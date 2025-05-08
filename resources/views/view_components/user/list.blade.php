@@ -57,12 +57,15 @@
 
                                 <!-- Columna Eliminar -->
                                 <td class="text-center">
-                                    <form action="{{ route('user.destroy', $user->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger p-0 m-0"
-                                            style="text-decoration: none;">{{ __('labels.delete') }}</button>
-                                    </form>
+                                    <button type="button" class="btn btn-link text-danger p-0 m-0" x-data
+                                        x-on:click.prevent="$dispatch('open-modal', 'delete-type-{{ $user->id }}')">
+                                        {{ __('labels.delete') }}
+                                    </button>
+
+                                    <!-- Modal de confirmación -->
+                                    <x-confirm-delete :action="route('user.destroy', $user->id)" id="delete-user-{{ $user->id }}"
+                                        title="¿Eliminar usuario?"
+                                        message="¿Estás seguro de que quieres eliminar el usuario '{{ $user->name }}'? Esta acción no se puede deshacer." />
                                 </td>
                             </tr>
                         @endif

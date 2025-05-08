@@ -71,12 +71,15 @@
 
                             <!-- Columna Eliminar -->
                             <td class="text-center">
-                                <form action="{{ route('space.destroy', $space->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-link text-danger p-0 m-0"
-                                        style="text-decoration: none;">{{ __('labels.delete') }}</button>
-                                </form>
+                                <button type="button" class="btn btn-link text-danger p-0 m-0" x-data
+                                    x-on:click.prevent="$dispatch('open-modal', 'delete-space-{{ $space->id }}')">
+                                    {{ __('labels.delete') }}
+                                </button>
+
+                                <!-- Modal de confirmación -->
+                                <x-confirm-delete :action="route('space.destroy', $space->id)" id="delete-space-{{ $space->id }}"
+                                    title="¿Eliminar espacio?"
+                                    message="¿Estás seguro de que quieres eliminar el espacio '{{ $space->name }}'? Esta acción no se puede deshacer." />
                             </td>
                         </tr>
                     @endforeach

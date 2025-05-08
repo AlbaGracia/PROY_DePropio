@@ -155,13 +155,15 @@
                                                     onclick="editComment({{ $comment->id }})">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </button>
-                                                <form action="{{ route('comment.destroy', $comment->id) }}" method="POST"
-                                                    class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-link text-dark"><i
-                                                            class="fa-solid fa-trash"></i></button>
-                                                </form>
+                                                <button type="button" class="btn btn-link text-dark" x-data
+                                                    x-on:click.prevent="$dispatch('open-modal', 'delete-comment-{{ $comment->id }}')">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+
+                                                <!-- Modal de confirmación -->
+                                                <x-confirm-delete :action="route('comment.destroy', $comment->id)" id="delete-comment-{{ $comment->id }}"
+                                                    title="¿Eliminar comentario?"
+                                                    message="¿Estás seguro de que quieres eliminar este comentario? Esta acción no se puede deshacer." />
                                             </div>
                                         @endif
                                     @endauth

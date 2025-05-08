@@ -11,8 +11,8 @@
                     <form action="{{ route('type.index') }}" method="GET">
                         <div class="input-group">
                             <button class="btn btn-outline-dark" type="submit">{{ __('labels.search') }}</button>
-                            <input type="text" class="form-control" placeholder={{ __('labels.search') }}
-                                name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
+                            <input type="text" class="form-control" placeholder={{ __('labels.search') }} name="search"
+                                value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
                         </div>
                     </form>
                 </div>
@@ -53,12 +53,15 @@
 
                             <!-- Columna Eliminar -->
                             <td class="text-center">
-                                <form action="{{ route('type.destroy', $type->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-link text-danger p-0 m-0"
-                                        style="text-decoration: none;">{{ __('labels.delete') }}</button>
-                                </form>
+                                <button type="button" class="btn btn-link text-danger p-0 m-0" x-data
+                                    x-on:click.prevent="$dispatch('open-modal', 'delete-type-{{ $type->id }}')">
+                                    {{ __('labels.delete') }}
+                                </button>
+
+                                <!-- Modal de confirmación -->
+                                <x-confirm-delete :action="route('type.destroy', $type->id)" id="delete-type-{{ $type->id }}"
+                                    title="¿Eliminar tipo?"
+                                    message="¿Estás seguro de que quieres eliminar el tipo '{{ $type->name }}'? Esta acción no se puede deshacer." />
                             </td>
                         </tr>
                     @endforeach

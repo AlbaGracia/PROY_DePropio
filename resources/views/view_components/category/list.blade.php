@@ -53,12 +53,15 @@
 
                             <!-- Columna Eliminar -->
                             <td class="text-center">
-                                <form action="{{ route('category.destroy', $category->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-link text-danger p-0 m-0"
-                                        style="text-decoration: none;">{{ __('labels.delete') }}</button>
-                                </form>
+                                <button type="button" class="btn btn-link text-danger p-0 m-0" x-data
+                                    x-on:click.prevent="$dispatch('open-modal', 'delete-category-{{ $category->id }}')">
+                                    {{ __('labels.delete') }}
+                                </button>
+
+                                <!-- Modal de confirmación -->
+                                <x-confirm-delete :action="route('event.destroy', $category->id)" id="delete-category-{{ $category->id }}"
+                                    title="¿Eliminar categoría?"
+                                    message="¿Estás seguro de que quieres eliminar la categoría '{{ $category->name }}'? Esta acción no se puede deshacer." />
                             </td>
                         </tr>
                     @endforeach
