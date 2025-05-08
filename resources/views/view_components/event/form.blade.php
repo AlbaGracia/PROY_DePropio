@@ -128,9 +128,14 @@
         const form = document.querySelector('#form-edit-create');
 
         form.addEventListener('submit', (e) => {
-            if (end_date.value < start_date.value) {
+            const start = start_date.value;
+            const end = end_date.value;
+
+            if (end && end < start) {
                 e.preventDefault();
                 end_date.classList.add('is-invalid');
+            } else {
+                end_date.classList.remove('is-invalid');
             }
         })
     </script>

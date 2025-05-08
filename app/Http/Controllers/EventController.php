@@ -178,7 +178,7 @@ class EventController extends Controller
         $event->name = $request->name;
         $event->description = $request->description;
         $event->start_date = $request->start_date;
-        $event->end_date = $request->end_date;
+        if ($request->end_date) $event->end_date = $request->end_date;
         $event->price = $request->price;
         $event->web_url = $request->web_url;
         $event->space_id = $request->space_id;
