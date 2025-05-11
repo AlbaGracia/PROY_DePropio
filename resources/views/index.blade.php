@@ -47,7 +47,7 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="#" title="{{ __('labels.calendar') }}">
+                    <a class="portfolio-box" href="{{ route('calendar') }}" title="{{ __('labels.calendar') }}">
                         <img class="img-fluid" src="{{ asset('images/calendar.jpg') }}" alt="..." />
                         <div class="portfolio-box-caption">
                             <div class="project-name text-deep-purple fw-bold fs-3">{{ __('labels.calendar') }}</div>

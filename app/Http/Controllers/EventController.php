@@ -169,9 +169,29 @@ class EventController extends Controller
     {
         $events = Event::whereDate('start_date', '<=', $date)
             ->whereDate('end_date', '>=', $date)
+            ->with('category')
+            ->orderBy('category_id', 'asc')
             ->get();
         return response()->json($events);
     }
+
+    public function getEventsByMonth($year, $month)
+    {
+        $start = Carbon::create($year, $month, 1)->startOfMonth();
+        $end = $start->copy()->endOfMonth();
+
+        $events = Event::where(function ($q) use ($start, $end) {
+            $q->whereBetween('start_date', [$start, $end])
+                ->orWhereBetween('end_date', [$start, $end])
+                ->orWhere(function ($query) use ($start, $end) {
+                    $query->where('start_date', '<=', $start)
+                        ->where('end_date', '>=', $end);
+                });
+        })->get();
+
+        return response()->json($events);
+    }
+
 
     private function saveEventData(Request $request, Event $event)
     {

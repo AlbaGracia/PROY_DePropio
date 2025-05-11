@@ -44,8 +44,9 @@ Route::group(
         Route::get('events-in-space/{id}', [EventController::class, 'eventsInSpace'])->name('eventsInSpace');
         Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
         Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
-        Route::get('calendar', [EventController::class, 'calendar'])->name('calendar');
-        Route::get('/calendar/events', [EventController::class, 'getEventsByDate']);
+        Route::get('/calendar', [EventController::class, 'calendar'])->name('calendar');
+        Route::get('/calendar/events/{year}/{month}', [EventController::class, 'getEventsByMonth']);
+        Route::get('/calendar/day/{date}', [EventController::class, 'getEventsByDate']);
         // Rutas solo accesibles para usuarios autenticados
         Route::middleware('auth')->group(function () {
             Route::resource('comment', CommentController::class);
