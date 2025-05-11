@@ -5,8 +5,18 @@
                 <li class="nav-item"><a href="#" class="nav-link"><i
                             class="fab fa-instagram fa-lg link-white-simple"></i></a>
                 </li>
-                <li class="nav-item"><a href="#" class="nav-link"><i
-                            class="fab fa-whatsapp fa-lg link-white-simple"></i></a>
+                <li class="nav-item">
+                    @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        <!-- Si el idioma local establecido es diferente al que se está recorriendo se muestra -->
+                        <!-- Esto funciona porque solo hay dos idiomas en la lista EN y ES, en caso de incluir más idiomas sería necesario convertirlo en un desplegable -->
+                        @if ($localeCode != LaravelLocalization::getCurrentLocale())
+                            <a rel="alternate" hreflang="{{ $localeCode }}"
+                                href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
+                                class="btn link-white-simple me-2">
+                                {{ $properties['native'] }}
+                            </a>
+                        @endif
+                    @endforeach
                 </li>
             </ul>
             <ul class="nav">
