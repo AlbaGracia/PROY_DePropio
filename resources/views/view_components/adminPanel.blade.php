@@ -3,7 +3,7 @@
 @section('title', __('labels.admin-panel'))
 
 @section('content')
-    <div class="container mt-5 p-5">
+    <div class="container p-5">
         <h1 class="mb-5 text-center text-royal-purple">{{ __('labels.admin-panel') }}</h1>
 
         <div class="row g-4 justify-content-center">

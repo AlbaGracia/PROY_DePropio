@@ -60,6 +60,11 @@ return [
     'type-user' => 'Tipo de usuario',
     'email' => 'Email',
     'user-name' => 'Nombre de usuario',
+    'month' => 'Mes',
+    'err-load-cal' => 'Error cargando eventos del calendario:',
+    'no-events' => 'No hay eventos',
+    'saved-events' => 'Eventos Guardados',
+    'no-event-saved' => 'No tienes eventos guardados.',
 
 
     /* Botones */
@@ -90,14 +95,15 @@ return [
     'price' => 'Precio',
     'search-name' => 'Buscar por nombre…',
     'event-search' => 'Buscar por nombre del evento...',
+    'category-search' => 'Buscar por nombre de categoría...',
+    'type-search' => 'Buscar por tipo de espacio...',
+    'user-search' => 'Buscar por nombre de usuario...',
+    'comment-search' => 'Buscar por comentario...',
     'enter-category-name' => 'Introduce nombre de la categoría',
     'enter-type-name' => 'Introduce nombre del tipo de espacio',
     'enter-user-name' => 'Introduce nombre de usuario',
     'enter-email' => 'Introduce email',
     'select-space-manager' => 'Seleccionar gestor del espacio',
-
-
-
 
     /* Errors */
     'google-maps-err' => 'La dirección debe ser un enlace de google maps.',
@@ -128,4 +134,14 @@ return [
     'clear-filters' => 'Borrar filtros',
     'past-event' => 'Evento finalizado',
 
+
+    /* Calendar */
+    'lu' => 'Lu',
+    'ma' => 'Ma',
+    'mi' => 'Mi',
+    'ju' => 'Ju',
+    'vi' => 'Vi',
+    'sa' => 'Sa',
+    'do' => 'Do',
+    'day-events' => 'Eventos del día'
 ];

@@ -11,8 +11,8 @@
                     <form action="{{ route('user.index') }}" method="GET">
                         <div class="input-group">
                             <button class="btn btn-outline-dark" type="submit">{{ __('labels.search') }}</button>
-                            <input type="text" class="form-control" placeholder={{ __('labels.search') }} name="search"
-                                value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
+                            <input type="text" class="form-control" placeholder='{{ __('labels.user-search') }}'
+                                name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
                         </div>
                     </form>
                 </div>

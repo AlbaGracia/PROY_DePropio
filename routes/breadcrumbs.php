@@ -5,7 +5,7 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 // Panel Admin
 Breadcrumbs::for('admin.panel', function (BreadcrumbTrail $trail) {
-    $trail->push('Panel de Administración', route('admin.panel'));
+    $trail->push(__('labels.admin-panel'), route('admin.panel'));
 });
 
 // Espacios - listado

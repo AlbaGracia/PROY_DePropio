@@ -11,7 +11,7 @@
                     <form action="{{ route('event.list') }}" method="GET">
                         <div class="input-group">
                             <button class="btn btn-outline-dark" type="submit">{{ __('labels.search') }}</button>
-                            <input type="text" class="form-control" placeholder={{ __('labels.search-name') }}
+                            <input type="text" class="form-control" placeholder='{{ __('labels.event-search') }}'
                                 name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
                         </div>
                     </form>

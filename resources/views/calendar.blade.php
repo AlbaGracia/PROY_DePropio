@@ -9,7 +9,7 @@
                     {{-- Mes anterior --}}
                     <button onclick="changeMonth(-1)" class="btn btn-link-secondary"><i
                             class="fa-solid fa-arrow-left"></i></button>
-                    <h2 id="calendar-title" class="h4 fw-bold m-0">Mes</h2>
+                    <h2 id="calendar-title" class="h4 fw-bold m-0">{{ __('labels.month') }}</h2>
                     {{-- Mes siguiente --}}
                     <button onclick="changeMonth(1)" class="btn btn-link-secondary"><i
                             class="fa-solid fa-arrow-right"></i></button>
@@ -17,13 +17,13 @@
                 <table class="table text-center">
                     <thead class="table-light">
                         <tr>
-                            <th>Lu</th>
-                            <th>Ma</th>
-                            <th>Mi</th>
-                            <th>Ju</th>
-                            <th>Vi</th>
-                            <th>Sa</th>
-                            <th>Do</th>
+                            <th>{{ __('labels.lu') }}</th>
+                            <th>{{ __('labels.ma') }}</th>
+                            <th>{{ __('labels.mi') }}</th>
+                            <th>{{ __('labels.ju') }}</th>
+                            <th>{{ __('labels.vi') }}</th>
+                            <th>{{ __('labels.sa') }}</th>
+                            <th>{{ __('labels.do') }}</th>
                         </tr>
                     </thead>
                     <tbody id="calendar-body"></tbody>
@@ -33,7 +33,7 @@
             <!-- EVENTOS -->
             <div class="col-md-5 col-12">
                 <div class="bg-light p-3 rounded shadow-sm" style="height: 500px; overflow-y: auto;">
-                    <h3 class="h5 fw-bold mb-3 zen-dots">Eventos del día <span id="selected-date"
+                    <h3 class="h5 fw-bold mb-3 zen-dots">{{ __('labels.day-events') }} <span id="selected-date"
                             class="fw-bold zen-dots text-royal-purple"></span></h3>
                     <ul id="event-list" class="list-unstyled"></ul>
                 </div>
@@ -68,7 +68,8 @@
 
         //Cargar calendario
         async function loadCalendar(year, month) {
-            const title = new Date(year, month).toLocaleString('default', {
+            const currentLanguage = '{{ LaravelLocalization::getCurrentLocale() }}'
+            const title = new Date(year, month).toLocaleString(currentLanguage, {
                 month: 'long', //Enero, Febrero, Marzo,......
                 year: 'numeric' //20xx
             });
@@ -80,7 +81,8 @@
                 const events = await result.json();
                 renderCalendar(year, month, events);
             } catch (error) {
-                console.error("Error cargando eventos del calendario:", error);
+                const errorMessage = "{{ __('labels.err-load-cal') }}";
+                console.error(errorMessage);
             }
         }
 
@@ -129,7 +131,8 @@
                 list.innerHTML = '';
 
                 if (events.length === 0) {
-                    list.innerHTML = '<li>No hay eventos.</li>';
+                    const noEvents = "{{ __('labels.no-events') }}";
+                    list.innerHTML = `<li>${noEvents}</li>`;
                     return;
                 }
 

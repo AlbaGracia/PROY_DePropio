@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Eventos Guardados')
+@section('title', __('labels.saved-events'))
 
 @section('content')
 
@@ -9,10 +9,10 @@
             <div class="col-lg-8">
                 <div class="card shadow">
                     <div class="card-body d-flex flex-column align-items-center">
-                        <h2 class="text-center text-royal-purple my-3">Eventos Guardados</h2>
+                        <h2 class="text-center text-royal-purple my-3">{{ __('labels.saved-events') }}</h2>
 
                         @if ($saveEvents->isEmpty())
-                            <p>No tienes eventos guardados.</p>
+                            <p>{{ __('labels.no-event-saved') }}</p>
                         @else
                             <!-- Tabla de eventos guardados -->
                             <table class="table">
