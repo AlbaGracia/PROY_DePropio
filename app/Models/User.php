@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Notifications\CustomResetPassword;
+
 
 class User extends Authenticatable
 {
@@ -61,5 +63,11 @@ class User extends Authenticatable
     public function savedEvents(): HasMany
     {
         return $this->hasMany(SaveEvent::class);
+    }
+
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPassword($token));
     }
 }

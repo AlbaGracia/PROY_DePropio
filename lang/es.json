@@ -26,5 +26,7 @@
     "Forgot your password?": "¿Olvidaste tu contraseña?",
     "Log in": "Iniciar sesión",
     "Already registered?": "¿Ya estás registrado?",
-    "Register": "Registrarse"
+    "Register": "Registrarse",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "¿Olvidaste tu contraseña? No hay problema. Solo indícanos tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña y podrás elegir una nueva.",
+    "Email Password Reset Link": "Enviar enlace"
 }
