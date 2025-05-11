@@ -78,13 +78,13 @@
                                         {{ __('labels.save-events') }}
                                     </a>
                                 </li>
-                                @unlessrole('user')
+                                @hasanyrole('admin|admin_space')
                                     <li>
                                         <a class="dropdown-item" href="{{ route('admin.panel') }}">
                                             {{ __('labels.panel') }}
                                         </a>
                                     </li>
-                                @endunlessrole
+                                @endhasanyrole
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
