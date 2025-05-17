@@ -3,7 +3,7 @@
 @section('content')
     <div class="masthead pb-2">
         <div class="container">
-            <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">
+            <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center mr-0">
                 <div class="col-lg-8 align-self-end">
                     <h1 class="text-white font-weight-bold">{{ __('labels.title') }}</h1>
                     <hr class="divider text-white mb-2" />
@@ -30,7 +30,7 @@
     <div id="portfolio">
         <div class="container-fluid p-0">
             <div class="row g-0">
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4">
                     <a class="portfolio-box" href="{{ route('space.index') }}" title="{{ __('labels.spaces') }}">
                         <img class="img-fluid" src="{{ asset('images/space.jpg') }}" alt="..." />
                         <div class="portfolio-box-caption">
@@ -38,7 +38,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4">
                     <a class="portfolio-box" href="{{ route('event.index') }}" title="{{ __('labels.events') }}">
                         <img class="img-fluid" src="{{ asset('images/event.jpg') }}" alt="..." />
                         <div class="portfolio-box-caption">
@@ -46,7 +46,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-lg-4">
                     <a class="portfolio-box" href="{{ route('calendar') }}" title="{{ __('labels.calendar') }}">
                         <img class="img-fluid" src="{{ asset('images/calendar.jpg') }}" alt="..." />
                         <div class="portfolio-box-caption">
