@@ -213,6 +213,111 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
             ]
         );
 
+        DB::table('events')->insert(
+            [
+                'name' => 'Manual básico de lengua de signos para romper corazones',
+                'description' => 'Lucho es sordo pero Jaime tiene mucho que contarle. Es invierno, y los dos acaban de conocerse. El primer flirteo en un centro comercial ha desembocado en un paseo por las calles de Madrid, donde sus pasos les encaminan hacia el piso de Jaime. Es evidente que se gustan, y Jaime se esfuerza por vocalizar mucho para que Lucho descifre sus labios. Lucho le enseña a Jaime lengua de signos y se convierte en presencia habitual en la casa, con permiso de Pote, su compañero de piso. Entre palabras y signos se enamoran a trompicones, mientras resquebrajan sus corazas, sus mundos chocan y Jaime indaga en la misteriosa intimidad de Lucho, que incluye a su hermana Juana, también sorda.',
+                'start_date' => '2025-06-14',
+                'web_url' => 'https://aragontickets.com/en/events/manual-basico-de-lengua-de-signos-para-romper-corazones',
+                'space_id' => 17,
+                'category_id' => 3,
+                'price' => 10,
+                'image_path' => 'storage/events/images/manual_basico_de_lengua_de_signos.png'
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'name' => 'White Coven + Zålomon Grass + The Riven',
+                'description' => 'La Rotonda acogerá a los zaragozanos White Coven embarcados en un Tour de 30 fechas.Tras este concierto darán el salto a su gira por Inglaterra. Contarán con unos invitados de lujo, Zålomon Grass desde Vigo, y The Riven desde Suecia, ambos embarcados en sus respectivas giras por España, presentando sus ultimos trabajos. Trouble in Time es el disco de Zålomon Grass, un talentoso ejercicio de su genuino Cosmic blues. The Riven presenta Visions of Tomorrow, un plan maestro para conquistar el mundo en forma de 11 temas del mejor power rock. ¡Long Live Rock & Roll!',
+                'start_date' => '2025-06-14',
+                'web_url' => 'https://btradez.entradium.com/events/white-coven-zalomon-grass-the-riven',
+                'space_id' => 9,
+                'category_id' => 2,
+                'price' => 15.30,
+                'image_path' => 'storage/events/images/white_coven.png'
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'name' => 'Madre mía que vergüenza. TEÁTRICAS',
+                'description' => 'Todos hemos pasado vergüenza alguna vez. Esta obra retrata, con mucho humor, una serie de situaciones cotidianas donde los personajes enfrentan sus momentos más incómodos. A través de escenas breves e hilarantes, el público se verá reflejado en los tropiezos sociales de los protagonistas: "Madre mía que vergüenza" es una comedia sobre lo ridículos que podemos ser... y lo humanos que somos al reírnos de ello.',
+                'start_date' => '2025-06-17',
+                'web_url' => 'https://www.zaragoza.es/sede/servicio/cultura/evento/296171',
+                'space_id' => 18,
+                'category_id' => 3,
+                'price' => 3,
+                'image_path' => 'storage/events/images/teatricas_madre_mia_que_verguenza.png'
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'name' => 'Inocentes y culpables. ANTAGONISTAS',
+                'description' => '¿Qué pasaría si pudieras escuchar lo que tu familia diría de ti si ya no estuvieras? Bernard, cansado de sentirse ignorado y malinterpretado, idea un plan extremo: para saber, por fin, lo que su familia piensa realmente de él. Así escucha las conversaciones más sinceras y dolorosas que jamás imaginó. Descubre secretos, decepciones... y también cuánto daño ha causado sin darse cuenta. Pero lo que empieza como un "experimento"  termina afectándolo más de lo que esperaba',
+                'start_date' => '2025-06-11',
+                'web_url' => 'https://www.zaragoza.es/sede/servicio/cultura/evento/296167',
+                'space_id' => 18,
+                'category_id' => 3,
+                'price' => 4,
+                'image_path' => 'storage/events/images/antagonistas.png'
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'name' => 'Rafa Blanca en MALABROCA',
+                'description' => 'MALABROCCA nos emocionará, nos hará encariñarnos de este personaje que llegó el último en su primer Giro, y que supo hacer de esta situación la clave de su éxito. A través de esta historia viajaremos por la Italia de los años 40 y 50, de sus pueblos, de la Italia necesitada, que como sucedía también en España, peleará por reconstruir su país apoyándose en las luchas de sus ciclistas y sus deportistas. Desde el patriota Bartali, quien salvará a cientos de judíos clandestinamente, hasta el bar de Garlasco, donde los amigos de Malabrocca escuchaban las gestas del ¿Chino¿ en la vieja radio de la RAI. Desde el glamour de Coppi, hasta la posada de Ninfa, la mujer que espera impaciente que lleguen los éxitos de su marido ciclista. Desde la Yugoslavia de Tito, hasta las posadas más bohemias de París.',
+                'start_date' => '2025-06-21',
+                'web_url' => 'https://aragontickets.com/events/malabrocca-zaragoza',
+                'space_id' => 17,
+                'category_id' => 3,
+                'price' => 10,
+                'image_path' => 'storage/events/images/event_malabrocca.jpg'
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'name' => 'Pasaporte sin cabeza.- Diminutivo',
+                'description' => 'Diminutivo es la historia de amor entre un panecillo y una magdalena sorda en un pueblo pequeño, muy pequeño, tan pequeño que se construyó con un saco de harina. Y claro, sus casas son pequeñas, las plazas son pequeñas, y sus habitantes algunos tostados y otros dulces, pero todos ellos muy pequeños, diminutos. Y es allí donde vive Pablito, el panadero enamorado de la dulce Magdalena. Y en este pueblo todo es pequeño hasta que llegan los problemas. Parece que Magdalena no le hace caso, él ya no sabe que hacer así que antes de volverse loco buscará nuevas recetas y nuevos ingredientes, así, aunque los problemas crecen ya verás que hay cosas que no se pueden evitar, pero todo se puede arreglar.',
+                'start_date' => '2025-06-14',
+                'web_url' => 'https://titeressincabeza.com/project/diminutivo/',
+                'space_id' => 19,
+                'category_id' => 3,
+                'price' => 0,
+                'image_path' => 'storage/events/images/pasaporte_sin_cabeza.png'
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'name' => 'Afrobrunch Zaragoza Edition (Spain Tour)',
+                'description' => 'La fiesta afro más vibrante de ZARAGOZA llega el DOMINGO 15 DE JUNIO de 2025 al SUPERNOVA CLUB, con un line-up internacional de lujo.',
+                'start_date' => '2025-06-15',
+                'web_url' => 'https://dice.fm/event/rypopv-afrobrunch-zaragoza-edition-spain-tour-15th-jun-supernova-club-zaragoza-tickets?lng=es',
+                'space_id' => 20,
+                'category_id' => 2,
+                'price' => 17,
+                'image_path' => 'storage/events/images/afrobrunch.jpg'
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'name' => 'ExpOtaku Zaragoza 2025',
+                'description' => 'Expotaku es una gira de eventos relacionados con el mundo del manga, el anime, los videojuegos, el cosplay y la cultura japonesa.',
+                'start_date' => '2025-06-13',
+                'end_date' => '2025-06-15',
+                'web_url' => 'https://entradium.com/es/events/expotaku-zaragoza-2025',
+                'space_id' => 21,
+                'category_id' => 8,
+                'price' => 21,
+                'image_path' => 'storage/events/images/expotaku_zaragoza.jpg'
+            ]
+        );
+
         /* DB::table('events')->insert(
             [
                 'name' => '',

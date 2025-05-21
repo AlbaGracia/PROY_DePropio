@@ -14,14 +14,14 @@ class TypeSeeder extends Seeder
     public function run(): void
     {
         DB::table('types')->insert([
-            ['name' => 'undefined'],
-            ['name' => 'Aire Libre'],
-            ['name' => 'Espacio Expositivo'],
-            ['name' => 'Museo'],
-            ['name' => 'Teatro'],
-            ['name' => 'Sala'],
-            ['name' => 'Centro cívico'],
-            ['name' => 'Centro comercial'],
+            ['name' => 'undefined'], //1
+            ['name' => 'Aire Libre'], //2
+            ['name' => 'Espacio Expositivo'], //3
+            ['name' => 'Museo'], //4
+            ['name' => 'Teatro'], //5
+            ['name' => 'Sala'], //6
+            ['name' => 'Centro cívico'], //7
+            ['name' => 'Centro comercial'], //8
         ]);
     }
 }

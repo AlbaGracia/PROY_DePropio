@@ -143,7 +143,48 @@ class SpaceSeeder extends Seeder
                 'web_url' => 'https://grancasa.es',
                 'type_id' => 8,
                 'image_path' => 'storage/spaces/images/grancasa.jpg'
+            ],
+            [ //17
+                'name' => 'Centro Cívico Rio Ebro',
+                'description' => 'Centro Cívico Rio Ebro. Edificio Fernández Ordoñez',
+                'address' => 'https://maps.app.goo.gl/5gUU9faS1agpaJzJ8',
+                'web_url' => 'https://www.zaragoza.es/sede/servicio/equipamiento/785',
+                'type_id' => 7,
+                'image_path' => 'storage/spaces/images/centro_civico_rio_ebro.jpg'
+            ],
+            [ //18
+                'name' => 'Centro Cívico Estación del Norte',
+                'description' => 'Centro Cívico del distrito de El Rabal.',
+                'address' => 'https://maps.app.goo.gl/4GftxSHQoBJB8YSS6',
+                'web_url' => 'https://www.zaragoza.es/sede/servicio/equipamiento/2743',
+                'type_id' => 7,
+                'image_path' => 'storage/spaces/images/centro_civico_estacion_norte.jpg'
+            ],
+            [ //19
+                'name' => 'Centro Cívico Peñaflor',
+                'description' => 'Centro Cívico sitado en Peñaflor de Gállego.',
+                'address' => 'https://maps.app.goo.gl/ZG8DaEx8eGiRyk1eA',
+                'web_url' => 'https://www.zaragoza.es/sede/servicio/equipamiento/2960',
+                'type_id' => 7,
+                'image_path' => 'storage/spaces/images/centro-civico-penaflor.gif'
+            ],
+            [ //20
+                'name' => 'Supernova Club',
+                'description' => 'Club nocturno concurrido de estilo caverna, con neones y una bola de discoteca, que ofrece sesiones de DJ.',
+                'address' => 'https://maps.app.goo.gl/PhsG1CisA5Yz4tDG9',
+                'web_url' => 'https://supernovaclub.es/',
+                'type_id' => 6,
+                'image_path' => 'storage/spaces/images/supernova-club.webp'
+            ],
+            [ //21
+                'name' => 'Sala Multiusos',
+                'description' => 'La Sala Multiusos es un edificio versátil de 2650 m diáfanos y 350 m de hall. Cuenta además con cafetería propia, taquillas, camerinos y un acceso independiente desde la calle.',
+                'address' => 'https://maps.app.goo.gl/YXb7dFsXWAomceRm9',
+                'web_url' => 'https://auditoriozaragoza.com/el-auditorio/sala-multiusos/',
+                'type_id' => 6,
+                'image_path' => 'storage/spaces/images/sala_multiusos.jpg'
             ]
+
         ]);
     }
 }

@@ -141,7 +141,7 @@
                     li.classList.add('my-2', 'p-2', 'bg-white', 'rounded');
 
                     li.innerHTML = `
-                <a href="/event/${e.id}">
+                <a href="/event/${e.id}" target='_blank'>
                     <div class="font-bold">
                         <i class="fa-regular fa-circle-dot text-royal-purple"></i> ${e.name}
                         <br/>
