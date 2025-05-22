@@ -19,7 +19,7 @@ class CategoryController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $categories = $query->paginate(10);
+        $categories = $query->paginate(10)->withQueryString();;
 
         return view('view_components.category.list', [
             'categories' => $categories,

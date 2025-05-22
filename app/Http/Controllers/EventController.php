@@ -95,7 +95,7 @@ class EventController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $events = $query->paginate(10);
+        $events = $query->paginate(10)->withQueryString();;
 
         return view('view_components.event.list', ['events' => $events]);
     }
@@ -116,7 +116,7 @@ class EventController extends Controller
 
         $this->applyFilters($query, $request);
 
-        $events = $query->paginate($this->pag);
+        $events = $query->paginate($this->pag)->withQueryString();;
         $categories = Category::all();
 
         return view('view_components.event.all', [
@@ -147,7 +147,7 @@ class EventController extends Controller
 
         $this->applyFilters($query, $request);
 
-        $events = $query->paginate($this->pag);
+        $events = $query->paginate($this->pag)->withQueryString();;
         $categories = Category::all();
 
         return view('view_components.event.all', [

@@ -18,7 +18,7 @@ class TypeController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $types = $query->paginate(10);
+        $types = $query->paginate(10)->withQueryString();;
 
         return view('view_components.type.list', [
             'types' => $types,

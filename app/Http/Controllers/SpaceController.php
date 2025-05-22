@@ -97,7 +97,7 @@ class SpaceController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $spaces = $query->paginate(10);
+        $spaces = $query->paginate(10)->withQueryString();;
 
         return view('view_components.space.list', ['spaces' => $spaces]);
     }
