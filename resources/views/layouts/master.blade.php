@@ -5,7 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ config('app.name', 'DePropio') }}</title>
+    <title>
+        @hasSection('title')
+            @yield('title') - {{ config('app.name') }}
+        @else
+            {{ config('app.name') }}
+        @endif
+    </title>
 
     <link rel="icon" href="{{ asset('images/depropio_ico.ico') }}" type="image/x-icon">
 
@@ -28,7 +34,6 @@
     @include('components.header')
     <main style="min-height: 70vh">
         @yield('content')
-
     </main>
 
     @include('components.footer')

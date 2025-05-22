@@ -12,11 +12,11 @@
             <form method="GET" action="{{ route('space.index') }}" class="row g-3 align-items-end">
                 <div class="col-md-4">
                     <input type="text" name="name" class="form-control rounded-1" value="{{ request('name') }}"
-                        placeholder="{{ __('labels.search-name') }}">
+                        placeholder="{{ __('labels.search-name') }}" onchange="this.form.submit()">
                 </div>
 
                 <div class="col-md-4">
-                    <select name="type_id" class="form-select rounded-1">
+                    <select name="type_id" class="form-select rounded-1" onchange="this.form.submit()">
                         <option value="" selected>{{ __('labels.space-type') }}</option>
                         @foreach ($types as $type)
                             <option value="{{ $type->id }}" {{ request('type_id') == $type->id ? 'selected' : '' }}>
@@ -25,9 +25,10 @@
                         @endforeach
                     </select>
                 </div>
-
                 <div class="col-md-4 d-grid">
-                    <button type="submit" class="btn btn-deep-purple-out">{{ __('labels.filter') }}</button>
+                    <a href="{{ route('space.index') }}" class="btn btn-deep-purple-out">
+                        {{ __('labels.clear-filters') }}
+                    </a>
                 </div>
             </form>
         </div>

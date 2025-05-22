@@ -6,7 +6,7 @@
     <div class="container p-5">
         <h1 class="mb-5 text-center text-royal-purple">{{ __('labels.admin-panel') }}</h1>
 
-        <div class="row g-4 justify-content-center">
+        <div class="row g-4 justify-content-center pt-4">
             <!-- Botón Espacios -->
             <div class="col-lg-4">
                 <a href="{{ route('space.list') }}" class="text-decoration-none">

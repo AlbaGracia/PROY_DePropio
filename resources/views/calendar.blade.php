@@ -1,3 +1,4 @@
+@section('title', __('labels.calendar'))
 @extends('layouts.master')
 
 @section('content')

@@ -59,7 +59,7 @@
                                 </button>
 
                                 <!-- Modal de confirmación -->
-                                <x-confirm-delete :action="route('event.destroy', $category->id)" id="delete-category-{{ $category->id }}"
+                                <x-confirm-delete :action="route('category.destroy', $category->id)" id="delete-category-{{ $category->id }}"
                                     title="¿Eliminar categoría?"
                                     message="¿Estás seguro de que quieres eliminar la categoría '{{ $category->name }}'? Esta acción no se puede deshacer." />
                             </td>

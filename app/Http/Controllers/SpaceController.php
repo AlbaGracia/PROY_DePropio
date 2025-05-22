@@ -13,23 +13,23 @@ class SpaceController extends Controller
     private $pag = 9;
 
     public function index(Request $request)
-{
-    $query = Space::with('type')->orderBy('type_id', 'asc')->orderBy('name', 'asc');
+    {
+        $query = Space::with('type')->orderBy('type_id', 'asc')->orderBy('name', 'asc');
 
-    if ($request->filled('name')) {
-        $query->where('name', 'like', '%' . $request->name . '%');
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        if ($request->filled('type_id')) {
+            $query->where('type_id', $request->type_id);
+        }
+
+        $spaces = $query->paginate($this->pag)->withQueryString();
+
+        $types = Type::all();
+
+        return view('view_components.space.all', compact('spaces', 'types'));
     }
-
-    if ($request->filled('type_id')) {
-        $query->where('type_id', $request->type_id);
-    }
-
-    $spaces = $query->paginate($this->pag)->appends($request->query());
-
-    $types = Type::all();
-
-    return view('view_components.space.all', compact('spaces', 'types'));
-}
 
     public function create()
     {

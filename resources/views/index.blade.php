@@ -58,14 +58,14 @@
         </div>
     </div>
     <!-- Eventos semana -->
-    <section class="page-section bg-white" id="about">
-        <div class="container px-4 px-lg-5">
+    <section class="page-section bg-white py-3" id="about">
+        <div class="container pt-4 pt-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="text-deep-purple mt-0 fs-1">{{ __('labels.this-week-title') }}</h2>
-                    <hr class="divider divider-light" />
+                    <h2 class="text-deep-purple fs-1">{{ __('labels.this-week-title') }}</h2>
+                    <hr class="divider divider-light mb-3" />
                     <p class="text-white-75 mb-4">{{ __('labels.this-week-sub') }}</p>
-                    <a class="btn btn-lime-yellow btn-sm"
+                    <a class="btn btn-lime-yellow btn-md"
                         href="{{ route('thisWeekEvents') }}">{{ __('labels.show-events') }}</a>
                 </div>
             </div>

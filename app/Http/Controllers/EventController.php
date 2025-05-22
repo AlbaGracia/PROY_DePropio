@@ -32,7 +32,7 @@ class EventController extends Controller
         // Aplicar filtros (keywords, categorías, precio, orden)
         $this->applyFilters($query, $request);
 
-        $events = $query->paginate($this->pag);
+        $events = $query->paginate($this->pag)->withQueryString();
         $categories = Category::all();
 
         return view('view_components.event.all', compact('events', 'categories'));

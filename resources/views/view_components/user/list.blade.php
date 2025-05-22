@@ -14,11 +14,29 @@
                             <input type="text" class="form-control" placeholder='{{ __('labels.user-search') }}'
                                 name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
                         </div>
+                        <div class="mt-3">
+                            <select name="type_user" id="type_user" class="form-select" onchange="this.form.submit()"
+                                style="border-radius: 20px">
+                                <option value="" {{ request('type_user') ? '' : 'selected' }} disabled>
+                                    {{ __('labels.type-user') }}</option>
+                                <option value="user" {{ request('type_user') == 'user' ? 'selected' : '' }}>
+                                    user
+                                </option>
+                                <option value="admin_space" {{ request('type_user') == 'admin_space' ? 'selected' : '' }}>
+                                    admin_space
+                                </option>
+                            </select>
+                        </div>
                     </form>
                 </div>
             </div>
 
             <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <form method="GET" action="{{ route('user.index') }}">
+                    <button type="submit" class="btn btn-deep-purple-out">
+                        {{ __('labels.clear-filters') }}
+                    </button>
+                </form>
                 <a href="{{ route('user.create') }}" class="btn btn-dark">
                     <i class="fa-solid fa-plus me-1"></i> {{ __('labels.create-user') }}
                 </a>
@@ -30,7 +48,7 @@
 
 
 
-        <div class="table-responsive col-lg-8">
+        <div class="table-responsive col-lg-8 col-11">
             <table class="table align-middle px-5 table-hover">
                 <thead class="table-light">
                     <tr>

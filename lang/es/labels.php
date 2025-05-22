@@ -71,6 +71,7 @@ return [
     'edit-space' => 'Editar espacio',
     'create-space' => 'Crear espacio',
     'edit-event' => 'Editar evento',
+    'edit-user' => 'Editar usuario',
     'create-event' => 'Crear evento',
     'create-category' => 'Crear categoría',
     'create-type' => 'Crear tipo de espacio',

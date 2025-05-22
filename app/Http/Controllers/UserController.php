@@ -22,7 +22,11 @@ class UserController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $users = $query->paginate(10);
+        if ($request->filled('type_user')) {
+            $query->where('type_user', $request->type_user);
+        }
+
+        $users = $query->paginate(10)->withQueryString();
 
         return view('view_components.user.list', [
             'users' => $users,

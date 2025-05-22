@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,19 +13,35 @@ class CommentController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
     {
         $query = Comment::query();
 
-        if ($request->has('search') && !empty($request->search)) {
-            $query->whereHas('event', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->search . '%');
-            });
+        if ($request->filled('search')) {
+            // Si hay texto de búsqueda, filtra solo por comentario
+            $query->where('text', 'like', '%' . $request->search . '%');
+        } elseif ($request->filled('event_id')) {
+            // Si hay un evento seleccionado, filtra solo por evento
+            $query->where('event_id', $request->event_id);
+        } elseif ($request->filled('date')) {
+            // Si hay una fecha seleccionada, filtra solo por fecha
+            $query->whereDate('publish_date', $request->date);
         }
 
-        $comments = $query->orderBy('publish_date', 'desc')->paginate(10);
-        return view('view_components.comment.list', ['comments' => $comments]);
+        $comments = $query->orderBy('publish_date', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+        $eventsWithComments = \App\Models\Event::whereHas('comments')->get();
+
+        return view('view_components.comment.list', [
+            'comments' => $comments,
+            'events' => $eventsWithComments,
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -69,7 +86,7 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         $event = $comment->event_id;
         $comment->delete();
-        
+
         if (url()->previous() === route('event.show', $event)) {
             return redirect()->route('event.show', $event);
         } else {

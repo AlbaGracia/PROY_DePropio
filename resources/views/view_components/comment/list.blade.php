@@ -8,17 +8,44 @@
         <div class="container mb-4">
             <div class="d-flex justify-content-center mb-3">
                 <div class="col-lg-7 col-12">
-                    <form action="{{ route('comment.index') }}" method="GET">
-                        <div class="input-group">
-                            <button class="btn btn-outline-dark" type="submit">{{ __('labels.search') }}</button>
-                            <input type="text" class="form-control" placeholder='{{ __('labels.comment-search') }}'
-                                name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
+                    <form action="{{ route('comment.index') }}" method="GET" class="row g-2 mb-4 justify-content-center">
+                        <div class="col-md-4">
+                            <input type="text" name="search" class="form-control rounded"
+                                placeholder="{{ __('labels.comment-search') }}" value="{{ request('search') }}">
+                        </div>
+
+                        <div class="col-md-3">
+                            <select name="event_id" class="form-select rounded">
+                                <option value="">{{ __('labels.events') }}</option>
+                                @foreach ($events as $event)
+                                    <option value="{{ $event->id }}"
+                                        {{ request('event_id') == $event->id ? 'selected' : '' }}>
+                                        {{ $event->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <input type="date" name="date" class="form-control rounded" value="{{ request('date') }}">
+                        </div>
+
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-dark w-100" type="submit">
+                                {{ __('labels.search') }}
+                            </button>
                         </div>
                     </form>
+
                 </div>
             </div>
 
             <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <form method="GET" action="{{ route('comment.index') }}">
+                    <button type="submit" class="btn btn-deep-purple-out">
+                        {{ __('labels.clear-filters') }}
+                    </button>
+                </form>
                 <a href="{{ route('admin.panel') }}" class="btn btn-outline-dark">
                     <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.back-panel') }}
                 </a>
