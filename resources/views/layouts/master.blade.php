@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
-
 </head>
 
 <body class='d-flex flex-column'>
@@ -38,6 +37,8 @@
 
     @include('components.footer')
     @stack('scripts')
+
+    <button id='scroll-top' title='Volver arriba'><i class="fa-solid fa-arrow-up"></i></button>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous">

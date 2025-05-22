@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+@section('title', __('labels.contact'))
 
 @section('content')
     <div class="container mt-5">
