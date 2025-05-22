@@ -6,6 +6,7 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+///Botn de scroll hacia arriba
 document.addEventListener("DOMContentLoaded", function () {
     const scrollToTopBtn = document.getElementById("scroll-top");
 

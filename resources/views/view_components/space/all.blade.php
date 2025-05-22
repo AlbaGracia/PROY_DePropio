@@ -65,9 +65,8 @@
                 </div>
             </div>
             <!-- Paginación -->
-            <div class="mt-5 col-5">
-                {{ $spaces->links('pagination::bootstrap-5') }}
-            </div>
+            <x-pagination :paginator="$spaces" />
+
         </div>
     </div>
 

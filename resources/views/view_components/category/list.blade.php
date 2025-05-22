@@ -70,8 +70,7 @@
         </div>
 
         <!-- Paginación -->
-        <div class="d-flex justify-content-center mt-4">
-            {{ $categories->links('pagination::bootstrap-5') }}
-        </div>
+        <x-pagination :paginator="$categories" />
+
     </div>
 @endsection

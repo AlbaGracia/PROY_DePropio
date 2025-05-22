@@ -92,8 +92,7 @@
             </table>
         </div>
         <!-- Paginación -->
-        <div class="d-flex justify-content-center mt-4">
-            {{ $users->links('pagination::bootstrap-5') }}
-        </div>
+        <x-pagination :paginator="$users" />
+
     </div>
 @endsection

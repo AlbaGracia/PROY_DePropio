@@ -50,9 +50,7 @@
                         @endif
 
                         <!-- Paginación -->
-                        <div class="col-5">
-                            {{ $saveEvents->links('pagination::bootstrap-5') }}
-                        </div>
+                        <x-pagination :paginator="$saveEvents" />
 
                     </div>
                 </div>

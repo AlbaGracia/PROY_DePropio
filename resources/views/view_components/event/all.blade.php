@@ -97,7 +97,7 @@
 
 
             <!-- Tarjetas -->
-            <section class="col-lg-9">
+            <section class="col-lg-9 mb-4">
                 @if (count($events) == 0)
                     <p class="text-center mt-5 pt-5">{{ __('labels.no_events') }}</p>
                 @endif
@@ -148,9 +148,7 @@
                 </div>
             </section>
             <!-- Paginación -->
-            <div class="mt-5 col-5">
-                {{ $events->links('pagination::bootstrap-5') }}
-            </div>
+            <x-pagination :paginator="$events" />
 
         </div>
     </div>

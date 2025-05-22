@@ -91,8 +91,7 @@
         </div>
 
         <!-- Paginación -->
-        <div class="d-flex justify-content-center mt-4">
-            {{ $comments->links('pagination::bootstrap-5') }}
-        </div>
+        <x-pagination :paginator="$comments" />
+
     </div>
 @endsection
