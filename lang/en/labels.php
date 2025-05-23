@@ -105,6 +105,10 @@ return [
     'enter-user-name' => 'Enter username',
     'enter-email' => 'Enter email',
     'select-space-manager' => 'Select space manager',
+    'past-events' => 'Past events',
+    'current-events' => 'Current events',
+    'all-events' => 'All events',
+    'event-status' => 'Event status',
 
     /* Errors */
     'google-maps-err' => 'The address must be a Google Maps link.',

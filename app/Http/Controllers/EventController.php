@@ -91,10 +91,21 @@ class EventController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $events = $query->paginate(10)->withQueryString();;
+        $today = now()->startOfDay();
+
+        if ($request->filled('status')) {
+            if ($request->status === 'current') {
+                $query->whereDate('end_date', '>=', $today);
+            } elseif ($request->status === 'past') {
+                $query->whereDate('end_date', '<', $today);
+            }
+        }
+
+        $events = $query->paginate(10)->withQueryString();
 
         return view('view_components.event.list', ['events' => $events]);
     }
+
 
     public function showThisWeekEvents(Request $request)
     {

@@ -8,13 +8,29 @@
         <div class="container mb-4">
             <div class="d-flex justify-content-center mb-3">
                 <div class="col-lg-7 col-12">
-                    <form action="{{ route('event.list') }}" method="GET">
+                    <form action="{{ route('event.list') }}" method="GET" class="mb-3">
                         <div class="input-group">
                             <button class="btn btn-outline-dark" type="submit">{{ __('labels.search') }}</button>
                             <input type="text" class="form-control" placeholder='{{ __('labels.event-search') }}'
                                 name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
                         </div>
+
+                        <div class="mt-3">
+                            <label for="status" class="form-label">{{ __('labels.event-status') }}</label>
+                            <select name="status" id="status" class="form-select" onchange="this.form.submit()">
+                                <option value="" {{ request('status') === null ? 'selected' : '' }}>
+                                    {{ __('labels.all-events') }}
+                                </option>
+                                <option value="current" {{ request('status') === 'current' ? 'selected' : '' }}>
+                                    {{ __('labels.current-events') }}
+                                </option>
+                                <option value="past" {{ request('status') === 'past' ? 'selected' : '' }}>
+                                    {{ __('labels.past-events') }}
+                                </option>
+                            </select>
+                        </div>
                     </form>
+
                 </div>
             </div>
 

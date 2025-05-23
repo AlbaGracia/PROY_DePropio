@@ -105,6 +105,10 @@ return [
     'enter-user-name' => 'Introduce nombre de usuario',
     'enter-email' => 'Introduce email',
     'select-space-manager' => 'Seleccionar gestor del espacio',
+    'past-events' => 'Eventos pasados',
+    'current-events' => 'Eventos actuales',
+    'all-events' => 'Todos los eventos',
+    'event-status' => 'Estado de los eventos',
 
     /* Errors */
     'google-maps-err' => 'La dirección debe ser un enlace de google maps.',
