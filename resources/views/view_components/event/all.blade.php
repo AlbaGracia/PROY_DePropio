@@ -113,9 +113,7 @@
                     @foreach ($events as $event)
                         @php
                             $today = \Carbon\Carbon::today();
-                            $eventEnded = $event->end_date
-                                ? \Carbon\Carbon::parse($event->end_date)->lt($today)
-                                : \Carbon\Carbon::parse($event->start_date)->lt($today);
+                            $eventEnded = \Carbon\Carbon::parse($event->end_date)->lt($today);
                         @endphp
                         <div class="col">
                             <div
@@ -142,7 +140,7 @@
                                         <li class="list-group-item"><b>{{ $event->space->name }}</b></li>
                                         <li class="list-group-item">
                                             {{ \Carbon\Carbon::parse($event->start_date)->format('d/m/y') }}
-                                            {{ $event->end_date != null ? ' - ' . Carbon\Carbon::parse($event->end_date)->format('d/m/y') : '' }}
+                                            {{ $event->end_date != $event->start_date ? ' - ' . Carbon\Carbon::parse($event->end_date)->format('d/m/y') : '' }}
                                         </li>
                                         <li class="list-group-item">
                                             {{ $event->price == 0 ? __('labels.free') : $event->price . '€' }}

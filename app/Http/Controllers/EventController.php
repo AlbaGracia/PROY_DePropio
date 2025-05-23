@@ -23,15 +23,7 @@ class EventController extends Controller
         }
 
         // Filtrar eventos actuales 
-        $query->where(function ($q) {
-            $q->where(function ($q2) {
-                $q2->whereNotNull('end_date')
-                    ->whereDate('end_date', '>=', now()->toDateString());
-            })->orWhere(function ($q2) {
-                $q2->whereNull('end_date')
-                    ->whereDate('start_date', '>=', now()->toDateString());
-            });
-        });
+        $query->whereDate('end_date', '>=', now()->toDateString());
 
         // Aplicar filtros (keywords, categorías, precio, orden)
         $this->applyFilters($query, $request);
@@ -109,14 +101,8 @@ class EventController extends Controller
         $startOfWeek = Carbon::now()->startOfWeek();
         $endOfWeek = Carbon::now()->endOfWeek();
 
-        $query = Event::where(function ($query) use ($startOfWeek, $endOfWeek) {
-            $query->whereBetween('start_date', [$startOfWeek, $endOfWeek])
-                ->orWhereBetween('end_date', [$startOfWeek, $endOfWeek])
-                ->orWhere(function ($query) use ($startOfWeek, $endOfWeek) {
-                    $query->where('start_date', '<', $startOfWeek)
-                        ->where('end_date', '>', $endOfWeek);
-                });
-        });
+        $query = Event::query();
+        $query->whereDate('end_date', '>=', now()->toDateString());
 
         $this->applyFilters($query, $request);
 
@@ -139,15 +125,7 @@ class EventController extends Controller
         $today = now()->toDateString();
 
         $query = Event::where('space_id', $id)
-            ->where(function ($q) use ($today) {
-                $q->where(function ($sub) use ($today) {
-                    $sub->whereNotNull('end_date')
-                        ->whereDate('end_date', '>=', $today);
-                })->orWhere(function ($sub) use ($today) {
-                    $sub->whereNull('end_date')
-                        ->whereDate('start_date', '>=', $today);
-                });
-            });
+            ->whereDate('end_date', '>=', $today);
 
         $this->applyFilters($query, $request);
 
@@ -203,6 +181,7 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->start_date = $request->start_date;
         if ($request->end_date) $event->end_date = $request->end_date;
+        else $event->end_date = $request->start_date;
         $event->price = $request->price;
         $event->web_url = $request->web_url;
         $event->space_id = $request->space_id;
