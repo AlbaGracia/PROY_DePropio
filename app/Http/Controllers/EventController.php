@@ -18,6 +18,10 @@ class EventController extends Controller
     {
         $query = Event::query();
 
+        if ($request->filled('space_id')) {
+            $query->where('space_id', $request->space_id);
+        }
+
         // Filtrar eventos actuales 
         $query->where(function ($q) {
             $q->where(function ($q2) {

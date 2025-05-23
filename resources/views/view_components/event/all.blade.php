@@ -19,82 +19,90 @@
     <div class="container" style="min-height: 60vh">
         <div class="row px-lg-5 mt-4 px-0 d-flex justify-content-center">
             <!-- Filtros laterales -->
-            <aside class="col-lg-3 mb-4">
-                <div class="border rounded-4 shadow-sm p-4 bg-white">
-                    <form method="GET" action="{{ route('event.index') }}" class="d-flex gap-2 align-items-center flex-wrap">
-                        @foreach (request()->except('sort') as $key => $value)
-                            @if (is_array($value))
-                                @foreach ($value as $v)
-                                    <input type="hidden" name="{{ $key }}[]" value="{{ $v }}">
-                                @endforeach
-                            @else
-                                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                            @endif
-                        @endforeach
-
-                        <label for="sort" class="fw-semibold mb-0 me-2">{{ __('labels.order_by') }}:</label>
-                        <select name="sort" id="sort" class="form-select rounded-3" onchange="this.form.submit()">
-                            <option value="date_asc" {{ request('sort') === 'date_asc' ? 'selected' : '' }}>
-                                {{ __('labels.date_asc') }}
-                            </option>
-                            <option value="date_desc" {{ request('sort') === 'date_desc' ? 'selected' : '' }}>
-                                {{ __('labels.date_desc') }}
-                            </option>
-                            <option value="price_asc" {{ request('sort') === 'price_asc' ? 'selected' : '' }}>
-                                {{ __('labels.price_asc') }}
-                            </option>
-                            <option value="price_desc" {{ request('sort') === 'price_desc' ? 'selected' : '' }}>
-                                {{ __('labels.price_desc') }}
-                            </option>
-                        </select>
-                    </form>
-                    <form method="GET" action="{{ route('event.index') }}">
-                        <h5 class="fw-bold my-3">{{ __('labels.filters') }}</h5>
-
-                        <!-- Keywords -->
-                        <div class="mb-3">
-                            <input type="text" name="keywords" class="form-control rounded-3"
-                                placeholder="{{ __('labels.search-name') }}" value="{{ request('keywords') }}">
-                        </div>
-
-                        <!-- Categorías -->
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('labels.category') }}</label>
-                            @foreach ($categories as $category)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="categories[]"
-                                        value="{{ $category->id }}"
-                                        {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
-                                    <label class="form-check-label">
-                                        {{ $category->name }}
-                                    </label>
-                                </div>
+            @if (!isset($thisWeek))
+                <aside class="col-lg-3 mb-4">
+                    <div class="border rounded-4 shadow-sm p-4 bg-white">
+                        <form method="GET" action="{{ route('event.index') }}"
+                            class="d-flex gap-2 align-items-center flex-wrap">
+                            @foreach (request()->except('sort') as $key => $value)
+                                @if (is_array($value))
+                                    @foreach ($value as $v)
+                                        <input type="hidden" name="{{ $key }}[]" value="{{ $v }}">
+                                    @endforeach
+                                @else
+                                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                                @endif
                             @endforeach
-                        </div>
 
-                        <!-- Precio -->
-                        <div class="mb-3">
-                            <label for="price" class="form-label fw-semibold">{{ __('labels.price_range') }} (€)</label>
-                            <div class="d-flex gap-2">
-                                <input type="number" class="form-control" name="price_min" placeholder="min"
-                                    value="{{ request('price_min') }}">
-                                <input type="number" class="form-control" name="price_max" placeholder="max"
-                                    value="{{ request('price_max') }}">
+                            <label for="sort" class="fw-semibold mb-0 me-2">{{ __('labels.order_by') }}:</label>
+                            <select name="sort" id="sort" class="form-select rounded-3"
+                                onchange="this.form.submit()">
+                                <option value="date_asc" {{ request('sort') === 'date_asc' ? 'selected' : '' }}>
+                                    {{ __('labels.date_asc') }}
+                                </option>
+                                <option value="date_desc" {{ request('sort') === 'date_desc' ? 'selected' : '' }}>
+                                    {{ __('labels.date_desc') }}
+                                </option>
+                                <option value="price_asc" {{ request('sort') === 'price_asc' ? 'selected' : '' }}>
+                                    {{ __('labels.price_asc') }}
+                                </option>
+                                <option value="price_desc" {{ request('sort') === 'price_desc' ? 'selected' : '' }}>
+                                    {{ __('labels.price_desc') }}
+                                </option>
+                            </select>
+                        </form>
+                        <form method="GET"
+                            action="{{ isset($eventsInSpace) ? route('eventsInSpace', $space->id) : route('event.index') }}">
+                            <h5 class="fw-bold my-3">{{ __('labels.filters') }}</h5>
+
+                            <!-- Keywords -->
+                            <div class="mb-3">
+                                <input type="text" name="keywords" class="form-control rounded-3"
+                                    placeholder="{{ __('labels.search-name') }}" value="{{ request('keywords') }}">
                             </div>
-                        </div>
 
-                        <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-dark rounded-3">{{ __('labels.filter') }}</button>
-                        </div>
-                    </form>
-                    <form method="GET" action="{{ route('event.index') }}" class="mt-3">
-                        <button type="submit" class="btn btn-deep-purple-out rounded-3 w-100">
-                            {{ __('labels.clear-filters') }}
-                        </button>
-                    </form>
-                </div>
-            </aside>
+                            <!-- Categorías -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">{{ __('labels.category') }}</label>
+                                @foreach ($categories as $category)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="categories[]"
+                                            value="{{ $category->id }}"
+                                            {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
+                                        <label class="form-check-label">
+                                            {{ $category->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
 
+                            <!-- Precio -->
+                            <div class="mb-3">
+                                <label for="price" class="form-label fw-semibold">{{ __('labels.price_range') }}
+                                    (€)</label>
+                                <div class="d-flex gap-2">
+                                    <input type="number" class="form-control" name="price_min" placeholder="min"
+                                        value="{{ request('price_min') }}">
+                                    <input type="number" class="form-control" name="price_max" placeholder="max"
+                                        value="{{ request('price_max') }}">
+                                </div>
+                            </div>
+
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-dark rounded-3">{{ __('labels.filter') }}</button>
+                            </div>
+                        </form>
+                        <form method="GET" action="{{ route('event.index') }}" class="mt-3">
+                            @if (isset($eventsInSpace))
+                                <input type="hidden" name="space_id" value="{{ $space->id }}">
+                            @endif
+                            <button type="submit" class="btn btn-deep-purple-out rounded-3 w-100">
+                                {{ __('labels.clear-filters') }}
+                            </button>
+                        </form>
+                    </div>
+                </aside>
+            @endif
 
             <!-- Tarjetas -->
             <section class="col-lg-9 mb-4">
