@@ -292,3 +292,19 @@ h2 {
     background-color: var(--bright-purple);
     color: var(--cream);
 }
+
+.fc-daygrid-day {
+    cursor: pointer;
+}
+
+.fc-daygrid-day.selected-day {
+    background-color: var(--lime-yellow);
+}
+
+.fc-day-today {
+    background-color: var(--cream) !important;
+}
+
+.fc-day-today.selected-day {
+    background-color: var(--lime-yellow) !important;
+}
