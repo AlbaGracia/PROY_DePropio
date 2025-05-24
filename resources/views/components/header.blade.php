@@ -13,7 +13,7 @@
                             <a rel="alternate" hreflang="{{ $localeCode }}"
                                 href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}"
                                 class="btn link-white-simple me-2">
-                                {{ $properties['native'] }}
+                                <i class="fa-solid fa-globe"></i> {{ $properties['native'] }}
                             </a>
                         @endif
                     @endforeach
@@ -69,18 +69,24 @@
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    <a class="dropdown-item d-flex align-items-center fw-bold"
+                                        href="{{ route('profile.edit') }}">
+                                        <span class="material-symbols-outlined me-2">manage_accounts</span>
                                         {{ __('labels.profile') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('save-events.index') }}">
+                                    <a class="dropdown-item d-flex align-items-center fw-bold"
+                                        href="{{ route('save-events.index') }}">
+                                        <span class="material-symbols-outlined me-2">favorite</span>
                                         {{ __('labels.save-events') }}
                                     </a>
                                 </li>
                                 @hasanyrole('admin|admin_space')
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('admin.panel') }}">
+                                        <a class="dropdown-item d-flex align-items-center fw-bold text-royal-purple"
+                                            href="{{ route('admin.panel') }}">
+                                            <span class="material-symbols-outlined me-2">settings</span>
                                             {{ __('labels.panel') }}
                                         </a>
                                     </li>
@@ -88,7 +94,8 @@
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class="dropdown-item">
+                                        <button type="submit" class="dropdown-item d-flex align-items-center fw-bold">
+                                            <span class="material-symbols-outlined me-2">logout</span>
                                             {{ __('labels.log-out') }}
                                         </button>
                                     </form>
@@ -107,11 +114,11 @@
                                 data-bs-toggle="dropdown">{{ __('labels.show_all') }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item"
+                                <li><a class="dropdown-item fw-bold"
                                         href="{{ route('event.index') }}">{{ __('labels.events') }}</a></li>
-                                <li><a class="dropdown-item"
+                                <li><a class="dropdown-item fw-bold"
                                         href="{{ route('space.index') }}">{{ __('labels.spaces') }}</a></li>
-                                <li><a class="dropdown-item"
+                                <li><a class="dropdown-item fw-bold"
                                         href="{{ route('calendar') }}">{{ __('labels.calendar') }}</a></li>
                                 @guest
                                     <li class="dropdown-item"><a href="{{ route('login') }}"
@@ -122,31 +129,41 @@
                                 @endguest
                                 @auth
                                     <li class="dropdown-submenu position-relative">
-                                        <a class="dropdown-item" href="#" role="button" aria-expanded="false">
+                                        <a class="dropdown-item fw-bold" href="#" role="button" aria-expanded="false">
                                             {{ __('Configuración') }} ▸
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('profile.edit') }}">{{ __('labels.profile') }}</a>
+                                                <a class="dropdown-item d-flex align-items-center fw-bold"
+                                                    href="{{ route('profile.edit') }}">
+                                                    <span class="material-symbols-outlined me-2">manage_accounts</span>
+                                                    {{ __('labels.profile') }}
+                                                </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="{{ route('save-events.index') }}">
+                                                <a class="dropdown-item d-flex align-items-center fw-bold"
+                                                    href="{{ route('save-events.index') }}">
+                                                    <span class="material-symbols-outlined me-2">favorite</span>
                                                     {{ __('labels.save-events') }}
                                                 </a>
                                             </li>
-                                            @unlessrole('user')
+                                            @hasanyrole('admin|admin_space')
                                                 <li>
-                                                    <a class="dropdown-item" href="{{ route('admin.panel') }}">
+                                                    <a class="dropdown-item d-flex align-items-center fw-bold text-royal-purple"
+                                                        href="{{ route('admin.panel') }}">
+                                                        <span class="material-symbols-outlined me-2">settings</span>
                                                         {{ __('labels.panel') }}
                                                     </a>
                                                 </li>
-                                            @endunlessrole
+                                            @endhasanyrole
                                             <li>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
                                                     <button type="submit"
-                                                        class="dropdown-item">{{ __('labels.log-out') }}</button>
+                                                        class="dropdown-item d-flex align-items-center fw-bold">
+                                                        <span class="material-symbols-outlined me-2">logout</span>
+                                                        {{ __('labels.log-out') }}
+                                                    </button>
                                                 </form>
                                             </li>
                                         </ul>
