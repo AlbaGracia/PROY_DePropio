@@ -11,16 +11,14 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Asegurarte que los roles existan primero
         Role::firstOrCreate(['name' => 'admin']);
         Role::firstOrCreate(['name' => 'admin_space']);
         Role::firstOrCreate(['name' => 'user']);
 
-        // Crear usuarios y asignar roles
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@depropio.com',
-            'password' => Hash::make('admin123'),
+            'password' => Hash::make('Admin-123'),
             'type_user' => 'admin',
         ]);
         $admin->assignRole('admin');
@@ -31,7 +29,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('iaacc123'),
             'type_user' => 'admin_space',
         ]);
-        $adminIAACC->assignRole('admin_space'); // o 'admin', depende lo que quieras
+        $adminIAACC->assignRole('admin_space');
 
         $marcos = User::create([
             'name' => 'Marcos Alcazar',
@@ -48,5 +46,14 @@ class UserSeeder extends Seeder
             'type_user' => 'user',
         ]);
         $noa->assignRole('user');
+
+        $adminCentrosCivicos = User::create([
+            'name' => 'Centros civicos',
+            'email' => 'info@cc_zaragoza.com',
+            'password' => Hash::make('CCZgz-2025'),
+            'type_user' => 'admin_space',
+        ]);
+        $adminCentrosCivicos->assignRole('admin_space');
+
     }
 }

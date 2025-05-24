@@ -225,7 +225,7 @@ class EventController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
 
-            $filename = Str::slug($event->name) . '.' . $image->getClientOriginalExtension();
+            $filename = Str::snake($event->name) . '.' . $image->getClientOriginalExtension();
 
             $path = $image->storeAs('events/images', $filename, 'public');
 
