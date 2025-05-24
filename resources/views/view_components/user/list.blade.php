@@ -55,6 +55,7 @@
                         <th>{{ __('labels.user') }}</th>
                         <th>{{ __('labels.email') }}</th>
                         <th>{{ __('labels.type-user') }}</th>
+                        <th>{{ __('labels.spaces-related') }}</th>
                         <th class="text-center">{{ __('labels.edit') }}</th>
                         <th class="text-center">{{ __('labels.delete') }}</th>
                     </tr>
@@ -66,6 +67,16 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->type_user }}</td>
+                                <td>
+                                    @if ($user->spaces->isNotEmpty())
+                                        <ul>
+                                            @foreach ($user->spaces as $space)
+                                                <li>{{ $space->name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+
+                                </td>
 
                                 <!-- Columna Editar -->
                                 <td class="text-center">

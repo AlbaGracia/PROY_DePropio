@@ -86,6 +86,7 @@ return [
     'update-user' => 'Update user',
     'filter' => 'Filter',
     'clear-past-events' => 'Clear past events',
+    'spaces-related' => 'Associated spaces',
 
     /* Inputs */
     'space-name' => 'Space name',
