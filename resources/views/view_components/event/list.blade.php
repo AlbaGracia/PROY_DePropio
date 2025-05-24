@@ -41,6 +41,9 @@
                 <a href="{{ route('admin.panel') }}" class="btn btn-outline-dark">
                     <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.back-panel') }}
                 </a>
+                <a href="{{ route('event.deletePast') }}" class="btn btn-outline-danger">
+                    <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.clear-past-events') }}
+                </a>
             </div>
         </div>
 

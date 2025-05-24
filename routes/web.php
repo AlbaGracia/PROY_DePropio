@@ -67,6 +67,7 @@ Route::group(
             })->name('admin.panel');
             Route::get('/admin/spaces', [SpaceController::class, 'list'])->name('space.list');
             Route::get('/admin/events', [EventController::class, 'list'])->name('event.list');
+            Route::get('/deletePastEvents', [EventController::class, 'deletePastEvents'])->name('event.deletePast');
         });
     }
 );

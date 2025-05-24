@@ -83,7 +83,7 @@ class EventController extends Controller
             $query->whereHas('space', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             });
-        } elseif (!$user->hasRole('admin')) {
+        } elseif ($user->hasRole('user')) {
             abort(403, __('labels.403-title'));
         }
 
@@ -185,6 +185,28 @@ class EventController extends Controller
         return response()->json($events);
     }
 
+    public function deletePastEvents()
+    {
+        $today = now()->toDateString();
+        $user = Auth::user();
+
+        if ($user->hasRole('admin_space')) {
+            $events = Event::whereHas('space', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->where('end_date', '<', $today);
+        }
+
+        if ($user->hasRole('admin')) {
+            $events = Event::where('end_date', '<', $today);
+        }
+
+        $events->each(function ($event, $key) {
+            $event->delete();
+        });
+
+        return redirect()->route('event.list');
+    }
+
 
     private function saveEventData(Request $request, Event $event)
     {
@@ -234,19 +256,21 @@ class EventController extends Controller
             $query->whereIn('category_id', $request->categories);
         }
 
-        if ($request->filled('price_min') || $request->filled('price_max')) {
-            $min = $request->input('price_min', 0);
-            $max = $request->input('price_max', 10000);
-            $query->whereBetween('price', [$min, $max]);
+        if ($request->filled('price_min') && $request->filled('price_max')) {
+            $query->whereBetween('price', [$request->input('price_min'), $request->input('price_max')]);
+        } else if ($request->filled('price_min') && !$request->filled('price_max')) {
+            $query->where('price', '>=', $request->input('price_min'));
+        } else if ($request->filled('price_max') && !$request->filled('price_min')) {
+            $query->where('price', '<=', $request->input('price_max'));
         }
 
         // Ordenamiento
         switch ($request->sort) {
             case 'date_asc':
-                $query->orderBy('start_date', 'asc');
+                $query->orderBy('end_date', 'asc');
                 break;
             case 'date_desc':
-                $query->orderBy('start_date', 'desc');
+                $query->orderBy('end_date', 'desc');
                 break;
             case 'price_asc':
                 $query->orderBy('price', 'asc');
@@ -255,7 +279,7 @@ class EventController extends Controller
                 $query->orderBy('price', 'desc');
                 break;
             default:
-                $query->orderBy('start_date', 'asc');
+                $query->orderBy('end_date', 'asc');
         }
     }
 }

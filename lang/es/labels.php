@@ -85,6 +85,7 @@ return [
     'update-type' => 'Actualizar tipo de espacio',
     'update-user' => 'Actualizar usuario',
     'filter' => 'Filtrar',
+    'clear-past-events' => 'Borrar eventos pasados',
 
     /* Inputs */
     'space-name' => 'Nombre del espacio',
