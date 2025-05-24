@@ -27,7 +27,8 @@
 
 
                         <p class="badge bg-lime-yellow text-dark align-self-start">{{ $space->type->name }}</p>
-                        <a href="{{ $space->address }}" class="mt-2"><i class="fa-solid fa-location-dot"></i>
+                        <a href="{{ $space->address }}" class="mt-2" target="_blank"><i
+                                class="fa-solid fa-location-dot"></i>
                             {{ __('labels.address') }}</a>
 
                         <div class="accordion mt-3">

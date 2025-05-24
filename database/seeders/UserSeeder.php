@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
 
         $adminCentrosCivicos = User::create([
             'name' => 'Centros civicos',
-            'email' => 'info@cc_zaragoza.com',
+            'email' => 'info@cczaragoza.com',
             'password' => Hash::make('CCZgz-2025'),
             'type_user' => 'admin_space',
         ]);
