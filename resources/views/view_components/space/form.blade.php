@@ -49,6 +49,7 @@
                             <input type="text" class="form-control rounded-pill" name="address" id="address"
                                 placeholder="{{ __('labels.address') }}" value="{{ $space->address ?? '' }}" required>
 
+                            {{-- Imagen --}}
                             <input type="file" name="image" class="form-control" id="input-file-space">
 
                             {{-- Admins de los espacios --}}

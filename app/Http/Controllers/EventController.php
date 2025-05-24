@@ -9,6 +9,7 @@ use App\Models\Space;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -72,9 +73,18 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         $event = Event::findOrFail($id);
+
+        if ($event->image_path) {
+            $storagePath = str_replace('storage/', '', $event->image_path);
+            if (Storage::disk('public')->exists($storagePath)) {
+                Storage::disk('public')->delete($storagePath);
+            }
+        }
         $event->delete();
+
         return redirect()->route('event.list');
     }
+
 
     public function list(Request $request)
     {
@@ -223,14 +233,16 @@ class EventController extends Controller
         $event->category_id = $request->category_id;
 
         if ($request->hasFile('image')) {
+            if ($event->exists && $event->image_path) {
+                $oldPath = str_replace('storage/', '', $event->image_path);
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
+                }
+            }
             $image = $request->file('image');
-
-            $filename = Str::snake($event->name) . '.' . $image->getClientOriginalExtension();
-
+            $filename = Str::slug($event->name) . '.' . $image->getClientOriginalExtension();
             $path = $image->storeAs('events/images', $filename, 'public');
-
             $event->image_path = 'storage/' . $path;
-            $event->save();
         }
 
         $event->save();

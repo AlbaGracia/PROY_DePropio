@@ -7,6 +7,9 @@ use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class SpaceController extends Controller
 {
@@ -77,6 +80,12 @@ class SpaceController extends Controller
     public function destroy(Request $request, string $id)
     {
         $space = Space::findOrFail($id);
+        if ($space->image_path) {
+            $storagePath = str_replace('storage/', '', $space->image_path);
+            if (Storage::disk('public')->exists($storagePath)) {
+                Storage::disk('public')->delete($storagePath);
+            }
+        }
         $space->delete();
 
         return redirect()->route('space.list');
@@ -117,10 +126,18 @@ class SpaceController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('spaces/images', 'public');
+            if ($space->exists && $space->image_path) {
+                $oldPath = str_replace('storage/', '', $space->image_path);
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
+                }
+            }
+
+            $image = $request->file('image');
+            $filename = Str::slug($space->name) . '.' . $image->getClientOriginalExtension();
+            $path = $image->storeAs('spaces/images', $filename, 'public');
             $space->image_path = 'storage/' . $path;
         }
-
         $space->save();
     }
 }
