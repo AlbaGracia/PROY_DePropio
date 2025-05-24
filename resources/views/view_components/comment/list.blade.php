@@ -7,8 +7,8 @@
         <h1 class="mb-4 text-center text-royal-purple">{{ __('labels.comments') }}</h1>
         <div class="container mb-4">
             <div class="d-flex justify-content-center mb-3">
-                <div class="col-lg-7 col-12">
-                    <form action="{{ route('comment.index') }}" method="GET" class="row g-2 mb-4 justify-content-center">
+                <div class="card shadow-sm rounded-4 bg-light border-0 col-lg-8 col-12 m-auto p-4">
+                    <form action="{{ route('comment.index') }}" method="GET" class="row g-2 justify-content-center">
                         <div class="col-md-4">
                             <input type="text" name="search" class="form-control rounded"
                                 placeholder="{{ __('labels.comment-search') }}" value="{{ request('search') }}">
@@ -30,10 +30,15 @@
                             <input type="date" name="date" class="form-control rounded" value="{{ request('date') }}">
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <button class="btn btn-outline-dark w-100" type="submit">
                                 {{ __('labels.search') }}
                             </button>
+                        </div>
+                        <div class="col-md-3 d-grid">
+                            <a href="{{ route('comment.index') }}" class="btn btn-deep-purple-out">
+                                {{ __('labels.clear-filters') }}
+                            </a>
                         </div>
                     </form>
 
@@ -41,11 +46,6 @@
             </div>
 
             <div class="d-flex flex-row justify-content-center align-items-center gap-2">
-                <form method="GET" action="{{ route('comment.index') }}">
-                    <button type="submit" class="btn btn-deep-purple-out">
-                        {{ __('labels.clear-filters') }}
-                    </button>
-                </form>
                 <a href="{{ route('admin.panel') }}" class="btn btn-outline-dark">
                     <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.back-panel') }}
                 </a>

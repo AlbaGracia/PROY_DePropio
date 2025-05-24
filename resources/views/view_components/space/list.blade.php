@@ -7,16 +7,35 @@
         <h1 class="mb-4 text-center text-royal-purple">{{ __('labels.spaces') }}</h1>
         <div class="container mb-4">
             <div class="d-flex justify-content-center mb-3">
-                <div class="col-lg-7 col-12">
-                    <form action="{{ route('space.list') }}" method="GET">
-                        <div class="input-group">
-                            <button class="btn btn-outline-dark" type="submit">{{ __('labels.search') }}</button>
-                            <input type="text" class="form-control" placeholder="{{ __('labels.search-name') }}"
-                                name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
+                <div class="card shadow-sm rounded-4 bg-light border-0 col-lg-8 col-12 m-auto p-4">
+                    <form action="{{ route('space.list') }}" method="GET" class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <input type="text" name="search" class="form-control rounded-1"
+                                value="{{ request('search') }}" placeholder="{{ __('labels.search-name') }}"
+                                onchange="this.form.submit()">
+                        </div>
+
+                        <div class="col-md-4">
+                            <select name="type" class="form-select rounded-1" onchange="this.form.submit()">
+                                <option value="" selected>- {{ __('labels.types') }} -</option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}"
+                                        {{ request('type') == $type->id ? 'selected' : '' }}>
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 d-grid">
+                            <a href="{{ route('space.list') }}" class="btn btn-deep-purple-out">
+                                {{ __('labels.clear-filters') }}
+                            </a>
                         </div>
                     </form>
                 </div>
             </div>
+
 
             <div class="d-flex flex-row justify-content-center align-items-center gap-2">
                 <a href="{{ route('space.create') }}" class="btn btn-dark">
@@ -25,6 +44,7 @@
                 <a href="{{ route('admin.panel') }}" class="btn btn-outline-dark">
                     <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.back-panel') }}
                 </a>
+
             </div>
         </div>
 

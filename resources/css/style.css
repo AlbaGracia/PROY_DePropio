@@ -266,6 +266,7 @@ h2 {
 .dropdown-toggle:focus,
 .dropdown-toggle:active,
 .dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:active {
     background-color: var(--cream);
     color: var(--royal-purple);

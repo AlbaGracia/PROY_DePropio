@@ -7,17 +7,17 @@
         <h1 class="mb-4 text-center text-royal-purple">{{ __('labels.events') }}</h1>
         <div class="container mb-4">
             <div class="d-flex justify-content-center mb-3">
-                <div class="col-lg-7 col-12">
-                    <form action="{{ route('event.list') }}" method="GET" class="mb-3">
-                        <div class="input-group">
-                            <button class="btn btn-outline-dark" type="submit">{{ __('labels.search') }}</button>
-                            <input type="text" class="form-control" placeholder='{{ __('labels.event-search') }}'
-                                name="search" value="{{ request('search') }}" style="border-radius: 0 20px 20px 0">
+                <div class="card shadow-sm rounded-4 bg-light border-0 col-lg-8 col-12 m-auto p-4">
+                    <form action="{{ route('event.list') }}" method="GET" class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control rounded-1"
+                                placeholder="{{ __('labels.event-search') }}" name="search" value="{{ request('search') }}"
+                                onchange="this.form.submit()">
                         </div>
 
-                        <div class="mt-3">
-                            <label for="status" class="form-label">{{ __('labels.event-status') }}</label>
-                            <select name="status" id="status" class="form-select" onchange="this.form.submit()">
+                        <div class="col-md-4">
+                            <select name="status" id="status" class="form-select rounded-1"
+                                onchange="this.form.submit()">
                                 <option value="" {{ request('status') === null ? 'selected' : '' }}>
                                     {{ __('labels.all-events') }}
                                 </option>
@@ -29,12 +29,19 @@
                                 </option>
                             </select>
                         </div>
+
+                        <div class="col-md-4 d-grid">
+                            <a href="{{ route('event.list') }}" class="btn btn-deep-purple-out">
+                                {{ __('labels.clear-filters') }}
+                            </a>
+                        </div>
                     </form>
+
 
                 </div>
             </div>
 
-            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 my-4">
                 <a href="{{ route('event.create') }}" class="btn btn-dark">
                     <i class="fa-solid fa-plus me-1"></i> {{ __('labels.create-event') }}
                 </a>
@@ -45,6 +52,7 @@
                     <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.clear-past-events') }}
                 </a>
             </div>
+
         </div>
 
 
