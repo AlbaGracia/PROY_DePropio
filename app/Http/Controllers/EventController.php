@@ -9,6 +9,8 @@ use App\Models\Space;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class EventController extends Controller
 {
@@ -221,8 +223,14 @@ class EventController extends Controller
         $event->category_id = $request->category_id;
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('events/images', 'public');
+            $image = $request->file('image');
+
+            $filename = Str::slug($event->name) . '.' . $image->getClientOriginalExtension();
+
+            $path = $image->storeAs('events/images', $filename, 'public');
+
             $event->image_path = 'storage/' . $path;
+            $event->save();
         }
 
         $event->save();
