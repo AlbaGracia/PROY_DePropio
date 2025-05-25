@@ -60,7 +60,7 @@
     <!-- Eventos semana -->
     <section class="page-section bg-white py-3" id="about">
         <div class="container pt-4 pt-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
                     <h2 class="text-deep-purple fs-1">{{ __('labels.this-week-title') }}</h2>
                     <hr class="divider divider-light mb-3" />
