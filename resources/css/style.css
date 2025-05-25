@@ -309,3 +309,12 @@ h2 {
 .fc-day-today.selected-day {
     background-color: var(--lime-yellow) !important;
 }
+
+.heart {
+    color: var(--soft-pink);
+    transition: color 0.2s ease;
+}
+
+.heart:hover {
+    color: var(--lime-yellow);
+}

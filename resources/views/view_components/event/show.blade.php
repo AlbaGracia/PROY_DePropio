@@ -9,7 +9,8 @@
             <div class="col-lg-8">
                 <div class="card shadow">
                     <!-- Imagen del evento -->
-                    <div class="like position-absolute top-0 end-0 m-4 text-royal-purple">
+                    {{-- Guardar evento --}}
+                    <div class="like position-absolute top-0 end-0 m-4">
                         @auth
                             @php
                                 $saved = \App\Models\SaveEvent::where('user_id', Auth::id())
@@ -19,25 +20,30 @@
 
                             @if ($saved)
                                 <!-- Botón eliminar -->
-                                <form action="{{ route('unsave-event', $event->id) }}" method="POST" class="unsave-form d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn p-0 border-0 bg-transparent">
-                                        <i class="fa-solid fa-heart fa-2xl"></i>
-                                    </button>
-                                </form>
+                                <button type="button" class="btn p-0 border-0 bg-transparent" x-data
+                                    x-on:click="$dispatch('open-modal', '{{ 'unsave-event-' . $event->id }}')">
+                                    <i class="fa-solid fa-heart fa-2xl heart"></i>
+                                </button>
+
+                                <x-confirm-delete id="unsave-event-{{ $event->id }}" :action="route('unsave-event', $event->id)"
+                                    title="¿Eliminar evento guardado?"
+                                    message="Este evento se eliminará de tus eventos guardados. Esta acción no se puede deshacer."
+                                    confirmText="Eliminar" successMessage="Evento eliminado de guardados." />
                             @else
                                 <!-- Botón guardar -->
-                                <form action="{{ route('save-event', $event->id) }}" method="POST" class="save-form d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn p-0 border-0 bg-transparent">
-                                        <i class="fa-regular fa-heart fa-2xl"></i>
-                                    </button>
-                                </form>
+                                <button type="button" class="btn p-0 border-0 bg-transparent" x-data
+                                    x-on:click="$dispatch('open-modal', 'save-event-{{ $event->id }}')">
+                                    <i class="fa-regular fa-heart fa-2xl heart"></i>
+                                </button>
+
+                                <x-confirm-modal id="save-event-{{ $event->id }}" :action="route('save-event', $event->id)" title="¿Guardar evento?"
+                                    message="¿Deseas guardar este evento? Puedes ver todos tus eventos guardados más tarde."
+                                    confirmText="Guardar"
+                                    successMessage="¡Evento guardado! <a href='{{ route('save-events.index') }}' class='underline'>Ver todos</a>" />
                             @endif
                         @else
                             <a href="{{ route('login') }}">
-                                <i class="fa-regular fa-heart fa-2xl"></i>
+                                <i class="fa-regular fa-heart fa-2xl heart"></i>
                             </a>
                         @endauth
                     </div>
