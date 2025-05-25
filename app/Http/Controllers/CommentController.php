@@ -16,7 +16,18 @@ class CommentController extends Controller
 
     public function index(Request $request)
     {
+
+        $user = Auth::user();
         $query = Comment::query();
+
+        if ($user->hasRole('admin_space')) {
+            $query->whereHas('event.space', function ($q) use ($user) {
+                $q->where('user_id', $user->id);
+            });
+        } elseif ($user->hasRole('user')) {
+            abort(403, __('labels.403-title'));
+        }
+
 
         if ($request->filled('search')) {
             // Si hay texto de búsqueda, filtra solo por comentario
@@ -33,7 +44,7 @@ class CommentController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        $eventsWithComments = \App\Models\Event::whereHas('comments')->get();
+        $eventsWithComments = Event::whereHas('comments')->get();
 
         return view('view_components.comment.list', [
             'comments' => $comments,

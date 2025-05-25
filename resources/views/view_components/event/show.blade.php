@@ -155,12 +155,16 @@
                                         class="text-muted">{{ \Carbon\Carbon::parse($comment->publish_date)->format('d/m/y') }}</small>
 
                                     @auth
-                                        @if (Auth::id() === $comment->user_id)
-                                            <div class="d-flex ms-auto">
+                                        <div class="d-flex ms-auto">
+                                            @if (Auth::id() === $comment->user_id)
                                                 <button type="button" class="btn"
                                                     onclick="editComment({{ $comment->id }})">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </button>
+                                            @endif
+                                            @if (Auth::id() === $comment->user_id ||
+                                                    Auth::user()->hasRole('admin') ||
+                                                    (Auth::user()->hasRole('admin_space') && $comment->event->space->user_id == Auth::id()))
                                                 <button type="button" class="btn btn-link text-dark" x-data
                                                     x-on:click.prevent="$dispatch('open-modal', 'delete-comment-{{ $comment->id }}')">
                                                     <i class="fa-solid fa-trash"></i>
@@ -170,8 +174,9 @@
                                                 <x-confirm-delete :action="route('comment.destroy', $comment->id)" id="delete-comment-{{ $comment->id }}"
                                                     title="¿Eliminar comentario?"
                                                     message="¿Estás seguro de que quieres eliminar este comentario? Esta acción no se puede deshacer." />
-                                            </div>
-                                        @endif
+                                            @endif
+
+                                        </div>
                                     @endauth
                                 </div>
                             </div>
