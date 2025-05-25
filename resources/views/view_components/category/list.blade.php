@@ -60,8 +60,8 @@
 
                                 <!-- Modal de confirmación -->
                                 <x-confirm-delete :action="route('category.destroy', $category->id)" id="delete-category-{{ $category->id }}"
-                                    title="¿Eliminar categoría?"
-                                    message="¿Estás seguro de que quieres eliminar la categoría '{{ $category->name }}'? Esta acción no se puede deshacer." />
+                                    title="{{ __('labels.delete-category') }}"
+                                    message="{!! __('labels.delete-category-sub', ['name' => $category->name]) !!} {{ __('labels.no-option') }}" />
                             </td>
                         </tr>
                     @endforeach

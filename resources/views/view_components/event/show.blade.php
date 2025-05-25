@@ -26,9 +26,7 @@
                                 </button>
 
                                 <x-confirm-delete id="unsave-event-{{ $event->id }}" :action="route('unsave-event', $event->id)"
-                                    title="¿Eliminar evento guardado?"
-                                    message="Este evento se eliminará de tus eventos guardados. Esta acción no se puede deshacer."
-                                    confirmText="Eliminar" successMessage="Evento eliminado de guardados." />
+                                    title="{{ __('labels.delete-save-events') }}" message="{{ __('labels.delete-save-events-sub') }}" />
                             @else
                                 <!-- Botón guardar -->
                                 <button type="button" class="btn p-0 border-0 bg-transparent" x-data
@@ -36,10 +34,9 @@
                                     <i class="fa-regular fa-heart fa-2xl heart"></i>
                                 </button>
 
-                                <x-confirm-modal id="save-event-{{ $event->id }}" :action="route('save-event', $event->id)" title="¿Guardar evento?"
-                                    message="¿Deseas guardar este evento? Puedes ver todos tus eventos guardados más tarde."
-                                    confirmText="Guardar"
-                                    successMessage="¡Evento guardado! <a href='{{ route('save-events.index') }}' class='underline'>Ver todos</a>" />
+                                <x-confirm-modal id="save-event-{{ $event->id }}" :action="route('save-event', $event->id)"
+                                    title="{{ __('labels.save-event-modal') }}"
+                                    message="{{ __('labels.save-event-modal-sub') }}" />
                             @endif
                         @else
                             <a href="{{ route('login') }}">
@@ -172,8 +169,8 @@
 
                                                 <!-- Modal de confirmación -->
                                                 <x-confirm-delete :action="route('comment.destroy', $comment->id)" id="delete-comment-{{ $comment->id }}"
-                                                    title="¿Eliminar comentario?"
-                                                    message="¿Estás seguro de que quieres eliminar este comentario? Esta acción no se puede deshacer." />
+                                                    title="{{ __('labels.delete-comments') }}"
+                                                    message="{{ __('labels.delete-comments-sub') }}" />
                                             @endif
 
                                         </div>

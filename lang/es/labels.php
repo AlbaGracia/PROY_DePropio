@@ -87,6 +87,9 @@ return [
     'filter' => 'Filtrar',
     'clear-past-events' => 'Borrar eventos pasados',
     'spaces-related' => 'Espacios asociados',
+    'cancel' => 'Cancelar',
+    'confirm' => 'Confirmar',
+
 
     /* Inputs */
     'space-name' => 'Nombre del espacio',
@@ -143,12 +146,25 @@ return [
 
 
     /* Calendar */
-    'lu' => 'Lu',
-    'ma' => 'Ma',
-    'mi' => 'Mi',
-    'ju' => 'Ju',
-    'vi' => 'Vi',
-    'sa' => 'Sa',
-    'do' => 'Do',
-    'day-events' => 'Eventos del día'
+    'day-events' => 'Eventos del día',
+
+    /* Modals */
+    'delete-comments' => '¿Eliminar comentario?',
+    'delete-comments-sub' => '¿Estás seguro de que quieres eliminar este comentario? Esta acción no se puede deshacer.',
+    'sure' => '¿Estás seguro?',
+    'no-option' => 'Esta acción no se puede deshacer.',
+    'delete-save-events' => '¿Eliminar evento guardado?',
+    'delete-save-events-sub' => 'Este evento se eliminará de tus eventos guardados. Esta acción no se puede deshacer.',
+    'save-event-modal' => '¿Guardar evento?',
+    'save-event-modal-sub' => '¿Deseas guardar este evento? Puedes ver todos tus eventos guardados más tarde.',
+    'delete-category' => '¿Eliminar categoría?',
+    'delete-category-sub' => '¿Estás seguro de que quieres eliminar la categoría ":name"?',
+    'delete-event' => '¿Eliminar evento?',
+    'delete-event-sub' => '¿Estás seguro de que quieres eliminar el evento ":name"?',
+    'delete-space' => '¿Eliminar espacio?',
+    'delete-space-sub' => '¿Estás seguro de que quieres eliminar el espacio ":name"?',
+    'delete-type' => '¿Eliminar tipo?',
+    'delete-type-sub' => '¿Estás seguro de que quieres eliminar el tipo ":name"?',
+    'delete-user' => '¿Eliminar usuario?',
+    'delete-user-sub' => '¿Estás seguro de que quieres eliminar el usuario ":name"?',
 ];

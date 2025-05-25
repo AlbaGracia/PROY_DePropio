@@ -60,8 +60,8 @@
 
                                 <!-- Modal de confirmación -->
                                 <x-confirm-delete :action="route('type.destroy', $type->id)" id="delete-type-{{ $type->id }}"
-                                    title="¿Eliminar tipo?"
-                                    message="¿Estás seguro de que quieres eliminar el tipo '{{ $type->name }}'? Esta acción no se puede deshacer." />
+                                    title="{{ __('labels.delete-type') }}"
+                                    message="{!! __('labels.delete-type-sub', ['name' => $type->name]) !!} {{ __('labels.no-option') }}" />
                             </td>
                         </tr>
                     @endforeach

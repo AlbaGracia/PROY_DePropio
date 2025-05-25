@@ -96,8 +96,8 @@
 
                                     <!-- Modal de confirmación -->
                                     <x-confirm-delete :action="route('user.destroy', $user->id)" id="delete-user-{{ $user->id }}"
-                                        title="¿Eliminar usuario?"
-                                        message="¿Estás seguro de que quieres eliminar el usuario '{{ $user->name }}'? Esta acción no se puede deshacer." />
+                                        title="{{ __('labels.delete-user') }}"
+                                        message="{!! __('labels.delete-user-sub', ['name' => $user->name]) !!} {{ __('labels.no-option') }}" />
                                 </td>
                             </tr>
                         @endif

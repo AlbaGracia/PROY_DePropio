@@ -108,8 +108,8 @@
 
                                 <!-- Modal de confirmación -->
                                 <x-confirm-delete :action="route('event.destroy', $event->id)" id="delete-event-{{ $event->id }}"
-                                    title="¿Eliminar evento?"
-                                    message="¿Estás seguro de que quieres eliminar el evento '{{ $event->name }}'? Esta acción no se puede deshacer." />
+                                    title="{{ __('labels.delete-event') }}"
+                                    message="{!! __('labels.delete-event-sub', ['name' => $event->name]) !!} {{ __('labels.no-option') }}" />
                             </td>
                         </tr>
                     @endforeach

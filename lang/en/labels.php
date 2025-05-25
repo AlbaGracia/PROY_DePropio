@@ -87,6 +87,8 @@ return [
     'filter' => 'Filter',
     'clear-past-events' => 'Clear past events',
     'spaces-related' => 'Associated spaces',
+    'cancel' => 'Cancel',
+    'confirm' => 'Confirm',
 
     /* Inputs */
     'space-name' => 'Space name',
@@ -139,12 +141,28 @@ return [
     'past-event' => 'Event ended',
 
     /* Calendar */
-    'lu' => 'Mo',
-    'ma' => 'Tu',
-    'mi' => 'We',
-    'ju' => 'Th',
-    'vi' => 'Fr',
-    'sa' => 'Sa',
-    'do' => 'Su',
-    'day-events' => 'Events of the day'
+    'day-events' => 'Events of the day',
+
+    /*Modals*/
+    'delete-comments' => 'Delete comment?',
+    'delete-comments-sub' => 'Are you sure you want to delete this comment? This action cannot be undone.',
+    'sure' => 'Are you sure?',
+    'no-option' => "This action cannot be undone.",
+    'delete-save-events' => 'Delete saved event?',
+    'delete-save-events-sub' => 'This event will be removed from your saved events. This action cannot be undone.',
+    'save-event-modal' => 'Save event?',
+    'save-event-modal-sub' => 'Do you want to save this event? You can view all your saved events later.',
+    'delete-category' => 'Delete category?',
+    'delete-category-sub' => 'Are you sure you want to delete the category ":name"?',
+    'delete-event' => 'Delete event?',
+    'delete-event-sub' => 'Are you sure you want to delete the event ":name"?',
+    'delete-space' => 'Delete space?',
+    'delete-space-sub' => 'Are you sure you want to delete the space ":name"?',
+    'delete-type' => 'Delete type?',
+    'delete-type-sub' => 'Are you sure you want to delete the type ":name"?',
+    'delete-user' => 'Delete user?',
+    'delete-user-sub' => 'Are you sure you want to delete the user ":name"?',
+
+
+
 ];

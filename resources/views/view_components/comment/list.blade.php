@@ -81,8 +81,8 @@
 
                                 <!-- Modal de confirmación -->
                                 <x-confirm-delete :action="route('comment.destroy', $comment->id)" id="delete-comment-{{ $comment->id }}"
-                                    title="¿Eliminar comentario?"
-                                    message="¿Estás seguro de que quieres eliminar este comentario? Esta acción no se puede deshacer." />
+                                    title="{{ __('labels.delete-comments') }}"
+                                    message="{{ __('labels.delete-comments-sub') }}" />
                             </td>
                         </tr>
                     @endforeach

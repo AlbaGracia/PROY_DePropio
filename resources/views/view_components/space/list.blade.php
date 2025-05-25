@@ -98,8 +98,8 @@
 
                                 <!-- Modal de confirmación -->
                                 <x-confirm-delete :action="route('space.destroy', $space->id)" id="delete-space-{{ $space->id }}"
-                                    title="¿Eliminar espacio?"
-                                    message="¿Estás seguro de que quieres eliminar el espacio '{{ $space->name }}'? Esta acción no se puede deshacer." />
+                                    title="{{ __('labels.delete-space') }}"
+                                    message="{!! __('labels.delete-space-sub', ['name' => $space->name]) !!} {{ __('labels.no-option') }}" />
                             </td>
                         </tr>
                     @endforeach

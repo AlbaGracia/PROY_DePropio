@@ -1,11 +1,4 @@
-@props([
-    'action',
-    'id',
-    'title' => '¿Estás seguro?',
-    'message' => 'Esta acción no se puede deshacer.',
-    'confirmText' => 'Confirmar',
-    'successMessage' => 'Acción completada.',
-])
+@props(['action', 'id', 'title' => __('labels.sure'), 'message' => __('labels.no-option')])
 
 <x-modal name="{{ $id }}" focusable>
     <form method="POST" action="{{ $action }}" class="p-6" x-data
@@ -23,8 +16,8 @@
         <p class="mt-1 text-sm text-gray-600">{{ $message }}</p>
 
         <div class="mt-6 flex justify-end">
-            <x-secondary-button x-on:click="$dispatch('close')">Cancelar</x-secondary-button>
-            <x-check-button class="ms-3">{{ $confirmText }}</x-check-button>
+            <x-secondary-button x-on:click="$dispatch('close')">{{ __('labels.cancel') }}</x-secondary-button>
+            <x-check-button class="ms-3">{{ __('labels.confirm') }}</x-check-button>
         </div>
     </form>
 </x-modal>
