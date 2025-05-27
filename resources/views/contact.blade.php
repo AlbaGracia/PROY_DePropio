@@ -20,7 +20,7 @@
 
                 <div class="card shadow rounded-4">
                     <div class="card-header bg-royal-purple text-white rounded-top-4">
-                        <h2 class="mb-0">Formulario de Contacto</h2>
+                        <h2 class="mb-0 text-center">Formulario de Contacto</h2>
                     </div>
                     <div class="card-body col-11 m-auto">
                         <form method="POST" action="{{ route('contact.send') }}">

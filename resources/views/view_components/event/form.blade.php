@@ -112,6 +112,16 @@
                         </div>
                     </div>
                 @endif
+                {{-- Volver al listado --}}
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <a href="{{ route('event.list') }}" class="btn btn-outline-dark col-12">
+                            <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.back-list') }}
+                        </a>
+                        <div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

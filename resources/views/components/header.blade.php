@@ -27,7 +27,7 @@
     </nav>
 
     <header class="py-3 border-bottom bg-white">
-        <div class="container d-flex flex-wrap">
+        <div class="d-flex flex-wrap justify-content-center mx-2">
             <div class="row w-100 d-flex justify-content-between align-items-center">
                 <div class="col-12 col-lg-4 d-flex justify-content-lg-start justify-content-center mb-3 mb-lg-0">
                     <ul class="nav d-none d-lg-flex">
@@ -129,7 +129,8 @@
                                 @endguest
                                 @auth
                                     <li class="dropdown-submenu position-relative">
-                                        <a class="dropdown-item fw-bold" href="#" role="button" aria-expanded="false">
+                                        <a class="dropdown-item fw-bold" href="#" role="button"
+                                            aria-expanded="false">
                                             {{ __('Configuración') }} ▸
                                         </a>
                                         <ul class="dropdown-menu">

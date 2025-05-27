@@ -15,7 +15,7 @@
                 <h2 class="mb-5">{{ __('labels.space-info') }}</h2>
                 {{-- Formulario de creación / edición --}}
                 <form action="{{ isset($space) ? route('space.update', $space->id) : route('space.store') }}" method="POST"
-                    enctype="multipart/form-data">
+                    enctype="multipart/form-data" id='formulario'>
                     @csrf
                     @if (isset($space))
                         @method('PUT')
@@ -53,12 +53,14 @@
                             <input type="file" name="image" class="form-control" id="input-file-space">
 
                             {{-- Admins de los espacios --}}
-                            @if(auth()->user()->hasRole('admin'))
+                            @if (auth()->user()->hasRole('admin'))
                                 <select class="form-select rounded-pill" name="user_id">
-                                    <option value="" disabled {{ isset($space) && !$space->user_id ? 'selected' : '' }}>
+                                    <option value="" disabled
+                                        {{ isset($space) && !$space->user_id ? 'selected' : '' }}>
                                         {{ __('labels.select-space-manager') }}</option>
                                     @foreach ($adminUsers as $user)
-                                        <option value="{{ $user->id }}" {{ isset($space) && $space->user_id == $user->id ? 'selected' : '' }}>
+                                        <option value="{{ $user->id }}"
+                                            {{ isset($space) && $space->user_id == $user->id ? 'selected' : '' }}>
                                             {{ $user->name }}
                                         </option>
                                     @endforeach
@@ -106,17 +108,52 @@
                 @endif
                 {{-- Volver al listado --}}
                 <div class="row mt-4">
-                    <a href="{{ route('space.list') }}" class="btn btn-outline-dark col-12">
-                        <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.back-list') }}
-                    </a>
+                    <div class="col-12">
+                        <a href="{{ route('space.list') }}" class="btn btn-outline-dark col-12">
+                            <i class="fa-solid fa-xmark me-1"></i> {{ __('labels.back-list') }}
+                        </a>
+                        <div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
     </main>
     <script type="module">
         import {
             showImage
         } from '{{ asset('js/imagePreview.js') }}';
         showImage('#preview-img-space', '#input-file-space');
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const form = document.getElementById('formulario');
+            form.addEventListener('submit', (e) => {
+                const inputWeb = document.getElementById('web_url');
+                const inputAddress = document.getElementById('address');
+                const webUrl = inputWeb.value.trim();
+                const addressUrl = inputAddress.value.trim();
+
+                const urlRegx = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]{2,}(\/\S*)?$/;
+                const addressRegex =
+                    /^(https:\/\/maps\.app\.goo\.gl\/[\w\d]+|https?:\/\/[\w\-\.]+\.\w{2,}(\/\S*)?)$/;
+
+                let isValid = true;
+                if (webUrl && !urlRegx.test(webUrl)) {
+                    isValid = false;
+                    inputWeb.classList.add('is-invalid');
+                } else {
+                    inputWeb.classList.remove('is-invalid');
+                }
+
+                if (addressUrl && !addressRegex.test(addressUrl)) {
+                    isValid = false;
+                    inputAddress.classList.add('is-invalid');
+                } else {
+                    inputAddress.classList.remove('is-invalid');
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                }
+            })
+        })
     </script>
 @endsection

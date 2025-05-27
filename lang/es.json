@@ -27,6 +27,10 @@
     "Log in": "Iniciar sesión",
     "Already registered?": "¿Ya estás registrado?",
     "Register": "Registrarse",
-    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "¿Olvidaste tu contraseña? No hay problema. Solo indícanos tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña y podrás elegir una nueva.",
-    "Email Password Reset Link": "Enviar enlace"
+    "Forgot your password? Enter your email and we'll send you a link to create a new one.": "¿Olvidaste tu contraseña? Ingresa tu correo y te enviaremos un enlace para crear una nueva.",
+    "Email Password Reset Link": "Enviar enlace",
+    "Don't have an account yet?": "¿No tienes cuenta todavía?",
+    "Incorrect password.": "Contraseña incorrecta.",
+    "There are no registered users with this information.": "No hay ningún usuario registrado con estos datos.",
+    "Back to login": "Volver a iniciar sesión"
 }
