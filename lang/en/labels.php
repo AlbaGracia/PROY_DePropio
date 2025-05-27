@@ -125,7 +125,7 @@ return [
 
     /* Home */
     'title' => 'All Events in Zaragoza. Discover them here!',
-    'subtitle' => 'There are activities worth going to. Discover some of the events in Zaragoza and nearby areas all in one platform.',
+    'subtitle' => 'There are activities worth attending on your own. Discover some of the best events in Zaragoza and its surrounding areas, gathered on a single platform.',
     'show-events' => 'See events',
     'this-week-sub' => 'Still no plans for this week? Explore our selection of must-see events: stand-ups, exhibitions, workshops, and more. Find out everything happening in the coming days and don’t regret missing out on that experience.',
     'this-week-title' => 'Must-see events of the week!',

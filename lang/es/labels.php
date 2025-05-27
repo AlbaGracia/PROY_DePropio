@@ -128,9 +128,9 @@ return [
 
     /* Home */
     'title' => 'Todos los Eventos de Zaragoza. ¡Descúbrelos aquí!',
-    'subtitle' => 'Hay actividades que merece la pena ir de propio a ellos. Conoce algunos de los eventos de la ciudad de Zaragoza y alrededores en una misma plataforma.',
+    'subtitle' => 'Hay actividades a las que merece la pena ir de propio. Descubre algunos de los mejores eventos de Zaragoza y sus alrededores, reunidos en una sola plataforma.',
     'show-events' => 'Ver eventos',
-    'this-week-sub' => '¿Aún sin planes para esta semana? Explora nuestra selección de eventos imperdibles: monólogos, exposiciones, talleres y más. Descubre todo lo que va a suceder en los próximos días y no te arrepientas de haberte perdido esa experiencia.',
+    'this-week-sub' => '¿Aún sin planes para esta semana? Explora nuestra selección de eventos imprescindibles: monólogos, exposiciones, talleres y más. Descubre todo lo que va a suceder en los próximos días y no te arrepientas de haberte perdido esa experiencia.',
     'this-week-title' => '¡Imprescindibles de esta semana!',
 
 

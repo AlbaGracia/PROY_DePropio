@@ -22,7 +22,7 @@ class EventSeeder extends Seeder
                 'web_url' => 'https://iaacc.es/events/aragon-y-las-artes-1957-1975/?occurrence=2023-11-16',
                 'space_id' => 1,
                 'category_id' => 9,
-                'image_path' => 'storage/events/images/Aragon-Las-Artes.webp'
+                'image_path' => 'storage/events/images/Aragon-Las-Artes.jpg'
             ]
         ]);
 
@@ -329,6 +329,20 @@ Descubre en la web los nombres de los magos que actuarán en esta quinta edició
                 'category_id' => 8,
                 'price' => 21,
                 'image_path' => 'storage/events/images/expotaku_zaragoza.jpg'
+            ]
+        );
+
+        DB::table('events')->insert(
+            [
+                'name' => "Let's change the rules - Cambiemos las reglas",
+                'description' => '«Let’s Change the Rules – Cambiemos las Reglas» es un musical coral participativo que fusiona la música moderna con un mensaje poderoso: la necesidad urgente de reconocer la destrucción ambiental masiva (ecocidio) como un crimen internacional. Este evento se enmarca dentro del proyecto global Choirs for Ecocide Law, impulsado por la organización Stop Ecocide International y respaldado por la Asociación Coral Europea.',
+                'start_date' => '2025-06-22',
+                'end_date' => '2025-06-22',
+                'web_url' => 'https://auditoriozaragoza.com/programacion/lets-change-the-rules-cambiemos-las-reglas/',
+                'space_id' => 4,
+                'category_id' => 2,
+                'price' => 21,
+                'image_path' => 'storage/events/images/cambiemos-reglas.jpg'
             ]
         );
 
