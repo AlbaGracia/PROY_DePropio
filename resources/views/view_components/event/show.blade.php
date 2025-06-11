@@ -26,7 +26,8 @@
                                 </button>
 
                                 <x-confirm-delete id="unsave-event-{{ $event->id }}" :action="route('unsave-event', $event->id)"
-                                    title="{{ __('labels.delete-save-events') }}" message="{{ __('labels.delete-save-events-sub') }}" />
+                                    title="{{ __('labels.delete-save-events') }}"
+                                    message="{{ __('labels.delete-save-events-sub') }}" />
                             @else
                                 <!-- Botón guardar -->
                                 <button type="button" class="btn p-0 border-0 bg-transparent" x-data
@@ -48,7 +49,9 @@
 
 
                     <img src="{{ asset($event->image_path ?? 'images/no-image.jpeg') }}"
-                        class="card-img-top h-60 object-fit-cover" alt="{{ $event->name }}">
+                        class="card-img-top h-60 object-fit-cover" alt="{{ $event->name }}" style="cursor: pointer"
+                        data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImageInModal(this)">
+
 
                     <div class="card-body mx-3">
                         <h2 class="card-title text-center mb-4 text-royal-purple">{{ $event->name }}
@@ -188,7 +191,19 @@
                 </div>
             </div>
         </div>
+        <!-- Modal de imagen -->
+        <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content bg-transparent border-0">
+                    <div class="modal-body p-0">
+                        <img src="" id="modalImage" class="img-fluid rounded shadow" alt="Imagen del evento">
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
@@ -201,6 +216,12 @@
         function cancelEdit(id) {
             document.getElementById('text-display-' + id).style.display = 'block';
             document.getElementById('edit-form-' + id).classList.add('d-none');
+        }
+
+        function showImageInModal(img) {
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
