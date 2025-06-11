@@ -23,7 +23,7 @@
 
                     <div class="row">
                         {{-- Columna izquierda --}}
-                        <div class="col-lg-6 d-flex flex-column gap-3">
+                        <div class="col-lg-6 d-flex flex-column justify-content-around gap-3">
 
                             {{-- Nombre --}}
                             <input type="text" class="form-control rounded-pill" name="name"
@@ -49,8 +49,6 @@
                             <input type="text" class="form-control rounded-pill" name="address" id="address"
                                 placeholder="{{ __('labels.address') }}" value="{{ $space->address ?? '' }}" required>
 
-                            {{-- Imagen --}}
-                            <input type="file" name="image" class="form-control" id="input-file-space">
 
                             {{-- Admins de los espacios --}}
                             @if (auth()->user()->hasRole('admin'))
@@ -71,8 +69,9 @@
                         {{-- Columna derecha - Imagen --}}
                         <div class="col-lg-6">
                             <img src="{{ asset($space->image_path ?? 'images/no-image.jpeg') }}" alt="Imagen del espacio"
-                                class="object-fit-cover h-60 w-100 mb-3" id="preview-img-space">
-
+                                class="object-fit-cover h-60 w-100 mb-3" id="preview-img-space" style="height: 280px">
+                            {{-- Imagen --}}
+                            <input type="file" name="image" class="form-control" id="input-file-space">
                         </div>
                     </div>
 

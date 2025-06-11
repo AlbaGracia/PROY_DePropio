@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@depropio.com',
             'password' => Hash::make('Admin-123'),
             'type_user' => 'admin',
+            'password_reset_required' => false,
         ]);
         $admin->assignRole('admin');
 
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@iaacc.com',
             'password' => Hash::make('iaacc123'),
             'type_user' => 'admin_space',
+            'password_reset_required' => false,
         ]);
         $adminIAACC->assignRole('admin_space');
 
@@ -36,6 +38,7 @@ class UserSeeder extends Seeder
             'email' => 'malcazar@gmail.com',
             'password' => Hash::make('12345'),
             'type_user' => 'user',
+            'password_reset_required' => false,
         ]);
         $marcos->assignRole('user');
 
@@ -44,6 +47,7 @@ class UserSeeder extends Seeder
             'email' => 'nmellado@gmail.com',
             'password' => Hash::make('12345'),
             'type_user' => 'user',
+            'password_reset_required' => false,
         ]);
         $noa->assignRole('user');
 
@@ -52,8 +56,8 @@ class UserSeeder extends Seeder
             'email' => 'info@cczaragoza.com',
             'password' => Hash::make('CCZgz-2025'),
             'type_user' => 'admin_space',
+            'password_reset_required' => false,
         ]);
         $adminCentrosCivicos->assignRole('admin_space');
-
     }
 }
