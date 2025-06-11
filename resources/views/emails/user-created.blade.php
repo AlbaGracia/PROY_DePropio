@@ -19,7 +19,7 @@
 
         <tr>
             <td style="text-align: center; padding: 20px;">
-                <a href="{{ url('/') }}"
+                <a href="{{ route('login') }}"
                     style="display: inline-block; background-color: #442288; color: #ffffff; text-decoration: none; padding: 12px 24px; border-radius: 5px; font-size: 15px;">
                     Acceder al sitio
                 </a>
