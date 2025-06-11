@@ -125,7 +125,15 @@ class EventController extends Controller
         $endOfWeek = Carbon::now()->endOfWeek();
 
         $query = Event::query();
-        $query->whereDate('end_date', '>=', now()->toDateString());
+        $query->where(function ($q) use ($startOfWeek, $endOfWeek) {
+            $q->whereBetween('start_date', [$startOfWeek, $endOfWeek])
+                ->orWhereBetween('end_date', [$startOfWeek, $endOfWeek])
+                ->orWhere(function ($q2) use ($startOfWeek, $endOfWeek) {
+                    $q2->where('start_date', '<', $startOfWeek)
+                        ->where('end_date', '>', $endOfWeek);
+                });
+        });
+
 
         $this->applyFilters($query, $request);
 
