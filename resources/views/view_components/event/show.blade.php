@@ -72,7 +72,7 @@
                             <div class="col-md-6">
                                 <p class="fs-5"><b class="fs-5">{{ __('labels.dates') }}:</b>
                                     {{ \Carbon\Carbon::parse($event->start_date)->format('d/m/y') }}
-                                    @if ($event->end_date)
+                                    @if ($event->end_date != $event->start_date)
                                         - {{ \Carbon\Carbon::parse($event->end_date)->format('d/m/y') }}
                                     @endif
                                 </p>
