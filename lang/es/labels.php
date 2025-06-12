@@ -167,4 +167,14 @@ return [
     'delete-type-sub' => '¿Estás seguro de que quieres eliminar el tipo ":name"?',
     'delete-user' => '¿Eliminar usuario?',
     'delete-user-sub' => '¿Estás seguro de que quieres eliminar el usuario ":name"?',
+
+
+    /* Contact */
+    'form-contact' => 'Formulario de Contacto',
+    'name' => 'Nombre',
+    'surname' => 'Apellido',
+    'subject' => 'Asunto',
+    'message' => 'Mensaje',
+    'send' => 'Enviar',
+
 ];

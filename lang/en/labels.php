@@ -163,6 +163,13 @@ return [
     'delete-user' => 'Delete user?',
     'delete-user-sub' => 'Are you sure you want to delete the user ":name"?',
 
+    /* Contact */
+    'form-contact' => 'Contact Form',
+    'name' => 'First Name',
+    'surname' => 'Last Name',
+    'subject' => 'Subject',
+    'message' => 'Message',
+    'send' => 'Send',
 
 
 ];
