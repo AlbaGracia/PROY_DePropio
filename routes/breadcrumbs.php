@@ -63,7 +63,7 @@ Breadcrumbs::for('admin.category.edit', function (BreadcrumbTrail $trail, $categ
 // Tipos - listado
 Breadcrumbs::for('type.list', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.panel');
-    $trail->push(__('labels.list-type'), route('category.index'));
+    $trail->push(__('labels.list-type'), route('type.index'));
 });
 
 
